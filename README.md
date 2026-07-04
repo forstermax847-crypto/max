@@ -1,0 +1,3 @@
+# max
+
+Hello, Claude Code!
