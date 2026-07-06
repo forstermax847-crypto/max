@@ -561,16 +561,41 @@
 
   /* ---------- Testimonials ---------- */
 
-  .testimonials {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: var(--space-5);
+  .testimonial-carousel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
   }
+
+  .testimonials {
+    display: flex;
+    gap: var(--space-5);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding-bottom: var(--space-2);
+    scrollbar-width: none;
+  }
+
+  .testimonials::-webkit-scrollbar { display: none; }
 
   blockquote {
     margin: 0;
     padding-top: var(--space-3);
     border-top: 1px solid var(--accent-coral);
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+  }
+
+  @media (min-width: 720px) {
+    blockquote { flex-basis: calc(50% - var(--space-5) / 2); }
+  }
+
+  .stars {
+    color: var(--accent-gold);
+    letter-spacing: 0.15em;
+    font-size: 0.85rem;
+    margin-bottom: var(--space-2);
   }
 
   blockquote p {
@@ -587,8 +612,79 @@
     color: var(--ink-soft);
   }
 
-  @media (max-width: 720px) {
-    .testimonials { grid-template-columns: 1fr; }
+  .carousel-nav {
+    display: flex;
+    gap: var(--space-2);
+    justify-content: flex-end;
+  }
+
+  .carousel-btn {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  }
+
+  .carousel-btn:hover {
+    background: var(--claret-tint);
+    border-color: var(--claret);
+    color: var(--claret);
+  }
+
+  /* ---------- Location ---------- */
+
+  .location {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: var(--space-6);
+    align-items: center;
+  }
+
+  .location__address {
+    margin: var(--space-3) 0;
+  }
+
+  .location__address dt {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 0.3rem;
+  }
+
+  .location__address dd {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .location__map {
+    aspect-ratio: 4 / 3;
+    background:
+      radial-gradient(circle at 30% 30%, var(--claret-tint) 0%, transparent 45%),
+      repeating-linear-gradient(0deg, var(--line) 0, var(--line) 1px, transparent 1px, transparent 32px),
+      repeating-linear-gradient(90deg, var(--line) 0, var(--line) 1px, transparent 1px, transparent 32px),
+      var(--canvas-raised);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--line);
+  }
+
+  .location__pin {
+    width: 2.5rem;
+    height: 3.3rem;
+    color: var(--claret);
+  }
+
+  @media (max-width: 800px) {
+    .location { grid-template-columns: 1fr; }
+    .location__map { max-width: 16rem; margin: 0 auto; }
   }
 
   /* ---------- FAQ ---------- */
@@ -912,23 +1008,54 @@
         <h2 class="headline" id="voices-head">In their own words</h2>
         <p class="lede">Verified reviews, collected via Doctify from patients seen for a range of conditions and procedures.</p>
       </div>
-      <div class="testimonials">
-        <blockquote>
-          <p>"Sam is a very caring surgeon who goes above and beyond in giving you all the time you need to understand your options and the treatment you will be undergoing. I cannot recommend her highly enough."</p>
-          <cite>Verified patient · Seen for Breast Cancer · 17 Jan 2026</cite>
-        </blockquote>
-        <blockquote>
-          <p>"She listened carefully to all my concerns before examination and answered all of my questions without rushing me. She was incredibly kind, compassionate and reassuring."</p>
-          <cite>Verified patient · Seen for Breast Lump · 16 Feb 2026</cite>
-        </blockquote>
-        <blockquote>
-          <p>"The operation has indeed been life-changing. As big a procedure to undertake, but I had every confidence in Miss Williams and am so delighted with the results."</p>
-          <cite>Verified patient · Seen for Breast Reduction · 10 Dec 2025</cite>
-        </blockquote>
-        <blockquote>
-          <p>"She described the process in simple terms and was clear about the recovery journey. My body confidence has increased massively and I finally feel comfortable in my appearance."</p>
-          <cite>Verified patient · Seen for Breast Augmentation · 28 Nov 2025</cite>
-        </blockquote>
+      <div class="testimonial-carousel">
+        <div class="testimonials" id="testimonialTrack">
+          <blockquote>
+            <div class="stars" aria-hidden="true">★★★★★</div>
+            <p>"Sam is a very caring surgeon who goes above and beyond in giving you all the time you need to understand your options and the treatment you will be undergoing. I cannot recommend her highly enough."</p>
+            <cite>Rated 5 out of 5 · Seen for Breast Cancer · 17 Jan 2026</cite>
+          </blockquote>
+          <blockquote>
+            <div class="stars" aria-hidden="true">★★★★★</div>
+            <p>"She listened carefully to all my concerns before examination and answered all of my questions without rushing me. She was incredibly kind, compassionate and reassuring."</p>
+            <cite>Rated 5 out of 5 · Seen for Breast Lump · 16 Feb 2026</cite>
+          </blockquote>
+          <blockquote>
+            <div class="stars" aria-hidden="true">★★★★★</div>
+            <p>"The operation has indeed been life-changing. As big a procedure to undertake, but I had every confidence in Miss Williams and am so delighted with the results."</p>
+            <cite>Rated 5 out of 5 · Seen for Breast Reduction · 10 Dec 2025</cite>
+          </blockquote>
+          <blockquote>
+            <div class="stars" aria-hidden="true">★★★★★</div>
+            <p>"She described the process in simple terms and was clear about the recovery journey. My body confidence has increased massively and I finally feel comfortable in my appearance."</p>
+            <cite>Rated 5 out of 5 · Seen for Breast Augmentation · 28 Nov 2025</cite>
+          </blockquote>
+        </div>
+        <div class="carousel-nav">
+          <button type="button" class="carousel-btn" data-dir="-1" aria-label="Previous testimonial">←</button>
+          <button type="button" class="carousel-btn" data-dir="1" aria-label="Next testimonial">→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="location-head">
+    <div class="wrap location reveal">
+      <div>
+        <p class="eyebrow">Where to Find Us</p>
+        <h2 class="headline" id="location-head">Location</h2>
+        <p class="lede">Miss Williams sees private patients at BMI The Ridgeway Hospital in Wroughton, a short distance from the heart of Swindon — with straightforward parking and clear transport links.</p>
+        <dl class="location__address">
+          <dt>Address</dt>
+          <dd>BMI The Ridgeway Hospital, Moormead Road, Wroughton, Swindon SN4 9DD</dd>
+        </dl>
+        <a class="procedure-row__link" href="https://maps.app.goo.gl/ZNPr3hB6dtSi3fmZA" target="_blank" rel="noopener">View on Google Maps →</a>
+      </div>
+      <div class="location__map" aria-hidden="true">
+        <svg class="location__pin" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 20 12 20s12-11 12-20c0-6.6-5.4-12-12-12z" fill="currentColor"/>
+          <circle cx="12" cy="12" r="4.5" fill="var(--canvas-raised)"/>
+        </svg>
       </div>
     </div>
   </section>
@@ -1006,7 +1133,7 @@
         <span class="closing__contact-name">Tracy Greenside, Medical Secretary</span>
         <a href="tel:+447354658365">07354 658365</a>
         <a href="mailto:swilliamsbreastsurgeon@gmail.com">swilliamsbreastsurgeon@gmail.com</a>
-        <span>Ridgeway Hospital, Swindon SN4 9DD</span>
+        <span>BMI The Ridgeway Hospital, Moormead Road, Wroughton, Swindon SN4 9DD</span>
       </div>
     </div>
   </section>
@@ -1045,6 +1172,18 @@
       });
     }, { threshold: 0.15 });
     revealEls.forEach(function (el) { io.observe(el); });
+  }
+
+  var track = document.getElementById('testimonialTrack');
+  if (track) {
+    document.querySelectorAll('.carousel-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var dir = parseInt(btn.getAttribute('data-dir'), 10);
+        var card = track.querySelector('blockquote');
+        var amount = card ? card.getBoundingClientRect().width + 24 : track.clientWidth;
+        track.scrollBy({ left: dir * amount, behavior: reduceMotion ? 'auto' : 'smooth' });
+      });
+    });
   }
 </script>
 </body>
