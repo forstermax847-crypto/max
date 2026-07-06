@@ -4,6 +4,13 @@
 <meta charset="UTF-8" />
 <title>Samantha Williams Breast Surgeon — Swindon</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Miss Samantha Williams, Consultant Oncoplastic Breast Surgeon, provides breast cancer surgery, reconstruction, and cosmetic breast procedures from private practice at BMI The Ridgeway Hospital, Swindon." />
+<meta name="theme-color" content="#ECE6DC" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTAiIGZpbGw9IiM2RTJBMzgiLz48dGV4dCB4PSIzMiIgeT0iNDIiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCAnSW93YW4gT2xkIFN0eWxlJywgc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZpbGw9IiNGOEY0RUUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNXPC90ZXh0Pjwvc3ZnPg==" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Samantha Williams Breast Surgeon — Swindon" />
+<meta property="og:description" content="Consultant Oncoplastic Breast Surgeon, private practice at BMI The Ridgeway Hospital, Swindon." />
+<meta name="twitter:card" content="summary" />
 <style>
   @font-face {
     font-family: 'Caslon Display';
@@ -161,10 +168,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--space-2);
     padding: var(--space-3) var(--space-4);
     background: transparent;
     border-bottom: 1px solid transparent;
     transition: background 0.4s ease, border-color 0.4s ease;
+  }
+
+  @media (max-width: 560px) {
+    .nav { padding: var(--space-2) var(--space-3); }
   }
 
   .nav.is-scrolled {
@@ -179,10 +191,18 @@
     text-decoration: none;
     color: var(--ink);
     white-space: nowrap;
+    flex-shrink: 0;
   }
 
-  @media (max-width: 480px) {
+  .nav__mark-short { display: none; }
+
+  @media (max-width: 640px) {
     .nav__mark { font-size: 1rem; }
+  }
+
+  @media (max-width: 560px) {
+    .nav__mark-full { display: none; }
+    .nav__mark-short { display: inline; }
   }
 
   .nav__links {
@@ -203,6 +223,14 @@
 
   @media (max-width: 720px) {
     .nav__links > .nav__link { display: none; }
+  }
+
+  .nav .btn-short { display: none; }
+
+  @media (max-width: 560px) {
+    .nav .btn { padding: 0.65em 0.9em; font-size: 0.7rem; }
+    .nav .btn-full { display: none; }
+    .nav .btn-short { display: inline; }
   }
 
   .btn {
@@ -835,12 +863,18 @@
 </head>
 <body>
 <nav class="nav" id="siteNav">
-  <a class="nav__mark" href="#top">Samantha Williams Breast Surgeon</a>
+  <a class="nav__mark" href="#top">
+    <span class="nav__mark-full">Samantha Williams Breast Surgeon</span>
+    <span class="nav__mark-short">Samantha Williams</span>
+  </a>
   <div class="nav__links">
     <a class="nav__link" href="#about">The Surgeon</a>
     <a class="nav__link" href="#procedures">Procedures</a>
     <a class="nav__link" href="#safety">Safety</a>
-    <a class="btn" href="#contact">Request a Consultation</a>
+    <a class="btn" href="#contact">
+      <span class="btn-full">Request a Consultation</span>
+      <span class="btn-short">Consult</span>
+    </a>
   </div>
 </nav>
 
