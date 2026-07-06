@@ -221,9 +221,74 @@
 
   .nav__link:hover { color: var(--ink); }
 
+  .nav__link.is-active { color: var(--claret); }
+
   @media (max-width: 720px) {
     .nav__links > .nav__link { display: none; }
   }
+
+  .nav__toggle {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .nav__toggle span {
+    display: block;
+    width: 1.1rem;
+    height: 1px;
+    background: var(--ink);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .nav__toggle.is-active span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+  .nav__toggle.is-active span:nth-child(2) { opacity: 0; }
+  .nav__toggle.is-active span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+
+  @media (max-width: 720px) {
+    .nav__toggle { display: flex; }
+  }
+
+  .mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--canvas);
+    border-bottom: 1px solid var(--line);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.2s ease;
+  }
+
+  .mobile-menu.is-open {
+    max-height: 22rem;
+    opacity: 1;
+  }
+
+  .mobile-menu a {
+    padding: var(--space-2) var(--space-4);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    border-top: 1px solid var(--line);
+  }
+
+  .mobile-menu a:first-child { border-top: none; }
+  .mobile-menu a:hover { color: var(--claret); }
 
   .nav .btn-short { display: none; }
 
@@ -642,8 +707,37 @@
 
   .carousel-nav {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .carousel-dots {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .carousel-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    border: 1px solid var(--claret);
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.25s ease, width 0.25s ease;
+  }
+
+  .carousel-dot.is-active {
+    background: var(--claret);
+    width: 1.3rem;
+    border-radius: 999px;
+  }
+
+  .carousel-arrows {
+    display: flex;
     gap: var(--space-2);
-    justify-content: flex-end;
   }
 
   .carousel-btn {
@@ -836,6 +930,31 @@
     font-weight: 600;
   }
 
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .copy-btn {
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 0.2em 0.55em;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .copy-btn:hover,
+  .copy-btn.is-copied {
+    color: var(--claret);
+    border-color: var(--claret);
+  }
+
   /* ---------- Footer ---------- */
 
   footer {
@@ -875,6 +994,17 @@
       <span class="btn-full">Request a Consultation</span>
       <span class="btn-short">Consult</span>
     </a>
+    <button type="button" class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about">The Surgeon</a>
+    <a href="#procedures">Procedures</a>
+    <a href="#safety">Safety</a>
+    <a href="#faq">Questions</a>
+    <a href="#location-head">Location</a>
+    <a href="#contact">Contact</a>
   </div>
 </nav>
 
@@ -1066,8 +1196,16 @@
           </blockquote>
         </div>
         <div class="carousel-nav">
-          <button type="button" class="carousel-btn" data-dir="-1" aria-label="Previous testimonial">←</button>
-          <button type="button" class="carousel-btn" data-dir="1" aria-label="Next testimonial">→</button>
+          <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Testimonial navigation">
+            <button type="button" class="carousel-dot is-active" role="tab" aria-selected="true" aria-label="Testimonial 1" data-index="0"></button>
+            <button type="button" class="carousel-dot" role="tab" aria-selected="false" aria-label="Testimonial 2" data-index="1"></button>
+            <button type="button" class="carousel-dot" role="tab" aria-selected="false" aria-label="Testimonial 3" data-index="2"></button>
+            <button type="button" class="carousel-dot" role="tab" aria-selected="false" aria-label="Testimonial 4" data-index="3"></button>
+          </div>
+          <div class="carousel-arrows">
+            <button type="button" class="carousel-btn" data-dir="-1" aria-label="Previous testimonial">←</button>
+            <button type="button" class="carousel-btn" data-dir="1" aria-label="Next testimonial">→</button>
+          </div>
         </div>
       </div>
     </div>
@@ -1165,8 +1303,14 @@
       </div>
       <div class="closing__contact">
         <span class="closing__contact-name">Tracy Greenside, Medical Secretary</span>
-        <a href="tel:+447354658365">07354 658365</a>
-        <a href="mailto:swilliamsbreastsurgeon@gmail.com">swilliamsbreastsurgeon@gmail.com</a>
+        <span class="contact-row">
+          <a href="tel:+447354658365">07354 658365</a>
+          <button type="button" class="copy-btn" data-copy="07354 658365" aria-label="Copy phone number">Copy</button>
+        </span>
+        <span class="contact-row">
+          <a href="mailto:swilliamsbreastsurgeon@gmail.com">swilliamsbreastsurgeon@gmail.com</a>
+          <button type="button" class="copy-btn" data-copy="swilliamsbreastsurgeon@gmail.com" aria-label="Copy email address">Copy</button>
+        </span>
         <span>BMI The Ridgeway Hospital, Moormead Road, Wroughton, Swindon SN4 9DD</span>
       </div>
     </div>
@@ -1208,16 +1352,119 @@
     revealEls.forEach(function (el) { io.observe(el); });
   }
 
+  var navToggle = document.getElementById('navToggle');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if (navToggle && mobileMenu) {
+    var closeMenu = function () {
+      mobileMenu.classList.remove('is-open');
+      navToggle.classList.remove('is-active');
+      navToggle.setAttribute('aria-expanded', 'false');
+    };
+    navToggle.addEventListener('click', function () {
+      var isOpen = mobileMenu.classList.toggle('is-open');
+      navToggle.classList.toggle('is-active', isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    mobileMenu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', closeMenu);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeMenu();
+    });
+  }
+
+  var sectionLinks = document.querySelectorAll('.nav__link[href^="#"]');
+  if (sectionLinks.length && 'IntersectionObserver' in window) {
+    var linkFor = {};
+    sectionLinks.forEach(function (link) {
+      linkFor[link.getAttribute('href').slice(1)] = link;
+    });
+    var sectionIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var link = linkFor[entry.target.id];
+        if (!link) return;
+        if (entry.isIntersecting) {
+          sectionLinks.forEach(function (l) { l.classList.remove('is-active'); });
+          link.classList.add('is-active');
+        }
+      });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    Object.keys(linkFor).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) sectionIo.observe(el);
+    });
+  }
+
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var value = btn.getAttribute('data-copy');
+      var revert = function () {
+        setTimeout(function () {
+          btn.textContent = 'Copy';
+          btn.classList.remove('is-copied');
+        }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(value).then(function () {
+          btn.textContent = 'Copied';
+          btn.classList.add('is-copied');
+          revert();
+        });
+      }
+    });
+  });
+
   var track = document.getElementById('testimonialTrack');
   if (track) {
+    var cards = Array.prototype.slice.call(track.querySelectorAll('blockquote'));
+    var dots = Array.prototype.slice.call(document.querySelectorAll('.carousel-dot'));
+
     document.querySelectorAll('.carousel-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var dir = parseInt(btn.getAttribute('data-dir'), 10);
-        var card = track.querySelector('blockquote');
+        var card = cards[0];
         var amount = card ? card.getBoundingClientRect().width + 24 : track.clientWidth;
         track.scrollBy({ left: dir * amount, behavior: reduceMotion ? 'auto' : 'smooth' });
       });
     });
+
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        var index = parseInt(dot.getAttribute('data-index'), 10);
+        var card = cards[index];
+        if (card) {
+          track.scrollTo({ left: card.offsetLeft, behavior: reduceMotion ? 'auto' : 'smooth' });
+        }
+      });
+    });
+
+    track.setAttribute('tabindex', '0');
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        var dir = e.key === 'ArrowRight' ? 1 : -1;
+        var amount = cards[0].getBoundingClientRect().width + 24;
+        track.scrollBy({ left: dir * amount, behavior: reduceMotion ? 'auto' : 'smooth' });
+      }
+    });
+
+    if ('IntersectionObserver' in window) {
+      var dotIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var index = cards.indexOf(entry.target);
+          if (index === -1 || !dots[index]) return;
+          if (entry.isIntersecting) {
+            dots.forEach(function (d) {
+              d.classList.remove('is-active');
+              d.setAttribute('aria-selected', 'false');
+            });
+            dots[index].classList.add('is-active');
+            dots[index].setAttribute('aria-selected', 'true');
+          }
+        });
+      }, { root: track, threshold: 0.6 });
+      cards.forEach(function (card) { dotIo.observe(card); });
+    }
   }
 </script>
 </body>
