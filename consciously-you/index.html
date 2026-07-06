@@ -18,7 +18,7 @@
        1. LOGO      — replace the .wordmark text in the header/footer
        2. COLOURS   — brand colours live in :root below (one place)
        3. PRICES    — search "PLACEHOLDER-PRICE"
-       4. QUOTES    — search "PLACEHOLDER-TESTIMONIAL"
+       4. QUOTES    — done: real Google reviews (client to confirm happy)
        5. PHOTOS    — search "PLACEHOLDER-PHOTO" (gallery tiles)
        6. FORM      — search "FORMSPREE" and paste the real form ID
        7. EMAIL     — search "PLACEHOLDER-EMAIL"
@@ -313,6 +313,8 @@
   .cat-grid > .reveal:nth-child(3), .steps > .reveal:nth-child(3),
   .gallery-grid > .reveal:nth-child(3), .quotes > .reveal:nth-child(3) { transition-delay: 140ms; }
   .cat-grid > .reveal:nth-child(4), .gallery-grid > .reveal:nth-child(4) { transition-delay: 210ms; }
+  .quotes > .reveal:nth-child(5) { transition-delay: 70ms; }
+  .quotes > .reveal:nth-child(6) { transition-delay: 140ms; }
   .gallery-grid > .reveal:nth-child(5) { transition-delay: 280ms; }
   .gallery-grid > .reveal:nth-child(6) { transition-delay: 350ms; }
 
@@ -404,6 +406,11 @@
     font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--ink-soft);
   }
+  .stars {
+    margin-top: 0.9rem; display: flex; align-items: center; gap: 0.7em;
+    font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.08em; color: var(--ink-soft);
+  }
+  .stars span { color: var(--honey-deep); font-size: 0.95rem; letter-spacing: 0.18em; }
 
   /* ---------- visit / contact ---------- */
   .visit-grid {
@@ -744,20 +751,32 @@
       <div class="section-head reveal">
         <p class="eyebrow">Kind words</p>
         <h2>What people say.</h2>
+        <p class="stars" aria-label="Rated five stars on Google"><span aria-hidden="true">★★★★★</span> Every Google review — five stars.</p>
       </div>
-      <!-- PLACEHOLDER-TESTIMONIAL: swap for real customer quotes when supplied -->
       <div class="quotes">
         <div class="quote reveal">
-          <blockquote>Such a lovely shop — a beautiful selection and the refills have genuinely changed how we shop as a family.</blockquote>
-          <cite>Placeholder — real review to follow</cite>
+          <blockquote>Excellent shop with great products and modest prices. I buy laundry detergent and hand soap here, and could not be happier. Highly recommend!</blockquote>
+          <cite>Fiori in Biblioteca — Google review</cite>
         </div>
         <div class="quote reveal">
-          <blockquote>My go-to for gifts. Everything is gorgeous, ethical, and wrapped without a scrap of plastic.</blockquote>
-          <cite>Placeholder — real review to follow</cite>
+          <blockquote>Lovely selection of plastic and waste free products. Especially love the soaps and the skin care. Friendly and helpful lady that runs the shop.</blockquote>
+          <cite>Kate Paisey — Google review</cite>
         </div>
         <div class="quote reveal">
-          <blockquote>The staff are so welcoming. I came in for washing-up liquid and left with half my Christmas shopping done.</blockquote>
-          <cite>Placeholder — real review to follow</cite>
+          <blockquote>Highly recommend. Very kind and knowledgable owner, great products. Small business worthy of support.</blockquote>
+          <cite>Mark Stricklin — Google review</cite>
+        </div>
+        <div class="quote reveal">
+          <blockquote>Most amazing little shop full of really lovely environmentally friendly products. The Fill cleaning range is really great and a fab range of skincare too.</blockquote>
+          <cite>Johanna Grimes — Google review</cite>
+        </div>
+        <div class="quote reveal">
+          <blockquote>Such a lovely little eco shop with friendly staff and interesting products. Smells great too!</blockquote>
+          <cite>tabbiekit — Google review</cite>
+        </div>
+        <div class="quote reveal">
+          <blockquote>Lovely store, full of fab natural and ethical products including lots of refillable merchandise at very good prices!</blockquote>
+          <cite>Jenny Parker — Google review</cite>
         </div>
       </div>
     </div>
