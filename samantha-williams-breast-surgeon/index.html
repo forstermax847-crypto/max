@@ -348,7 +348,9 @@
     position: absolute;
     inset: -20% -10% auto -10%;
     height: 70%;
-    background: radial-gradient(60% 60% at 50% 30%, var(--claret-tint), transparent 70%);
+    --glow-x: 50%;
+    --glow-y: 30%;
+    background: radial-gradient(60% 60% at var(--glow-x) var(--glow-y), var(--claret-tint), transparent 70%);
     filter: blur(10px);
     animation: breathe 16s ease-in-out infinite;
     pointer-events: none;
@@ -1338,6 +1340,37 @@
   onScroll();
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var heroEl = document.querySelector('.hero');
+  var glowEl = document.querySelector('.hero__glow');
+  var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (heroEl && glowEl && canHover && !reduceMotion) {
+    var defaultX = 50, defaultY = 30;
+    var targetX = defaultX, targetY = defaultY;
+    var curX = defaultX, curY = defaultY;
+    var clamp = function (v, min, max) { return Math.max(min, Math.min(max, v)); };
+
+    heroEl.addEventListener('mousemove', function (e) {
+      var rect = heroEl.getBoundingClientRect();
+      targetX = clamp(((e.clientX - rect.left) / rect.width) * 100, 15, 85);
+      targetY = clamp(((e.clientY - rect.top) / rect.height) * 100, 5, 65);
+    });
+
+    heroEl.addEventListener('mouseleave', function () {
+      targetX = defaultX;
+      targetY = defaultY;
+    });
+
+    var animateGlow = function () {
+      curX += (targetX - curX) * 0.05;
+      curY += (targetY - curY) * 0.05;
+      glowEl.style.setProperty('--glow-x', curX.toFixed(2) + '%');
+      glowEl.style.setProperty('--glow-y', curY.toFixed(2) + '%');
+      requestAnimationFrame(animateGlow);
+    };
+    requestAnimationFrame(animateGlow);
+  }
+
   var revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && !reduceMotion) {
     document.documentElement.classList.add('js-reveal');
