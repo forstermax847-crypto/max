@@ -110,6 +110,10 @@
     --ink-soft:   #5C665C;  /* secondary text                  */
     --line:       #D9D0BC;  /* hairlines on light              */
     --line-dark:  #3D5647;  /* hairlines on green              */
+    --sand:       #E9E2D2;  /* illustration grounds            */
+    --leaf-2:     #8CA07A;  /* leaf, lifted (illustrations)    */
+    --honey-ink:  #7E5116;  /* amber dark enough for small text */
+    --amber-lift: #D6A257;  /* amber for small text on green   */
 
     --serif: 'Fraunces', Georgia, serif;
     --sans:  'Karla', system-ui, sans-serif;
@@ -137,6 +141,22 @@
 
   ::selection { background: var(--honey); color: var(--paper); }
 
+  /* paper grain — a whisper of texture over everything */
+  body::after {
+    content: ""; position: fixed; inset: 0; z-index: 99; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+    opacity: 0.045; mix-blend-mode: multiply;
+  }
+
+  .skip-link {
+    position: absolute; left: -999px; top: 0; z-index: 100;
+    background: var(--bottle); color: var(--paper); font-weight: 700;
+    padding: 0.7em 1.2em; border-radius: 0 0 10px 0; text-decoration: none;
+  }
+  .skip-link:focus { left: 0; }
+
+  section[id] { scroll-margin-top: 4.75rem; }
+
   a { color: inherit; }
   img, svg { max-width: 100%; display: block; }
 
@@ -155,16 +175,19 @@
     font-weight: 500;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--honey-deep);
+    color: var(--honey-ink);
   }
-  .on-dark .eyebrow { color: var(--honey); }
+  .on-dark .eyebrow { color: var(--amber-lift); }
 
-  h1, h2, h3 { font-family: var(--serif); font-weight: 420; line-height: 1.08; letter-spacing: -0.01em; }
+  h1, h2, h3 {
+    font-family: var(--serif); font-weight: 420; line-height: 1.08; letter-spacing: -0.01em;
+    font-optical-sizing: auto; text-wrap: balance;
+  }
   h1 { font-size: clamp(2.4rem, 4.9vw, 3.8rem); }
-  h2 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); margin: 0.65rem 0 1rem; }
+  h2 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); margin: 0.7rem 0 1.1rem; }
   h3 { font-size: 1.3rem; line-height: 1.25; }
 
-  .lede { font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--ink-soft); max-width: 34em; }
+  .lede { font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--ink-soft); max-width: 34em; text-wrap: pretty; }
   .on-dark .lede { color: #C9D2C4; }
 
   /* ---------- buttons ---------- */
@@ -205,9 +228,11 @@
   .site-nav { display: flex; align-items: center; gap: 1.75rem; }
   .site-nav a:not(.btn) {
     font-size: 0.95rem; font-weight: 600; text-decoration: none; color: var(--ink-soft);
-    transition: color 0.2s;
+    padding-bottom: 2px;
+    background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0% 1.5px;
+    transition: color 0.2s, background-size 0.25s ease;
   }
-  .site-nav a:not(.btn):hover { color: var(--bottle); }
+  .site-nav a:not(.btn):hover { color: var(--bottle); background-size: 100% 1.5px; }
   .site-nav .btn { padding-block: 0.6em; }
   .nav-toggle {
     display: none; background: none; border: 1.5px solid var(--line);
@@ -223,7 +248,7 @@
       padding: 0.5rem var(--pad) 1.25rem;
     }
     .site-nav.open { display: flex; }
-    .site-nav a:not(.btn) { padding: 0.8rem 0; border-bottom: 1px solid var(--line); }
+    .site-nav a:not(.btn) { padding: 0.95rem 0; font-size: 1.05rem; border-bottom: 1px solid var(--line); background: none; }
     .site-nav .btn { margin-top: 1rem; justify-content: center; }
   }
 
@@ -255,6 +280,11 @@
   .jar-fill.d2 { animation-delay: 0.3s; }
   .jar-fill.d3 { animation-delay: 0.45s; }
   @keyframes pour { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  .tag-sway {
+    transform-box: fill-box; transform-origin: 50% 0;
+    animation: sway 6s ease-in-out infinite alternate;
+  }
+  @keyframes sway { from { transform: rotate(2.5deg); } to { transform: rotate(7deg); } }
 
   /* ---------- category strip ---------- */
   .strip {
@@ -271,13 +301,20 @@
   .strip span:last-child::after { content: none; }
 
   /* ---------- sections ---------- */
-  .section { padding-block: clamp(3.5rem, 9vh, 6.5rem); }
-  .section-head { max-width: 44em; margin-bottom: clamp(2rem, 5vh, 3.25rem); }
+  .section { padding-block: clamp(4rem, 10vh, 7.5rem); }
+  .section-head { max-width: 44em; margin-bottom: clamp(2.25rem, 6vh, 3.75rem); }
   .on-dark { background: var(--bottle); color: var(--paper); }
 
-  /* reveal on scroll */
-  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  /* reveal on scroll — small distances, gentle ease, staggered in grids */
+  .reveal { opacity: 0; transform: translateY(12px); transition: opacity 0.55s cubic-bezier(0.2, 0.6, 0.2, 1), transform 0.55s cubic-bezier(0.2, 0.6, 0.2, 1); }
   .reveal.in { opacity: 1; transform: none; }
+  .cat-grid > .reveal:nth-child(2), .steps > .reveal:nth-child(2),
+  .gallery-grid > .reveal:nth-child(2), .quotes > .reveal:nth-child(2) { transition-delay: 70ms; }
+  .cat-grid > .reveal:nth-child(3), .steps > .reveal:nth-child(3),
+  .gallery-grid > .reveal:nth-child(3), .quotes > .reveal:nth-child(3) { transition-delay: 140ms; }
+  .cat-grid > .reveal:nth-child(4), .gallery-grid > .reveal:nth-child(4) { transition-delay: 210ms; }
+  .gallery-grid > .reveal:nth-child(5) { transition-delay: 280ms; }
+  .gallery-grid > .reveal:nth-child(6) { transition-delay: 350ms; }
 
   /* ---------- shop / categories ---------- */
   .cat-grid {
@@ -286,9 +323,14 @@
   }
   .cat-card {
     background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 1.75rem 1.6rem 1.5rem;
+    padding: 1.85rem 1.7rem 1.6rem;
     display: flex; flex-direction: column; gap: 0.8rem;
     position: relative;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .cat-card:hover {
+    transform: translateY(-3px); border-color: var(--honey);
+    box-shadow: 0 12px 26px -20px rgba(34, 56, 43, 0.5);
   }
   .cat-card::before {  /* punched tag hole */
     content: ""; position: absolute; top: 1.1rem; right: 1.1rem;
@@ -302,7 +344,7 @@
     display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
     font-size: 0.9rem; border-bottom: 1px dashed var(--line); padding-bottom: 0.45rem;
   }
-  .cat-items .price { font-family: var(--mono); font-size: 0.78rem; color: var(--honey-deep); white-space: nowrap; }
+  .cat-items .price { font-family: var(--mono); font-size: 0.78rem; color: var(--honey-ink); white-space: nowrap; }
   .price-note { margin-top: 1.5rem; font-family: var(--mono); font-size: 0.75rem; color: var(--ink-soft); }
 
   /* ---------- how refills work ---------- */
@@ -331,12 +373,19 @@
     border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line);
     background: var(--paper); aspect-ratio: 4 / 3;
     display: grid; grid-template-rows: 1fr auto;
+    transition: border-color 0.25s ease;
   }
-  .tile svg { width: 100%; height: 100%; }
+  .tile:hover { border-color: var(--honey); }
+  .tile svg { width: 100%; height: 100%; transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.3, 1); }
+  .tile:hover svg { transform: scale(1.045); }
   .tile figcaption {
     font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--ink-soft); padding: 0.6rem 0.9rem; border-top: 1px solid var(--line);
-    background: var(--paper);
+    background: var(--paper); position: relative; z-index: 1;
+  }
+  @media (max-width: 760px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    .tile figcaption { font-size: 0.62rem; letter-spacing: 0.09em; padding: 0.5rem 0.65rem; }
   }
 
   /* ---------- testimonials ---------- */
@@ -416,9 +465,43 @@
   .site-foot .wordmark { color: var(--paper); font-size: 1.1rem; }
   .site-foot .wordmark em { color: var(--honey); }
   .site-foot small { font-family: var(--mono); font-size: 0.72rem; color: #8FA08D; letter-spacing: 0.06em; }
+
+  /* ---------- mobile visit bar ---------- */
+  .mobile-bar { display: none; }
+  @media (max-width: 760px) {
+    body { padding-bottom: 3.4rem; }
+    .mobile-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 60;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      background: color-mix(in srgb, var(--bottle) 94%, transparent);
+      backdrop-filter: blur(8px);
+      color: var(--paper);
+      padding: 0.75rem var(--pad) calc(0.75rem + env(safe-area-inset-bottom));
+      font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.04em;
+    }
+    .mobile-bar p { display: flex; align-items: center; gap: 0.55em; }
+    .mobile-bar .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--leaf-2); }
+    .mobile-bar a {
+      color: var(--amber-lift); font-weight: 500; text-decoration: none;
+      border-bottom: 1px solid currentColor; padding-bottom: 1px; white-space: nowrap;
+    }
+  }
+
+  .on-dark :focus-visible { outline-color: var(--honey); }
+
+  @media print {
+    .site-head, .contact-form, .map-frame, .mobile-bar, .hero-ctas, .socials { display: none !important; }
+    body { background: #fff; color: #000; }
+    body::after { display: none; }
+    .on-dark { background: #fff; color: #000; }
+    .step h3, .detail-block h3 { color: #000; }
+    .step p, .detail-block p, .detail-block a, .hours-table td, .lede { color: #333; }
+  }
 </style>
 </head>
 <body>
+
+<a class="skip-link" href="#top">Skip to content</a>
 
 <header class="site-head">
   <div class="wrap">
@@ -455,75 +538,75 @@
       <div class="hero-art" aria-hidden="true">
         <svg viewBox="0 0 420 400" fill="none" xmlns="http://www.w3.org/2000/svg">
           <!-- back wall arch (a nod to Bath's Georgian curves) -->
-          <path d="M30 400V150C30 66 110 20 210 20s180 46 180 130v250" fill="#E9E2D2"/>
+          <path d="M30 400V150C30 66 110 20 210 20s180 46 180 130v250" fill="var(--sand)"/>
           <!-- upper shelf -->
-          <rect x="55" y="168" width="310" height="10" rx="3" fill="#96682A"/>
+          <rect x="55" y="168" width="310" height="10" rx="3" fill="var(--honey-deep)"/>
           <!-- gravity dispensers on upper shelf -->
           <g>
-            <rect x="72" y="84" width="56" height="84" rx="8" fill="#FBF8F1" stroke="#D9D0BC" stroke-width="2"/>
-            <rect class="jar-fill d1" x="78" y="112" width="44" height="50" rx="5" fill="#C18A3F"/>
-            <rect x="88" y="126" width="24" height="14" rx="2" fill="#FBF8F1"/>
-            <path d="M90 168h20l-4 12h-12z" fill="#3D3D3D"/>
+            <rect x="72" y="84" width="56" height="84" rx="8" fill="var(--paper)" stroke="var(--line)" stroke-width="2"/>
+            <rect class="jar-fill d1" x="78" y="112" width="44" height="50" rx="5" fill="var(--honey)"/>
+            <rect x="88" y="126" width="24" height="14" rx="2" fill="var(--paper)"/>
+            <path d="M90 168h20l-4 12h-12z" fill="var(--bottle)"/>
           </g>
           <g>
-            <rect x="146" y="84" width="56" height="84" rx="8" fill="#FBF8F1" stroke="#D9D0BC" stroke-width="2"/>
-            <rect class="jar-fill d2" x="152" y="100" width="44" height="62" rx="5" fill="#6B7F5E"/>
-            <rect x="162" y="120" width="24" height="14" rx="2" fill="#FBF8F1"/>
-            <path d="M164 168h20l-4 12h-12z" fill="#3D3D3D"/>
+            <rect x="146" y="84" width="56" height="84" rx="8" fill="var(--paper)" stroke="var(--line)" stroke-width="2"/>
+            <rect class="jar-fill d2" x="152" y="100" width="44" height="62" rx="5" fill="var(--leaf)"/>
+            <rect x="162" y="120" width="24" height="14" rx="2" fill="var(--paper)"/>
+            <path d="M164 168h20l-4 12h-12z" fill="var(--bottle)"/>
           </g>
           <g>
-            <rect x="220" y="84" width="56" height="84" rx="8" fill="#FBF8F1" stroke="#D9D0BC" stroke-width="2"/>
-            <rect class="jar-fill d3" x="226" y="120" width="44" height="42" rx="5" fill="#8A5A3B"/>
-            <rect x="236" y="130" width="24" height="14" rx="2" fill="#FBF8F1"/>
-            <path d="M238 168h20l-4 12h-12z" fill="#3D3D3D"/>
+            <rect x="220" y="84" width="56" height="84" rx="8" fill="var(--paper)" stroke="var(--line)" stroke-width="2"/>
+            <rect class="jar-fill d3" x="226" y="120" width="44" height="42" rx="5" fill="var(--honey-deep)"/>
+            <rect x="236" y="130" width="24" height="14" rx="2" fill="var(--paper)"/>
+            <path d="M238 168h20l-4 12h-12z" fill="var(--bottle)"/>
           </g>
           <!-- amber bottle on upper shelf -->
           <g>
-            <rect x="304" y="122" width="34" height="46" rx="6" fill="#96682A"/>
-            <rect x="313" y="104" width="16" height="20" rx="3" fill="#96682A"/>
-            <rect x="311" y="98" width="20" height="8" rx="2" fill="#22382B"/>
-            <rect x="309" y="136" width="24" height="18" rx="2" fill="#FBF8F1"/>
+            <rect x="304" y="122" width="34" height="46" rx="6" fill="var(--honey-deep)"/>
+            <rect x="313" y="104" width="16" height="20" rx="3" fill="var(--honey-deep)"/>
+            <rect x="311" y="98" width="20" height="8" rx="2" fill="var(--bottle)"/>
+            <rect x="309" y="136" width="24" height="18" rx="2" fill="var(--paper)"/>
           </g>
           <!-- lower shelf -->
-          <rect x="55" y="316" width="310" height="10" rx="3" fill="#96682A"/>
+          <rect x="55" y="316" width="310" height="10" rx="3" fill="var(--honey-deep)"/>
           <!-- kilner jar -->
           <g>
-            <rect x="70" y="228" width="62" height="88" rx="10" fill="#FBF8F1" stroke="#D9D0BC" stroke-width="2"/>
-            <rect class="jar-fill d2" x="76" y="252" width="50" height="58" rx="6" fill="#B98F58"/>
-            <rect x="80" y="218" width="42" height="14" rx="4" fill="#96682A"/>
-            <rect x="86" y="266" width="30" height="16" rx="2" fill="#FBF8F1"/>
+            <rect x="70" y="228" width="62" height="88" rx="10" fill="var(--paper)" stroke="var(--line)" stroke-width="2"/>
+            <rect class="jar-fill d2" x="76" y="252" width="50" height="58" rx="6" fill="var(--honey)"/>
+            <rect x="80" y="218" width="42" height="14" rx="4" fill="var(--honey-deep)"/>
+            <rect x="86" y="266" width="30" height="16" rx="2" fill="var(--paper)"/>
           </g>
           <!-- soap stack -->
           <g>
-            <rect x="156" y="292" width="64" height="22" rx="5" fill="#C9BFA8"/>
-            <rect x="160" y="268" width="56" height="22" rx="5" fill="#6B7F5E"/>
-            <rect x="164" y="244" width="48" height="22" rx="5" fill="#D9C7AC"/>
-            <circle cx="188" cy="279" r="6" fill="#FBF8F1"/>
+            <rect x="156" y="292" width="64" height="22" rx="5" fill="var(--kraft)"/>
+            <rect x="160" y="268" width="56" height="22" rx="5" fill="var(--leaf)"/>
+            <rect x="164" y="244" width="48" height="22" rx="5" fill="var(--sand)"/>
+            <circle cx="188" cy="279" r="6" fill="var(--paper)"/>
           </g>
           <!-- pump bottles -->
           <g>
-            <rect x="244" y="240" width="40" height="76" rx="7" fill="#96682A"/>
-            <rect x="256" y="222" width="16" height="20" rx="3" fill="#5A4A2E"/>
-            <path d="M256 222h26v8h-10v6h-16z" fill="#5A4A2E"/>
-            <rect x="250" y="262" width="28" height="30" rx="2" fill="#FBF8F1"/>
+            <rect x="244" y="240" width="40" height="76" rx="7" fill="var(--honey-deep)"/>
+            <rect x="256" y="222" width="16" height="20" rx="3" fill="var(--honey-ink)"/>
+            <path d="M256 222h26v8h-10v6h-16z" fill="var(--honey-ink)"/>
+            <rect x="250" y="262" width="28" height="30" rx="2" fill="var(--paper)"/>
           </g>
           <g>
-            <rect x="296" y="252" width="36" height="64" rx="7" fill="#2E4A39"/>
-            <rect x="306" y="236" width="16" height="18" rx="3" fill="#22382B"/>
-            <path d="M306 236h24v8h-10v5h-14z" fill="#22382B"/>
-            <rect x="301" y="272" width="26" height="26" rx="2" fill="#FBF8F1"/>
+            <rect x="296" y="252" width="36" height="64" rx="7" fill="var(--bottle-2)"/>
+            <rect x="306" y="236" width="16" height="18" rx="3" fill="var(--bottle)"/>
+            <path d="M306 236h24v8h-10v5h-14z" fill="var(--bottle)"/>
+            <rect x="301" y="272" width="26" height="26" rx="2" fill="var(--paper)"/>
           </g>
-          <!-- hanging swing tag -->
-          <g transform="rotate(6 358 210)">
-            <line x1="352" y1="186" x2="358" y2="206" stroke="#96682A" stroke-width="1.5"/>
-            <rect x="344" y="206" width="30" height="42" rx="4" fill="#E7DCC6" stroke="#C9B98F" stroke-width="1.5"/>
-            <circle cx="359" cy="213" r="2.5" fill="#F2EDE3" stroke="#C9B98F"/>
-            <line x1="350" y1="224" x2="368" y2="224" stroke="#96682A" stroke-width="1.5"/>
-            <line x1="350" y1="231" x2="364" y2="231" stroke="#C9B98F" stroke-width="1.5"/>
-            <line x1="350" y1="238" x2="366" y2="238" stroke="#C9B98F" stroke-width="1.5"/>
+          <!-- hanging swing tag, swaying gently -->
+          <g class="tag-sway">
+            <line x1="352" y1="186" x2="358" y2="206" stroke="var(--honey-deep)" stroke-width="1.5"/>
+            <rect x="344" y="206" width="30" height="42" rx="4" fill="var(--kraft)" stroke="var(--line)" stroke-width="1.5"/>
+            <circle cx="359" cy="213" r="2.5" fill="var(--flax)" stroke="var(--line)"/>
+            <line x1="350" y1="224" x2="368" y2="224" stroke="var(--honey-deep)" stroke-width="1.5"/>
+            <line x1="350" y1="231" x2="364" y2="231" stroke="var(--line)" stroke-width="1.5"/>
+            <line x1="350" y1="238" x2="366" y2="238" stroke="var(--line)" stroke-width="1.5"/>
           </g>
           <!-- floor line -->
-          <line x1="16" y1="400" x2="404" y2="400" stroke="#D9D0BC" stroke-width="2"/>
+          <line x1="16" y1="400" x2="404" y2="400" stroke="var(--line)" stroke-width="2"/>
         </svg>
       </div>
     </div>
@@ -607,7 +690,7 @@
         </div>
         <div class="step reveal">
           <h3>Weigh, then fill</h3>
-          <p>We weigh your empty container first, so you never pay for the packaging — because there isn't any.</p>
+          <p>We weigh your empty container first — that's the tare — so you never pay for what you brought in.</p>
         </div>
         <div class="step reveal">
           <h3>Pay by weight</h3>
@@ -628,27 +711,27 @@
            Keep the figcaption labels — they read as gallery captions. -->
       <div class="gallery-grid">
         <figure class="tile reveal">
-          <svg viewBox="0 0 400 300" aria-hidden="true"><rect width="400" height="300" fill="#E9E2D2"/><rect x="60" y="70" width="280" height="12" rx="4" fill="#96682A"/><rect x="90" y="90" width="50" height="70" rx="8" fill="#C18A3F"/><rect x="160" y="82" width="50" height="78" rx="8" fill="#6B7F5E"/><rect x="230" y="95" width="50" height="65" rx="8" fill="#B98F58"/><rect x="60" y="215" width="280" height="12" rx="4" fill="#96682A"/><rect x="120" y="165" width="55" height="50" rx="8" fill="#2E4A39"/><rect x="210" y="172" width="45" height="43" rx="8" fill="#96682A"/></svg>
+          <svg viewBox="0 0 400 300" aria-hidden="true"><rect width="400" height="300" fill="var(--sand)"/><rect x="60" y="70" width="280" height="12" rx="4" fill="var(--honey-deep)"/><rect x="90" y="90" width="50" height="70" rx="8" fill="var(--honey)"/><rect x="160" y="82" width="50" height="78" rx="8" fill="var(--leaf)"/><rect x="230" y="95" width="50" height="65" rx="8" fill="var(--honey-deep)"/><rect x="60" y="215" width="280" height="12" rx="4" fill="var(--honey-deep)"/><rect x="120" y="165" width="55" height="50" rx="8" fill="var(--bottle-2)"/><rect x="210" y="172" width="45" height="43" rx="8" fill="var(--honey)"/></svg>
           <figcaption>The refill wall</figcaption>
         </figure>
         <figure class="tile reveal">
-          <svg viewBox="0 0 400 300" aria-hidden="true"><rect width="400" height="300" fill="#EFE7D6"/><rect x="120" y="180" width="160" height="34" rx="8" fill="#C9BFA8"/><rect x="132" y="144" width="136" height="34" rx="8" fill="#6B7F5E"/><rect x="144" y="108" width="112" height="34" rx="8" fill="#D9C7AC"/><circle cx="200" cy="161" r="9" fill="#FBF8F1"/></svg>
+          <svg viewBox="0 0 400 300" aria-hidden="true"><rect width="400" height="300" fill="var(--flax)"/><rect x="120" y="180" width="160" height="34" rx="8" fill="var(--kraft)"/><rect x="132" y="144" width="136" height="34" rx="8" fill="var(--leaf)"/><rect x="144" y="108" width="112" height="34" rx="8" fill="var(--sand)"/><circle cx="200" cy="161" r="9" fill="var(--paper)"/></svg>
           <figcaption>Handmade soaps</figcaption>
         </figure>
         <figure class="tile reveal">
-          <svg viewBox="0 0 400 300" aria-hidden="true"><rect width="400" height="300" fill="#E9E2D2"/><circle cx="200" cy="150" r="78" fill="#FBF8F1" stroke="#D9D0BC" stroke-width="3"/><path d="M200 150 m-58 20 a58 58 0 0 1 116 0z" fill="#C18A3F" transform="rotate(180 200 160)"/><rect x="176" y="60" width="48" height="18" rx="6" fill="#96682A"/></svg>
+          <svg viewBox="0 0 400 300" aria-hidden="true"><rect width="400" height="300" fill="var(--sand)"/><rect x="130" y="234" width="140" height="10" rx="5" fill="var(--honey-deep)"/><rect x="150" y="152" width="100" height="82" rx="14" fill="var(--paper)" stroke="var(--line)" stroke-width="3"/><circle cx="200" cy="193" r="24" fill="var(--flax)" stroke="var(--line)" stroke-width="3"/><line x1="200" y1="193" x2="212" y2="177" stroke="var(--honey-deep)" stroke-width="3" stroke-linecap="round"/><rect x="140" y="140" width="120" height="12" rx="6" fill="var(--honey-deep)"/><rect x="172" y="72" width="56" height="68" rx="9" fill="var(--paper)" stroke="var(--line)" stroke-width="3"/><rect x="178" y="96" width="44" height="40" rx="5" fill="var(--honey)"/><rect x="182" y="62" width="36" height="12" rx="4" fill="var(--honey-deep)"/></svg>
           <figcaption>Weigh &amp; pay</figcaption>
         </figure>
         <figure class="tile reveal">
-          <svg viewBox="0 0 400 300" aria-hidden="true"><rect width="400" height="300" fill="#EFE7D6"/><rect x="90" y="120" width="70" height="110" rx="10" fill="#96682A"/><rect x="180" y="100" width="60" height="130" rx="10" fill="#2E4A39"/><rect x="260" y="135" width="55" height="95" rx="10" fill="#C18A3F"/><rect x="104" y="150" width="42" height="40" rx="3" fill="#FBF8F1"/><rect x="192" y="140" width="36" height="40" rx="3" fill="#FBF8F1"/><rect x="272" y="160" width="32" height="34" rx="3" fill="#FBF8F1"/></svg>
+          <svg viewBox="0 0 400 300" aria-hidden="true"><rect width="400" height="300" fill="var(--flax)"/><rect x="90" y="120" width="70" height="110" rx="10" fill="var(--honey-deep)"/><rect x="180" y="100" width="60" height="130" rx="10" fill="var(--bottle-2)"/><rect x="260" y="135" width="55" height="95" rx="10" fill="var(--honey)"/><rect x="104" y="150" width="42" height="40" rx="3" fill="var(--paper)"/><rect x="192" y="140" width="36" height="40" rx="3" fill="var(--paper)"/><rect x="272" y="160" width="32" height="34" rx="3" fill="var(--paper)"/></svg>
           <figcaption>Skincare shelf</figcaption>
         </figure>
         <figure class="tile reveal">
-          <svg viewBox="0 0 400 300" aria-hidden="true"><rect width="400" height="300" fill="#E9E2D2"/><rect x="120" y="110" width="160" height="120" rx="10" fill="#E7DCC6" stroke="#C9B98F" stroke-width="3"/><path d="M120 150h160M200 110v120" stroke="#96682A" stroke-width="6"/><circle cx="200" cy="150" r="16" fill="#6B7F5E"/><path d="M186 138c8-16 20-16 28 0-8 10-20 10-28 0z" fill="#8CA07A"/></svg>
+          <svg viewBox="0 0 400 300" aria-hidden="true"><rect width="400" height="300" fill="var(--sand)"/><rect x="120" y="110" width="160" height="120" rx="10" fill="var(--kraft)" stroke="var(--line)" stroke-width="3"/><path d="M120 150h160M200 110v120" stroke="var(--honey-deep)" stroke-width="6"/><circle cx="200" cy="150" r="16" fill="var(--leaf)"/><path d="M186 138c8-16 20-16 28 0-8 10-20 10-28 0z" fill="var(--leaf-2)"/></svg>
           <figcaption>Gifts, wrapped</figcaption>
         </figure>
         <figure class="tile reveal">
-          <svg viewBox="0 0 400 300" aria-hidden="true"><rect width="400" height="300" fill="#EFE7D6"/><path d="M170 230c0-60 10-110 30-140 20 30 30 80 30 140z" fill="#6B7F5E"/><path d="M200 230c-30-20-70-24-95-10 18 22 60 28 95 10z" fill="#8CA07A"/><path d="M200 230c30-20 70-24 95-10-18 22-60 28-95 10z" fill="#556B4A"/><rect x="150" y="228" width="100" height="14" rx="7" fill="#96682A"/></svg>
+          <svg viewBox="0 0 400 300" aria-hidden="true"><rect width="400" height="300" fill="var(--flax)"/><path d="M170 230c0-60 10-110 30-140 20 30 30 80 30 140z" fill="var(--leaf)"/><path d="M200 230c-30-20-70-24-95-10 18 22 60 28 95 10z" fill="var(--leaf-2)"/><path d="M200 230c30-20 70-24 95-10-18 22-60 28-95 10z" fill="var(--bottle-2)"/><rect x="150" y="228" width="100" height="14" rx="7" fill="var(--honey-deep)"/></svg>
           <figcaption>Dried botanicals</figcaption>
         </figure>
       </div>
@@ -733,6 +816,7 @@
           <p class="eyebrow" style="margin-bottom: 0.3rem;">Send a message</p>
           <p style="color: #C9D2C4; font-size: 0.95rem;">Ask about stock, gifts or wholesale — we'll get back to you soon.</p>
         </div>
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" aria-hidden="true" />
         <div class="row">
           <div class="field">
             <label for="f-name">Name</label>
@@ -752,6 +836,11 @@
     </div>
   </section>
 </main>
+
+<div class="mobile-bar">
+  <p><span class="dot" aria-hidden="true"></span><span id="open-today">Open today</span></p>
+  <a href="https://www.google.com/maps/dir/?api=1&amp;destination=12+Chelsea+Road%2C+Bath+BA1+3DU">Directions</a>
+</div>
 
 <footer class="site-foot">
   <div class="wrap">
@@ -785,6 +874,10 @@
   }
 
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // today's hours in the mobile bar (Sun 10–3, otherwise 8:30–5)
+  document.getElementById('open-today').textContent =
+    new Date().getDay() === 0 ? 'Open today 10–3' : 'Open today 8:30–5';
 </script>
 
 </body>
