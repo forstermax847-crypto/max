@@ -313,8 +313,6 @@
   .cat-grid > .reveal:nth-child(3), .steps > .reveal:nth-child(3),
   .gallery-grid > .reveal:nth-child(3), .quotes > .reveal:nth-child(3) { transition-delay: 140ms; }
   .cat-grid > .reveal:nth-child(4), .gallery-grid > .reveal:nth-child(4) { transition-delay: 210ms; }
-  .quotes > .reveal:nth-child(5) { transition-delay: 70ms; }
-  .quotes > .reveal:nth-child(6) { transition-delay: 140ms; }
   .gallery-grid > .reveal:nth-child(5) { transition-delay: 280ms; }
   .gallery-grid > .reveal:nth-child(6) { transition-delay: 350ms; }
 
@@ -390,12 +388,35 @@
     .tile figcaption { font-size: 0.62rem; letter-spacing: 0.09em; padding: 0.5rem 0.65rem; }
   }
 
-  /* ---------- testimonials ---------- */
-  .quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.25rem; }
+  /* ---------- testimonials carousel ---------- */
+  .quotes-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+  .quotes-head .section-head { margin-bottom: 0; }
+  .quotes-headrow { margin-bottom: clamp(2.25rem, 6vh, 3.75rem); }
+  .car-controls { display: flex; align-items: center; gap: 0.9rem; }
+  .car-count { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.14em; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .car-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 2.75rem; height: 2.75rem; border-radius: 50%; cursor: pointer;
+    background: var(--paper); border: 1.5px solid var(--line); color: var(--bottle);
+    transition: border-color 0.2s, background 0.2s, color 0.2s;
+  }
+  .car-btn:hover { border-color: var(--honey); background: var(--bottle); color: var(--paper); }
+  .car-btn svg { width: 1.05rem; height: 1.05rem; }
+  .quotes-track {
+    display: flex; gap: 1.25rem;
+    overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    padding-bottom: 0.35rem;
+    scrollbar-width: none;
+  }
+  .quotes-track::-webkit-scrollbar { display: none; }
+  @media (prefers-reduced-motion: reduce) { .quotes-track { scroll-behavior: auto; } }
   .quote {
     background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
     padding: 1.9rem 1.7rem;
+    flex: 0 0 min(23rem, 82vw); scroll-snap-align: start;
+    display: flex; flex-direction: column;
   }
+  .quote blockquote { flex-grow: 1; }
   .quote blockquote {
     font-family: var(--serif); font-size: 1.2rem; line-height: 1.45; font-style: italic;
     color: var(--bottle);
@@ -748,35 +769,58 @@
   <!-- ============ TESTIMONIALS ============ -->
   <section class="section" id="reviews" style="padding-top: 0;">
     <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Kind words</p>
-        <h2>What people say.</h2>
-        <p class="stars" aria-label="Rated five stars on Google"><span aria-hidden="true">★★★★★</span> Every Google review — five stars.</p>
+      <div class="quotes-head quotes-headrow reveal">
+        <div class="section-head">
+          <p class="eyebrow">Kind words</p>
+          <h2>What people say.</h2>
+          <p class="stars" aria-label="Rated five stars on Google"><span aria-hidden="true">★★★★★</span> Every Google review — five stars.</p>
+        </div>
+        <div class="car-controls">
+          <button class="car-btn" type="button" data-dir="-1" aria-label="Previous reviews">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m6-7-7 7 7 7"/></svg>
+          </button>
+          <span class="car-count">01 / 09</span>
+          <button class="car-btn" type="button" data-dir="1" aria-label="Next reviews">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-7 7 7-7 7"/></svg>
+          </button>
+        </div>
       </div>
-      <div class="quotes">
-        <div class="quote reveal">
+      <div class="quotes-track reveal" role="region" aria-label="Customer reviews" tabindex="0">
+        <div class="quote">
           <blockquote>Excellent shop with great products and modest prices. I buy laundry detergent and hand soap here, and could not be happier. Highly recommend!</blockquote>
           <cite>Fiori in Biblioteca — Google review</cite>
         </div>
-        <div class="quote reveal">
+        <div class="quote">
           <blockquote>Lovely selection of plastic and waste free products. Especially love the soaps and the skin care. Friendly and helpful lady that runs the shop.</blockquote>
           <cite>Kate Paisey — Google review</cite>
         </div>
-        <div class="quote reveal">
+        <div class="quote">
           <blockquote>Highly recommend. Very kind and knowledgable owner, great products. Small business worthy of support.</blockquote>
           <cite>Mark Stricklin — Google review</cite>
         </div>
-        <div class="quote reveal">
+        <div class="quote">
           <blockquote>Most amazing little shop full of really lovely environmentally friendly products. The Fill cleaning range is really great and a fab range of skincare too.</blockquote>
           <cite>Johanna Grimes — Google review</cite>
         </div>
-        <div class="quote reveal">
+        <div class="quote">
           <blockquote>Such a lovely little eco shop with friendly staff and interesting products. Smells great too!</blockquote>
           <cite>tabbiekit — Google review</cite>
         </div>
-        <div class="quote reveal">
+        <div class="quote">
           <blockquote>Lovely store, full of fab natural and ethical products including lots of refillable merchandise at very good prices!</blockquote>
           <cite>Jenny Parker — Google review</cite>
+        </div>
+        <div class="quote">
+          <blockquote>Great shop, great service, great selection — will be back for sure!</blockquote>
+          <cite>Anais — Google review</cite>
+        </div>
+        <div class="quote">
+          <blockquote>Fabulous shop!</blockquote>
+          <cite>Lisa Price — Google review</cite>
+        </div>
+        <div class="quote">
+          <blockquote>All 5 star reviews.</blockquote>
+          <cite>Phoebe Gretton — Google review</cite>
         </div>
       </div>
     </div>
@@ -893,6 +937,30 @@
   }
 
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // reviews carousel
+  var track = document.querySelector('.quotes-track');
+  var counter = document.querySelector('.car-count');
+  var quoteCount = track.children.length;
+  function quoteStep() {
+    return track.children[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 20);
+  }
+  document.querySelectorAll('.car-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      track.scrollBy({ left: quoteStep() * Number(btn.dataset.dir) });
+    });
+  });
+  function pad(n) { return String(n).padStart(2, '0'); }
+  var ticking = false;
+  track.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      var idx = Math.min(quoteCount, Math.round(track.scrollLeft / quoteStep()) + 1);
+      counter.textContent = pad(idx) + ' / ' + pad(quoteCount);
+      ticking = false;
+    });
+  });
 
   // today's hours in the mobile bar (Sun 10–3, otherwise 8:30–5)
   document.getElementById('open-today').textContent =
