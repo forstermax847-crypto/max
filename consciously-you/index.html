@@ -5,18 +5,19 @@
 <title>Consciously You — Sustainable Lifestyle &amp; Refill Shop, Bath</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="Consciously You is a sustainable lifestyle and refill shop at 12 Chelsea Road, Bath. Pantry staples, household refills, natural soaps, skincare and thoughtful gifts — all without the plastic." />
-<meta name="theme-color" content="#22382B" />
+<meta name="theme-color" content="#F4EFDF" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Consciously You — Refill Shop, Bath" />
 <meta property="og:description" content="Pantry staples, household refills, natural soaps and thoughtful gifts. 12 Chelsea Road, Bath BA1 3DU." />
 <meta name="twitter:card" content="summary" />
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMyMjM4MkIiLz48dGV4dCB4PSIzMiIgeT0iNDMiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLHNlcmlmIiBmb250LXNpemU9IjI4IiBmaWxsPSIjQzE4QTNGIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DWTwvdGV4dD48L3N2Zz4=" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiNGNUYwREUiLz48Y2lyY2xlIGN4PSIzMiIgY3k9IjMyIiByPSIyNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQzk5QjNGIiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjMzIiB5PSI0MyIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsIHNlcmlmIiBmb250LXN0eWxlPSJpdGFsaWMiIGZvbnQtc2l6ZT0iMzQiIGZpbGw9IiNDNDc5NEEiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkM8L3RleHQ+PC9zdmc+" />
 
 <!-- ============================================================
      CONSCIOUSLY YOU — single-page site
      Things to swap in when the client provides them:
-       1. LOGO      — replace the .wordmark text in the header/footer
-       2. COLOURS   — brand colours live in :root below (one place)
+       1. LOGO      — interim monogram in place (brand colours); swap the
+                      .monogram <svg> in header + footer for the real file
+       2. COLOURS   — done: copper/gold/cream sampled from the client logo
        3. PRICES    — search "PLACEHOLDER-PRICE"
        4. QUOTES    — done: real Google reviews (client to confirm happy)
        5. PHOTOS    — search "PLACEHOLDER-PHOTO" (gallery tiles)
@@ -98,22 +99,23 @@
   /* ================= BRAND TOKENS =================
      Swap these for the client's real brand colours. */
   :root {
-    --flax:       #F2EDE3;  /* page ground — warm linen        */
+    --flax:       #F4EFDF;  /* page ground — brand cream       */
     --paper:      #FBF8F1;  /* raised cards                    */
     --kraft:      #E7DCC6;  /* kraft-label tint                */
     --bottle:     #22382B;  /* deep bottle green               */
     --bottle-2:   #2E4A39;  /* lifted green for cards on dark  */
     --leaf:       #6B7F5E;  /* sage mid-green                  */
-    --honey:      #C18A3F;  /* bath-stone honey / amber glass  */
-    --honey-deep: #96682A;  /* amber, darker                   */
+    --honey:      #C4794A;  /* brand copper — from the logo C  */
+    --honey-deep: #A2582F;  /* copper, darker                  */
+    --gold:       #C99B3F;  /* brand gold — the logo ring      */
     --ink:        #26302A;  /* body text                       */
     --ink-soft:   #5C665C;  /* secondary text                  */
     --line:       #D9D0BC;  /* hairlines on light              */
     --line-dark:  #3D5647;  /* hairlines on green              */
     --sand:       #E9E2D2;  /* illustration grounds            */
     --leaf-2:     #8CA07A;  /* leaf, lifted (illustrations)    */
-    --honey-ink:  #7E5116;  /* amber dark enough for small text */
-    --amber-lift: #D6A257;  /* amber for small text on green   */
+    --honey-ink:  #8C4B22;  /* copper dark enough for small text */
+    --amber-lift: #DBA168;  /* copper for small text on green  */
 
     --serif: 'Fraunces', Georgia, serif;
     --sans:  'Karla', system-ui, sans-serif;
@@ -205,7 +207,7 @@
   .btn-line { border-color: var(--bottle); color: var(--bottle); background: transparent; }
   .btn-line:hover { background: var(--bottle); color: var(--paper); }
   .on-dark .btn-solid { background: var(--honey); color: var(--bottle); }
-  .on-dark .btn-solid:hover { background: #D49D52; }
+  .on-dark .btn-solid:hover { background: #D08B5E; }
   .on-dark .btn-line { border-color: var(--line-dark); color: var(--paper); }
   .on-dark .btn-line:hover { background: var(--bottle-2); border-color: var(--bottle-2); }
 
@@ -223,8 +225,10 @@
   .wordmark {
     font-family: var(--serif); font-size: 1.35rem; font-weight: 500;
     text-decoration: none; letter-spacing: 0.005em; color: var(--bottle);
+    display: inline-flex; align-items: center; gap: 0.65rem;
   }
   .wordmark em { font-style: italic; color: var(--honey-deep); }
+  .monogram { width: 2.35rem; height: 2.35rem; flex-shrink: 0; }
   .site-nav { display: flex; align-items: center; gap: 1.75rem; }
   .site-nav a:not(.btn) {
     font-size: 0.95rem; font-weight: 600; text-decoration: none; color: var(--ink-soft);
@@ -431,7 +435,7 @@
     margin-top: 0.9rem; display: flex; align-items: center; gap: 0.7em;
     font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.08em; color: var(--ink-soft);
   }
-  .stars span { color: var(--honey-deep); font-size: 0.95rem; letter-spacing: 0.18em; }
+  .stars span { color: var(--gold); font-size: 0.95rem; letter-spacing: 0.18em; }
 
   /* ---------- visit / contact ---------- */
   .visit-grid {
@@ -533,8 +537,17 @@
 
 <header class="site-head">
   <div class="wrap">
-    <!-- LOGO: swap this wordmark for the client's logo image when supplied -->
-    <a class="wordmark" href="#top">Consciously <em>You</em></a>
+    <!-- LOGO: interim monogram drawn in brand colours from the client's logo
+         (script C in a gold ring on cream). Swap the <svg> for the real logo
+         file once supplied — keep the .monogram class for sizing. -->
+    <a class="wordmark" href="#top">
+      <svg class="monogram" viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="30.5" fill="#F5F0DE"/>
+        <circle cx="32" cy="32" r="30.5" fill="none" stroke="var(--gold)" stroke-width="1.6"/>
+        <text x="33" y="44" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-style="italic" font-weight="500" font-size="38" fill="var(--honey)">C</text>
+      </svg>
+      <span>Consciously <em>You</em></span>
+    </a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav class="site-nav" id="nav" aria-label="Main">
       <a href="#shop">Shop</a>
@@ -907,7 +920,14 @@
 
 <footer class="site-foot">
   <div class="wrap">
-    <a class="wordmark" href="#top">Consciously <em>You</em></a>
+    <a class="wordmark" href="#top">
+      <svg class="monogram" viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="30.5" fill="var(--bottle)"/>
+        <circle cx="32" cy="32" r="30.5" fill="none" stroke="var(--gold)" stroke-width="1.6"/>
+        <text x="33" y="44" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-style="italic" font-weight="500" font-size="38" fill="var(--amber-lift)">C</text>
+      </svg>
+      <span>Consciously <em>You</em></span>
+    </a>
     <small>12 Chelsea Road, Bath BA1 3DU · © <span id="year">2026</span> Consciously You</small>
   </div>
 </footer>
