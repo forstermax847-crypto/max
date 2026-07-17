@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Matty's — big breakfasts in Bath, delivered</title>
-<meta name="description" content="Matty's is an award-winning independent cafe in Bath. Fantastic portions, fair prices, seats 120 with a garden, open 363 days a year — and the only cafe in Bath delivering full English breakfasts to your door.">
+<meta name="description" content="Matty's is an award-winning independent cafe in Bath. Fantastic portions, fair prices, seats 120 with a garden, open 363 days a year — and the only cafe in Bath delivering full English breakfasts, free on orders over £12.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M15 95 V50 a35 35 0 0 1 70 0 V95 Z' fill='%23C9973F'/></svg>">
 <link rel="stylesheet" href="fonts.css">
 <script>document.documentElement.classList.add("js");</script>
@@ -15,7 +15,8 @@
     --milk: #F7F0DF;         /* steamed milk */
     --espresso: #2B1B10;     /* the bottom of the cup */
     --honey: #C9973F;        /* Bath stone gold, concentrated */
-    --verdigris: #486B5C;    /* copper roofs, spa water */
+    --leaf: #5A7A32;     /* Matty's green, deepened for text */
+    --apple: #8FB25A;    /* the green from the original site */
     --display: "Young Serif", "Iowan Old Style", Georgia, serif;
     --body: "Work Sans", "Gill Sans", system-ui, sans-serif;
     --receipt: "IBM Plex Mono", "Courier New", monospace;
@@ -37,7 +38,7 @@
   }
   ::selection { background: var(--honey); color: var(--espresso); }
   a { color: inherit; }
-  :focus-visible { outline: 3px solid var(--verdigris); outline-offset: 3px; border-radius: 2px; }
+  :focus-visible { outline: 3px solid var(--leaf); outline-offset: 3px; border-radius: 2px; }
   img { max-width: 100%; display: block; }
 
   .wrap { max-width: 72rem; margin-inline: auto; padding-inline: var(--gutter); }
@@ -47,7 +48,7 @@
     font-size: 0.8125rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--verdigris);
+    color: var(--leaf);
   }
 
   /* ---------- header ---------- */
@@ -68,6 +69,8 @@
     display: flex; align-items: center; gap: 0.55rem;
   }
   .wordmark svg { width: 1.15em; height: 1.15em; }
+  .logo-mark { height: 52px; width: auto; mix-blend-mode: multiply; }
+  @media (max-width: 40rem) { .logo-mark { height: 42px; } }
   nav ul { display: flex; gap: clamp(0.9rem, 3vw, 2rem); list-style: none; }
   nav a {
     text-decoration: none; font-weight: 600; font-size: 0.95rem;
@@ -98,7 +101,7 @@
   }
   .hero-eyebrow::before, .hero-eyebrow::after {
     content: ""; height: 1px; width: clamp(2rem, 6vw, 5rem);
-    background: var(--verdigris); opacity: 0.5;
+    background: var(--apple); opacity: 0.7;
   }
   .hero h1 {
     font-family: var(--display);
@@ -122,7 +125,7 @@
   }
   .steam path {
     fill: none;
-    stroke: var(--verdigris);
+    stroke: var(--apple);
     stroke-width: 3;
     stroke-linecap: round;
     opacity: 0;
@@ -227,7 +230,7 @@
   }
   .menu-card h3 small {
     display: block; font-family: var(--receipt); font-size: 0.72rem;
-    letter-spacing: 0.2em; text-transform: uppercase; color: var(--verdigris);
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--leaf);
     margin-top: 0.45rem;
   }
   .menu ul { list-style: none; }
@@ -251,16 +254,16 @@
   }
   .board h4 small {
     font-family: var(--receipt); font-size: 0.68rem; font-weight: 400;
-    letter-spacing: 0.18em; text-transform: uppercase; color: var(--verdigris);
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--leaf);
     margin-left: 0.6em;
   }
   .board li { padding-block: 0.28rem; }
   .board .item { font-weight: 400; font-size: 0.95rem; }
   .menu-foot { text-align: center; margin-top: 2.2rem; font-size: 0.9rem; font-weight: 300; }
-  .menu-foot em { font-style: normal; font-weight: 700; color: var(--verdigris); }
+  .menu-foot em { font-style: normal; font-weight: 700; color: var(--leaf); }
 
   /* ---------- delivery ---------- */
-  .delivery { background: var(--verdigris); color: var(--milk); text-align: center; }
+  .delivery { background: var(--leaf); color: var(--milk); text-align: center; }
   .delivery .eyebrow { color: var(--stone); }
   .delivery h2 {
     font-family: var(--display); font-weight: 400;
@@ -319,7 +322,7 @@
     display: block; margin-top: 1rem;
     font-style: normal; font-family: var(--receipt);
     font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--verdigris);
+    color: var(--leaf);
   }
 
   /* ---------- gallery ---------- */
@@ -413,8 +416,7 @@
 <header>
   <div class="wrap bar">
     <a class="wordmark" href="#top" aria-label="Matty's — back to top">
-      <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M15 95 V50 a35 35 0 0 1 70 0 V95 Z" fill="#C9973F"/></svg>
-      Matty's
+      <img class="logo-mark" src="img/logo.png" alt="Matty's" width="492" height="298">
     </a>
     <nav aria-label="Main">
       <ul>
@@ -440,22 +442,24 @@
         <path d="M20 55 C 14 47, 26 38, 19 27 C 14 19, 25 12, 21 5" />
       </svg>
     </h1>
-    <p class="lede">Matt has been cooking Bath's breakfasts for nineteen years. <strong>Fantastic portions, fair prices</strong> — and the only full English in the city delivered to your door.</p>
+    <p class="lede">Matt has been cooking Bath's breakfasts for nineteen years. <strong>Fantastic portions, fair prices</strong> — and the only full English in the city delivered free to your door.</p>
   </div>
 
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
       <span>
         Open 363 days a year <span class="dot">●</span>
-        Full English delivered to your door <span class="dot">●</span>
+        Free delivery on orders over £12 <span class="dot">●</span>
         Seats 120, garden out back <span class="dot">●</span>
+        Free WiFi <span class="dot">●</span>
         No or less spread on request <span class="dot">●</span>
         Award-winning since 2007 <span class="dot">●</span>
       </span>
       <span>
         Open 363 days a year <span class="dot">●</span>
-        Full English delivered to your door <span class="dot">●</span>
+        Free delivery on orders over £12 <span class="dot">●</span>
         Seats 120, garden out back <span class="dot">●</span>
+        Free WiFi <span class="dot">●</span>
         No or less spread on request <span class="dot">●</span>
         Award-winning since 2007 <span class="dot">●</span>
       </span>
@@ -469,9 +473,9 @@
     </div>
     <div class="story-grid">
       <div class="story-copy reveal">
-        <p>Matt opened these doors nineteen years ago, and he's been behind the counter nearly every day since — the cafe runs 363 days a year. Some might say workaholic. He'd say passionate about what he does.</p>
-        <p>The belief is simple: good value and fantastic portions. Breakfast is the most important meal of the day, and a proper plateful is a healthier way to eat than most people give it credit for — especially with our no-or-less-spread option, and nothing swimming in fat.</p>
-        <p>It has grown into one of the largest cafes in Bath: an award-winning room seating 120, with a wonderful garden for the sunny mornings. And if you can't come to us, we'll come to you — Matty's is the only cafe in Bath that delivers full English breakfasts to your door.</p>
+        <p>Matt was born and raised in Bath, and he's been behind this counter nearly every day for nineteen years — the cafe runs 363 days a year. Some might say workaholic. He'd put it more simply: <em>"I just love food."</em></p>
+        <p>The belief hasn't changed: good value, fantastic portions, and proper homemade cooking. Breakfast is the most important meal of the day, and a proper plateful is a healthier way to eat than most people give it credit for — especially with our no-or-less-spread option, and nothing swimming in fat.</p>
+        <p>It has grown into one of the largest cafes in Bath: an award-winning room seating 120, with a wonderful garden for the sunny mornings. And if you can't come to us, we'll come to you — Matty's is the only cafe in Bath that delivers full English breakfasts to your door, free on orders over £12.</p>
       </div>
       <div class="story-side reveal">
       <div class="story-photo">
@@ -481,7 +485,8 @@
         <div><dt>The owner</dt><dd>MATT, SINCE 2007</dd></div>
         <div><dt>The room</dt><dd>SEATS 120, PLUS GARDEN</dd></div>
         <div><dt>Days open</dt><dd>363 A YEAR</dd></div>
-        <div><dt>Delivery</dt><dd>FULL ENGLISH, TO YOUR DOOR</dd></div>
+        <div><dt>Delivery</dt><dd>FREE, £12 MINIMUM</dd></div>
+        <div><dt>The WiFi</dt><dd>FREE, OBVIOUSLY</dd></div>
         <div><dt>The spread</dt><dd>NO, OR LESS — YOUR CALL</dd></div>
       </dl>
       </div>
@@ -618,6 +623,7 @@
       <p class="eyebrow reveal">Delivery</p>
       <h2 id="delivery-h" class="reveal">The full English, to your front door</h2>
       <p class="pitch reveal">The only cafe in Bath that delivers cooked breakfasts — hot, on time, and exactly how you ordered it. For the morning after, the office, or anyone who'd rather not get up. Ring your order through for delivery, or phone ahead and collect.</p>
+      <p class="pitch reveal"><strong>Delivery is free</strong> — minimum order £12, food only.</p>
       <a class="phone reveal" href="tel:+441225444986">01225 444986</a>
       <p class="times reveal">Delivering Mon–Sat 7.00–14.00 · Sun 8.00–13.00</p>
       <ul class="platforms reveal">
