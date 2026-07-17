@@ -185,6 +185,14 @@
     line-height: 0.8; padding-right: 0.12em; padding-top: 0.08em;
     color: var(--honey);
   }
+  .story-side { display: flex; flex-direction: column; gap: 1.8rem; }
+  .story-photo {
+    border: 1.5px solid var(--espresso);
+    border-radius: var(--arch);
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+  }
+  .story-photo img { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.22) saturate(0.85) contrast(0.98); }
   .story-facts {
     border-top: 3px solid var(--espresso);
     font-size: 0.95rem;
@@ -329,7 +337,7 @@
     position: relative;
     background: var(--stone-deep);
   }
-  .arch-fig:nth-child(2) .frame { aspect-ratio: 3 / 4.6; }
+  .arch-fig:nth-child(3n+2) .frame { aspect-ratio: 3 / 4.6; }
   .arch-fig img { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.22) saturate(0.85) contrast(0.98); }
   .arch-fig .frame::after {
     content: ""; position: absolute; inset: 0;
@@ -465,13 +473,18 @@
         <p>The belief is simple: good value and fantastic portions. Breakfast is the most important meal of the day, and a proper plateful is a healthier way to eat than most people give it credit for — especially with our no-or-less-spread option, and nothing swimming in fat.</p>
         <p>It has grown into one of the largest cafes in Bath: an award-winning room seating 120, with a wonderful garden for the sunny mornings. And if you can't come to us, we'll come to you — Matty's is the only cafe in Bath that delivers full English breakfasts to your door.</p>
       </div>
-      <dl class="story-facts reveal">
+      <div class="story-side reveal">
+      <div class="story-photo">
+        <img src="img/window-seats.jpg" alt="The bay window at Matty's with the painted logo, tables set below" loading="lazy" onerror="this.parentElement.remove()" width="1100" height="1100">
+      </div>
+      <dl class="story-facts">
         <div><dt>The owner</dt><dd>MATT, SINCE 2007</dd></div>
         <div><dt>The room</dt><dd>SEATS 120, PLUS GARDEN</dd></div>
         <div><dt>Days open</dt><dd>363 A YEAR</dd></div>
         <div><dt>Delivery</dt><dd>FULL ENGLISH, TO YOUR DOOR</dd></div>
         <div><dt>The spread</dt><dd>NO, OR LESS — YOUR CALL</dd></div>
       </dl>
+      </div>
     </div>
   </section>
 
@@ -658,6 +671,18 @@
       <figure class="arch-fig reveal">
         <div class="frame"><img src="img/big-boy.jpg" alt="The Big Boy Breakfast: sausages, bacon, eggs, black pudding, mushrooms, hash browns and beans" loading="lazy" onerror="this.remove()" width="296" height="356"></div>
         <figcaption>The Big Boy, ready to go</figcaption>
+      </figure>
+      <figure class="arch-fig reveal">
+        <div class="frame"><img src="img/busy-room.jpg" alt="A busy morning at Matty's, every table taken" loading="lazy" onerror="this.remove()" width="296" height="357"></div>
+        <figcaption>A Saturday morning</figcaption>
+      </figure>
+      <figure class="arch-fig reveal">
+        <div class="frame"><img src="img/counter.jpg" alt="The counter and handwritten chalkboard menus" loading="lazy" onerror="this.remove()" width="296" height="356"></div>
+        <figcaption>The specials boards</figcaption>
+      </figure>
+      <figure class="arch-fig reveal">
+        <div class="frame"><img src="img/espresso.jpg" alt="The espresso machine, cups stacked and ready" loading="lazy" onerror="this.remove()" width="296" height="357"></div>
+        <figcaption>The posh coffee corner</figcaption>
       </figure>
     </div>
   </section>
