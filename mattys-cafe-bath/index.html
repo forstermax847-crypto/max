@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Matty's — a cafe in Bath</title>
-<meta name="description" content="Matty's is an independent cafe in the heart of Bath. Flat whites, Bath buns, brunch until three, and a table by the window.">
+<title>Matty's — big breakfasts in Bath, delivered</title>
+<meta name="description" content="Matty's is an award-winning independent cafe in Bath. Fantastic portions, fair prices, seats 120 with a garden, open 363 days a year — and the only cafe in Bath delivering full English breakfasts to your door.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M15 95 V50 a35 35 0 0 1 70 0 V95 Z' fill='%23C9973F'/></svg>">
 <link rel="stylesheet" href="fonts.css">
 <script>document.documentElement.classList.add("js");</script>
@@ -79,7 +79,12 @@
     background: var(--espresso); color: var(--milk);
     padding: 0.45em 0.9em; border-radius: 999px; white-space: nowrap;
   }
-  @media (max-width: 40rem) { .open-pill { display: none; } }
+  @media (max-width: 40rem) {
+    .open-pill { display: none; }
+    .wordmark { font-size: 1.15rem; }
+    nav ul { gap: 0.8rem; }
+    nav a { font-size: 0.85rem; }
+  }
 
   /* ---------- hero ---------- */
   .hero {
@@ -225,6 +230,53 @@
   .menu-foot { text-align: center; margin-top: 2.2rem; font-size: 0.9rem; font-weight: 300; }
   .menu-foot em { font-style: normal; font-weight: 700; color: var(--verdigris); }
 
+  /* ---------- delivery ---------- */
+  .delivery { background: var(--verdigris); color: var(--milk); text-align: center; }
+  .delivery .eyebrow { color: var(--stone); }
+  .delivery h2 {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.1;
+    max-width: 24ch; margin: 0.5rem auto 0;
+  }
+  .delivery p.pitch { max-width: 38rem; margin: 1.4rem auto 0; font-weight: 300; font-size: 1.1rem; }
+  .delivery .phone {
+    display: inline-block; margin-top: 2rem;
+    font-family: var(--display); font-size: clamp(1.5rem, 4vw, 2.4rem);
+    color: var(--milk); text-decoration: none;
+    border-bottom: 3px solid var(--honey); padding-bottom: 0.1em;
+  }
+  .delivery .phone:hover { color: var(--honey); }
+  .delivery .times {
+    font-family: var(--receipt); font-size: 0.85rem; letter-spacing: 0.12em;
+    text-transform: uppercase; margin-top: 1.4rem; opacity: 0.85;
+  }
+
+  /* ---------- reviews ---------- */
+  .reviews-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+  @media (max-width: 50rem) { .reviews-grid { grid-template-columns: 1fr; } }
+  .reviews blockquote {
+    border-top: 3px solid var(--espresso);
+    padding-top: 1.3rem;
+  }
+  .reviews blockquote::before {
+    content: "\201C";
+    display: block;
+    font-family: var(--display);
+    font-size: 3rem; line-height: 0.6;
+    color: var(--honey);
+    margin-bottom: 0.5rem;
+  }
+  .reviews blockquote p { font-weight: 300; font-size: 1.05rem; }
+  .reviews cite {
+    display: block; margin-top: 1rem;
+    font-style: normal; font-family: var(--receipt);
+    font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--verdigris);
+  }
+
   /* ---------- gallery ---------- */
   .arches {
     display: grid; grid-template-columns: repeat(3, 1fr);
@@ -314,6 +366,7 @@
       <ul>
         <li><a href="#story">Story</a></li>
         <li><a href="#menu">Menu</a></li>
+        <li><a href="#delivery">Delivery</a></li>
         <li><a href="#find">Find us</a></li>
       </ul>
     </nav>
@@ -324,7 +377,7 @@
 <main id="top">
 
   <div class="hero wrap">
-    <p class="hero-eyebrow eyebrow">Independent cafe · Bath · since 2016</p>
+    <p class="hero-eyebrow eyebrow">Independent cafe · Bath · est. 2007</p>
     <h1>
       Matty&rsquo;s
       <svg class="steam" viewBox="0 0 40 60" aria-hidden="true">
@@ -333,24 +386,24 @@
         <path d="M20 55 C 14 47, 26 38, 19 27 C 14 19, 25 12, 21 5" />
       </svg>
     </h1>
-    <p class="lede">A small cafe on Walcot Street. <strong>Flat whites, Bath buns, brunch until three</strong> — and if you're lucky, the table by the window.</p>
+    <p class="lede">Matt has been cooking Bath's breakfasts for nineteen years. <strong>Fantastic portions, fair prices</strong> — and the only full English in the city delivered to your door.</p>
   </div>
 
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
       <span>
-        Cardamom buns on Saturdays <span class="dot">●</span>
-        Beans roasted in Somerset <span class="dot">●</span>
-        Dogs always welcome <span class="dot">●</span>
-        Sourdough from Landrace <span class="dot">●</span>
-        No laptops at the window table <span class="dot">●</span>
+        Open 363 days a year <span class="dot">●</span>
+        Full English delivered to your door <span class="dot">●</span>
+        Seats 120, garden out back <span class="dot">●</span>
+        No or less spread on request <span class="dot">●</span>
+        Award-winning since 2007 <span class="dot">●</span>
       </span>
       <span>
-        Cardamom buns on Saturdays <span class="dot">●</span>
-        Beans roasted in Somerset <span class="dot">●</span>
-        Dogs always welcome <span class="dot">●</span>
-        Sourdough from Landrace <span class="dot">●</span>
-        No laptops at the window table <span class="dot">●</span>
+        Open 363 days a year <span class="dot">●</span>
+        Full English delivered to your door <span class="dot">●</span>
+        Seats 120, garden out back <span class="dot">●</span>
+        No or less spread on request <span class="dot">●</span>
+        Award-winning since 2007 <span class="dot">●</span>
       </span>
     </div>
   </div>
@@ -362,16 +415,16 @@
     </div>
     <div class="story-grid">
       <div class="story-copy reveal">
-        <p>Matty opened the doors in 2016 with a two-group machine, his gran's bun recipe, and a room that used to be an ironmonger's. The counter is the same oak plank it was then — just more coffee rings.</p>
-        <p>The idea hasn't changed: do a short list of things properly. Espresso from a Somerset roaster we visit every month. Bath buns baked each morning the way this city has made them for three hundred years — candied peel, crushed sugar, no shortcuts. Brunch that arrives hot and doesn't try to be clever.</p>
-        <p>Mornings here are locals and crossword pages; afternoons are walkers down from the Royal Crescent thawing their hands on a mug. Come in either. Stay as long as you like.</p>
+        <p>Matt opened these doors nineteen years ago, and he's been behind the counter nearly every day since — the cafe runs 363 days a year. Some might say workaholic. He'd say passionate about what he does.</p>
+        <p>The belief is simple: good value and fantastic portions. Breakfast is the most important meal of the day, and a proper plateful is a healthier way to eat than most people give it credit for — especially with our no-or-less-spread option, and nothing swimming in fat.</p>
+        <p>It has grown into one of the largest cafes in Bath: an award-winning room seating 120, with a wonderful garden for the sunny mornings. And if you can't come to us, we'll come to you — Matty's is the only cafe in Bath that delivers full English breakfasts to your door.</p>
       </div>
       <dl class="story-facts reveal">
-        <div><dt>The room</dt><dd>EST. 1897, IRONMONGER'S</dd></div>
-        <div><dt>The machine</dt><dd>LA MARZOCCO LINEA</dd></div>
-        <div><dt>The roaster</dt><dd>ROUND HILL, SOMERSET</dd></div>
-        <div><dt>The bakery</dt><dd>OURS, 5AM DAILY</dd></div>
-        <div><dt>The dog policy</dt><dd>YES, OBVIOUSLY</dd></div>
+        <div><dt>The owner</dt><dd>MATT, SINCE 2007</dd></div>
+        <div><dt>The room</dt><dd>SEATS 120, PLUS GARDEN</dd></div>
+        <div><dt>Days open</dt><dd>363 A YEAR</dd></div>
+        <div><dt>Delivery</dt><dd>FULL ENGLISH, TO YOUR DOOR</dd></div>
+        <div><dt>The spread</dt><dd>NO, OR LESS — YOUR CALL</dd></div>
       </dl>
     </div>
   </section>
@@ -380,62 +433,96 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">The menu</p>
-        <h2 id="menu-h">Short list, done properly</h2>
+        <h2 id="menu-h">Fantastic portions, fair prices</h2>
       </div>
       <div class="menu-grid">
         <div class="menu-card reveal">
-          <h3>Coffee <small>Round Hill roast</small></h3>
+          <h3>Breakfasts <small>all day, until close</small></h3>
           <ul>
-            <li><span class="item">Espresso</span><span class="leader"></span><span class="price">£2.60</span></li>
-            <li><span class="item">Flat white</span><span class="leader"></span><span class="price">£3.40</span></li>
-            <li><span class="item">Batch filter</span><span class="leader"></span><span class="price">£3.00</span></li>
-            <li><span class="item">Cortado</span><span class="leader"></span><span class="price">£3.20</span></li>
-            <li><span class="item">Hot chocolate</span><span class="leader"></span><span class="price">£3.60</span></li>
-            <li><span class="note">Oat, whole, or raw milk from Ivy House Farm.</span></li>
+            <li><span class="item">Full Matty's</span><span class="leader"></span><span class="price">£7.95</span></li>
+            <li><span class="item">The Bigboy</span><span class="leader"></span><span class="price">£9.95</span></li>
+            <li><span class="item">Veggie full English</span><span class="leader"></span><span class="price">£7.50</span></li>
+            <li><span class="item">Breakfast bap</span><span class="leader"></span><span class="price">£4.50</span></li>
+            <li><span class="note">The Bigboy left one reviewer "full all day". You've been warned.</span></li>
           </ul>
         </div>
         <div class="menu-card reveal">
-          <h3>Brunch <small>until 3pm</small></h3>
+          <h3>Lighter <small>no or less spread</small></h3>
           <ul>
-            <li><span class="item">Eggs on Landrace toast</span><span class="leader"></span><span class="price">£8.50</span></li>
-            <li><span class="item">Mushrooms, thyme, ricotta</span><span class="leader"></span><span class="price">£10.00</span></li>
-            <li><span class="item">Full Matty's</span><span class="leader"></span><span class="price">£13.50</span></li>
-            <li><span class="item">Porridge, honey, plums</span><span class="leader"></span><span class="price">£7.00</span></li>
-            <li><span class="note">Everything cooked to order. Worth the wait.</span></li>
+            <li><span class="item">Poached eggs on granary</span><span class="leader"></span><span class="price">£4.95</span></li>
+            <li><span class="item">Beans on toast</span><span class="leader"></span><span class="price">£4.20</span></li>
+            <li><span class="item">Porridge with honey</span><span class="leader"></span><span class="price">£3.50</span></li>
+            <li><span class="item">Fruit and yogurt</span><span class="leader"></span><span class="price">£3.95</span></li>
+            <li><span class="note">Anything grilled instead of fried, spread-free on request.</span></li>
           </ul>
         </div>
         <div class="menu-card reveal">
-          <h3>Bakes <small>from 5am, ours</small></h3>
+          <h3>Tea &amp; coffee <small>proper mugs</small></h3>
           <ul>
-            <li><span class="item">The Bath bun</span><span class="leader"></span><span class="price">£3.80</span></li>
-            <li><span class="item">Cardamom knot <span class="note">Saturdays</span></span><span class="leader"></span><span class="price">£4.20</span></li>
-            <li><span class="item">Marmalade toast</span><span class="leader"></span><span class="price">£4.50</span></li>
-            <li><span class="item">Seasonal galette</span><span class="leader"></span><span class="price">£4.80</span></li>
-            <li><span class="note">When the buns are gone, they're gone.</span></li>
+            <li><span class="item">Builder's tea</span><span class="leader"></span><span class="price">£1.80</span></li>
+            <li><span class="item">Coffee</span><span class="leader"></span><span class="price">£2.20</span></li>
+            <li><span class="item">Flat white</span><span class="leader"></span><span class="price">£3.00</span></li>
+            <li><span class="item">Fresh orange juice</span><span class="leader"></span><span class="price">£2.50</span></li>
+            <li><span class="note">Mugs, not thimbles.</span></li>
           </ul>
         </div>
       </div>
-      <p class="menu-foot reveal">Menus change with the seasons — <em>the Bath bun never does.</em></p>
+      <p class="menu-foot reveal">Everything cooked to order, however you like it — grilled not fried, less spread, extra toast. <em>Just ask.</em></p>
+    </div>
+  </section>
+
+  <section id="delivery" class="delivery" aria-labelledby="delivery-h">
+    <div class="wrap">
+      <p class="eyebrow reveal">Delivery</p>
+      <h2 id="delivery-h" class="reveal">The full English, to your front door</h2>
+      <p class="pitch reveal">The only cafe in Bath that delivers cooked breakfasts. Hot, on time, and exactly how you ordered it — for the morning after, the office, or anyone who'd rather not get up.</p>
+      <a class="phone reveal" href="tel:+441225000000">01225 000 000</a>
+      <p class="times reveal">Delivering Mon–Sat 7.00–14.00 · Sun 8.00–13.00</p>
+    </div>
+  </section>
+
+  <section id="reviews" class="reviews wrap" aria-labelledby="reviews-h">
+    <div class="section-head reveal">
+      <p class="eyebrow">Word of mouth</p>
+      <h2 id="reviews-h">Don't take Matt's word for it</h2>
+    </div>
+    <div class="reviews-grid">
+      <blockquote class="reveal">
+        <p>Amazing quality, and to my mind an excellent price. I only wish I had thought of you earlier. I will certainly use you again and pass on my thoughts to my friends.</p>
+        <cite>First breakfast delivery</cite>
+      </blockquote>
+      <blockquote class="reveal">
+        <p>A wonderful full English which does not swim in fat. 10 out of 10 — and delivery to the front door, so even those who struggle to get up can have a cooked breakfast.</p>
+        <cite>Delivery regular</cite>
+      </blockquote>
+      <blockquote class="reveal">
+        <p>Impressed with the staff politeness on the phone, quick and friendly service, and the quality of the food! I will shout out a good word for you.</p>
+        <cite>Phone order</cite>
+      </blockquote>
+      <blockquote class="reveal">
+        <p>Loved the new healthy options — food cooked just as I requested, quick service and friendly staff. The Bigboy brekkie left me full all day.</p>
+        <cite>Bigboy convert</cite>
+      </blockquote>
     </div>
   </section>
 
   <section id="room" class="wrap" aria-labelledby="room-h">
     <div class="section-head reveal">
-      <p class="eyebrow">The room</p>
-      <h2 id="room-h">Come in, warm up</h2>
+      <p class="eyebrow">The room &amp; garden</p>
+      <h2 id="room-h">Room for 120 — garden included</h2>
     </div>
     <div class="arches">
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="https://picsum.photos/seed/mattys-counter/720/960" alt="The oak counter and espresso machine at Matty's" loading="lazy" onerror="this.remove()" width="720" height="960"></div>
-        <figcaption>The counter</figcaption>
+        <div class="frame"><img src="https://picsum.photos/seed/mattys-room/720/960" alt="The main room at Matty's, tables set for breakfast" loading="lazy" onerror="this.remove()" width="720" height="960"></div>
+        <figcaption>The big room</figcaption>
       </figure>
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="https://picsum.photos/seed/mattys-window/720/1100" alt="The window table looking onto Walcot Street" loading="lazy" onerror="this.remove()" width="720" height="1100"></div>
-        <figcaption>The window table</figcaption>
+        <div class="frame"><img src="https://picsum.photos/seed/mattys-garden/720/1100" alt="The garden at Matty's on a sunny morning" loading="lazy" onerror="this.remove()" width="720" height="1100"></div>
+        <figcaption>The garden</figcaption>
       </figure>
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="https://picsum.photos/seed/mattys-buns/720/960" alt="Fresh Bath buns cooling on the morning tray" loading="lazy" onerror="this.remove()" width="720" height="960"></div>
-        <figcaption>The 5am tray</figcaption>
+        <div class="frame"><img src="https://picsum.photos/seed/mattys-fryup/720/960" alt="A full English breakfast, plated and ready to go out" loading="lazy" onerror="this.remove()" width="720" height="960"></div>
+        <figcaption>The full English</figcaption>
       </figure>
     </div>
   </section>
@@ -460,12 +547,11 @@
         <h3>Hours</h3>
         <table>
           <tbody>
-            <tr data-day="1"><td>Monday — Friday</td><td>7.30 — 16.00</td></tr>
-            <tr data-day="6"><td>Saturday</td><td>8.00 — 17.00</td></tr>
-            <tr data-day="0"><td>Sunday</td><td>9.00 — 15.00</td></tr>
+            <tr data-day="1"><td>Monday — Saturday</td><td>7.00 — 14.00</td></tr>
+            <tr data-day="0"><td>Sunday</td><td>8.00 — 13.00</td></tr>
           </tbody>
         </table>
-        <p>Bank holidays: we're probably open. Ring the bell.</p>
+        <p>Delivery runs the same hours.<br>Open 363 days a year — we allow ourselves two days off at Christmas.</p>
       </div>
     </div>
   </section>
@@ -482,7 +568,7 @@
       <li><a href="https://instagram.com" rel="noopener">Instagram</a></li>
       <li><a href="mailto:hello@mattysbath.co.uk">Email</a></li>
     </ul>
-    <p class="fine">© 2026 MATTY'S CAFE, BATH · MADE WITH BATH STONE AND STEAM</p>
+    <p class="fine">© 2026 MATTY'S CAFE, BATH · OPEN 363 DAYS A YEAR · SOLE PROPRIETOR: MATT</p>
   </div>
 </footer>
 
@@ -501,10 +587,8 @@
   // Today's hours in the header pill and the hours table.
   const day = new Date().getDay();
   const pill = document.getElementById("openPill");
-  const hours = { 0: "9.00–15.00", 6: "8.00–17.00" };
-  pill.textContent = "OPEN TODAY " + (hours[day] || "7.30–16.00");
-  const rowKey = day === 0 ? "0" : day === 6 ? "6" : "1";
-  document.querySelector(`.hours tr[data-day="${rowKey}"]`)?.classList.add("today");
+  pill.textContent = "OPEN TODAY " + (day === 0 ? "8.00–13.00" : "7.00–14.00");
+  document.querySelector(`.hours tr[data-day="${day === 0 ? "0" : "1"}"]`)?.classList.add("today");
 </script>
 
 </body>
