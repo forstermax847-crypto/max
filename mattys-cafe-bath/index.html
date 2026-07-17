@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matty's — a cafe in Bath</title>
+<meta name="description" content="Matty's is an independent cafe in the heart of Bath. Flat whites, Bath buns, brunch until three, and a table by the window.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M15 95 V50 a35 35 0 0 1 70 0 V95 Z' fill='%23C9973F'/></svg>">
+<link rel="stylesheet" href="fonts.css">
+<script>document.documentElement.classList.add("js");</script>
+<style>
+  :root {
+    --stone: #E8DCC0;        /* Bath limestone in afternoon light */
+    --stone-deep: #DCCBA4;   /* the same stone, in shadow */
+    --milk: #F7F0DF;         /* steamed milk */
+    --espresso: #2B1B10;     /* the bottom of the cup */
+    --honey: #C9973F;        /* Bath stone gold, concentrated */
+    --verdigris: #486B5C;    /* copper roofs, spa water */
+    --display: "Young Serif", "Iowan Old Style", Georgia, serif;
+    --body: "Work Sans", "Gill Sans", system-ui, sans-serif;
+    --receipt: "IBM Plex Mono", "Courier New", monospace;
+    --arch: 999px 999px 0 0;
+    --gutter: clamp(1.25rem, 4vw, 3rem);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+  body {
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--espresso);
+    background: var(--stone);
+  }
+  ::selection { background: var(--honey); color: var(--espresso); }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--verdigris); outline-offset: 3px; border-radius: 2px; }
+  img { max-width: 100%; display: block; }
+
+  .wrap { max-width: 72rem; margin-inline: auto; padding-inline: var(--gutter); }
+
+  .eyebrow {
+    font-family: var(--receipt);
+    font-size: 0.8125rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--verdigris);
+  }
+
+  /* ---------- header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--stone) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid color-mix(in srgb, var(--espresso) 14%, transparent);
+  }
+  .bar {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; padding-block: 0.8rem;
+  }
+  .wordmark {
+    font-family: var(--display);
+    font-size: 1.35rem;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.55rem;
+  }
+  .wordmark svg { width: 1.15em; height: 1.15em; }
+  nav ul { display: flex; gap: clamp(0.9rem, 3vw, 2rem); list-style: none; }
+  nav a {
+    text-decoration: none; font-weight: 600; font-size: 0.95rem;
+    border-bottom: 2px solid transparent; padding-bottom: 2px;
+  }
+  nav a:hover { border-bottom-color: var(--honey); }
+  .open-pill {
+    font-family: var(--receipt); font-size: 0.78rem; letter-spacing: 0.08em;
+    background: var(--espresso); color: var(--milk);
+    padding: 0.45em 0.9em; border-radius: 999px; white-space: nowrap;
+  }
+  @media (max-width: 40rem) { .open-pill { display: none; } }
+
+  /* ---------- hero ---------- */
+  .hero {
+    padding-block: clamp(4rem, 10vw, 8rem) clamp(3rem, 7vw, 5.5rem);
+    position: relative; overflow: hidden;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    display: flex; align-items: center; justify-content: center; gap: 0.9rem;
+    margin-bottom: 1.6rem;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ""; height: 1px; width: clamp(2rem, 6vw, 5rem);
+    background: var(--verdigris); opacity: 0.5;
+  }
+  .hero h1 {
+    font-family: var(--display);
+    font-size: clamp(4rem, 15vw, 12.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.015em;
+    font-weight: 400;
+    position: relative;
+    width: fit-content;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+  /* steam rises from the apostrophe */
+  .steam {
+    position: absolute;
+    left: 76%;
+    top: -0.34em;
+    width: 0.34em; height: 0.4em;
+    overflow: visible;
+    pointer-events: none;
+  }
+  .steam path {
+    fill: none;
+    stroke: var(--verdigris);
+    stroke-width: 3;
+    stroke-linecap: round;
+    opacity: 0;
+    animation: rise 4s ease-in-out infinite;
+  }
+  .steam path:nth-child(2) { animation-delay: 1.33s; }
+  .steam path:nth-child(3) { animation-delay: 2.66s; }
+  @keyframes rise {
+    0%   { opacity: 0; transform: translateY(16px) scale(0.92); }
+    30%  { opacity: 0.5; }
+    70%  { opacity: 0.2; }
+    100% { opacity: 0; transform: translateY(-22px) scale(1.06); }
+  }
+  .hero p.lede {
+    max-width: 34rem;
+    font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+    margin: 2rem auto 0;
+    font-weight: 300;
+  }
+  .hero p.lede strong { font-weight: 700; }
+
+  /* ---------- ticker divider ---------- */
+  .ticker {
+    border-block: 1px solid color-mix(in srgb, var(--espresso) 18%, transparent);
+    background: var(--stone-deep);
+    padding-block: 0.65rem;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-track { display: inline-flex; animation: slide 48s linear infinite; }
+  @keyframes slide { to { transform: translateX(-50%); } }
+  .ticker span {
+    font-family: var(--receipt);
+    font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase;
+    padding-right: 1.1em;
+  }
+  .ticker .dot { color: var(--honey); margin-inline: 1.1em; }
+
+  /* ---------- sections ---------- */
+  section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
+  .section-head { margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+  .section-head h2 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.1;
+    margin-top: 0.5rem;
+  }
+
+  /* ---------- story ---------- */
+  .story-grid {
+    display: grid; grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2rem, 6vw, 5rem); align-items: start;
+  }
+  @media (max-width: 50rem) { .story-grid { grid-template-columns: 1fr; } }
+  .story-copy p + p { margin-top: 1.1em; }
+  .story-copy > p:first-of-type::first-letter {
+    font-family: var(--display);
+    font-size: 3.4em; float: left;
+    line-height: 0.8; padding-right: 0.12em; padding-top: 0.08em;
+    color: var(--honey);
+  }
+  .story-facts {
+    border-top: 3px solid var(--espresso);
+    font-size: 0.95rem;
+  }
+  .story-facts div {
+    display: flex; justify-content: space-between; gap: 1rem;
+    padding-block: 0.85rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--espresso) 18%, transparent);
+  }
+  .story-facts dt { font-weight: 700; }
+  .story-facts dd { text-align: right; font-family: var(--receipt); font-size: 0.85rem; }
+
+  /* ---------- menu ---------- */
+  .menu { background: var(--milk); border-block: 1px solid color-mix(in srgb, var(--espresso) 14%, transparent); }
+  .menu-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.25rem, 3vw, 2rem);
+  }
+  @media (max-width: 56rem) { .menu-grid { grid-template-columns: 1fr; max-width: 30rem; margin-inline: auto; } }
+  .menu-card {
+    background: var(--stone);
+    border: 1.5px solid var(--espresso);
+    border-radius: var(--arch);
+    padding: clamp(2.2rem, 4vw, 3rem) clamp(1.4rem, 3vw, 2rem) 1.8rem;
+  }
+  .menu-card h3 {
+    font-family: var(--display); font-weight: 400;
+    font-size: 1.5rem; text-align: center;
+    padding-bottom: 1.2rem; margin-bottom: 1.2rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--espresso) 25%, transparent);
+  }
+  .menu-card h3 small {
+    display: block; font-family: var(--receipt); font-size: 0.72rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--verdigris);
+    margin-top: 0.45rem;
+  }
+  .menu-card ul { list-style: none; }
+  .menu-card li { display: flex; align-items: baseline; gap: 0.5em; padding-block: 0.42rem; }
+  .menu-card .item { font-weight: 600; font-size: 0.98rem; }
+  .menu-card .leader { flex: 1; border-bottom: 2px dotted color-mix(in srgb, var(--espresso) 40%, transparent); transform: translateY(-4px); }
+  .menu-card .price { font-family: var(--receipt); font-size: 0.9rem; }
+  .menu-card .note { font-size: 0.85rem; font-weight: 300; color: color-mix(in srgb, var(--espresso) 75%, var(--stone)); display: block; }
+  .menu-foot { text-align: center; margin-top: 2.2rem; font-size: 0.9rem; font-weight: 300; }
+  .menu-foot em { font-style: normal; font-weight: 700; color: var(--verdigris); }
+
+  /* ---------- gallery ---------- */
+  .arches {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.25rem, 3vw, 2rem); align-items: end;
+  }
+  @media (max-width: 56rem) { .arches { grid-template-columns: 1fr; max-width: 26rem; margin-inline: auto; } }
+  .arch-fig { margin: 0; }
+  .arch-fig .frame {
+    border-radius: var(--arch);
+    overflow: hidden;
+    border: 1.5px solid var(--espresso);
+    aspect-ratio: 3 / 4;
+    position: relative;
+    background: var(--stone-deep);
+  }
+  .arch-fig:nth-child(2) .frame { aspect-ratio: 3 / 4.6; }
+  .arch-fig img { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.22) saturate(0.85) contrast(0.98); }
+  .arch-fig .frame::after {
+    content: ""; position: absolute; inset: 0;
+    background: color-mix(in srgb, var(--honey) 12%, transparent);
+    mix-blend-mode: multiply; pointer-events: none;
+  }
+  .arch-fig figcaption {
+    font-family: var(--receipt); font-size: 0.8rem; letter-spacing: 0.12em;
+    text-transform: uppercase; text-align: center; margin-top: 0.9rem;
+  }
+
+  /* ---------- find us ---------- */
+  .find { background: var(--espresso); color: var(--milk); }
+  .find .eyebrow { color: var(--honey); }
+  .find-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 6vw, 5rem);
+  }
+  @media (max-width: 50rem) { .find-grid { grid-template-columns: 1fr; } }
+  .find h2 { font-family: var(--display); font-weight: 400; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.1; margin-top: 0.5rem; }
+  .address { font-style: normal; margin-top: 1.6rem; font-size: 1.15rem; line-height: 1.7; }
+  .address a { color: var(--honey); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+  .walks { margin-top: 2rem; list-style: none; font-size: 0.95rem; font-weight: 300; }
+  .walks li { display: flex; gap: 0.7em; padding-block: 0.4rem; align-items: baseline; }
+  .walks .min { font-family: var(--receipt); color: var(--honey); min-width: 4.4em; font-size: 0.85rem; }
+  .hours {
+    border: 1px solid color-mix(in srgb, var(--milk) 30%, transparent);
+    border-radius: var(--arch);
+    padding: clamp(2.4rem, 4vw, 3.2rem) clamp(1.6rem, 3vw, 2.4rem) 2rem;
+    font-family: var(--receipt);
+    align-self: start;
+  }
+  .hours h3 {
+    font-family: var(--display); font-weight: 400; font-size: 1.4rem;
+    text-align: center; margin-bottom: 1.4rem;
+  }
+  .hours table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  .hours td { padding-block: 0.55rem; border-bottom: 1px dashed color-mix(in srgb, var(--milk) 25%, transparent); }
+  .hours td:last-child { text-align: right; }
+  .hours .today td { color: var(--honey); font-weight: 700; }
+  .hours p { font-size: 0.8rem; text-align: center; margin-top: 1.3rem; opacity: 0.75; }
+
+  /* ---------- footer ---------- */
+  footer { background: var(--espresso); color: var(--milk); border-top: 1px solid color-mix(in srgb, var(--milk) 18%, transparent); }
+  .foot {
+    display: flex; flex-wrap: wrap; gap: 1.5rem;
+    align-items: center; justify-content: space-between;
+    padding-block: 2rem;
+  }
+  .foot .wordmark { color: var(--milk); }
+  .foot ul { display: flex; gap: 1.5rem; list-style: none; }
+  .foot a { text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+  .foot a:hover { color: var(--honey); }
+  .foot .fine { font-family: var(--receipt); font-size: 0.75rem; opacity: 0.7; width: 100%; }
+
+  /* ---------- reveal on scroll (only hidden when JS is running) ---------- */
+  .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .js .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="wordmark" href="#top" aria-label="Matty's — back to top">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M15 95 V50 a35 35 0 0 1 70 0 V95 Z" fill="#C9973F"/></svg>
+      Matty's
+    </a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#story">Story</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#find">Find us</a></li>
+      </ul>
+    </nav>
+    <span class="open-pill" id="openPill">OPEN TODAY 7.30–16.00</span>
+  </div>
+</header>
+
+<main id="top">
+
+  <div class="hero wrap">
+    <p class="hero-eyebrow eyebrow">Independent cafe · Bath · since 2016</p>
+    <h1>
+      Matty&rsquo;s
+      <svg class="steam" viewBox="0 0 40 60" aria-hidden="true">
+        <path d="M20 55 C 12 45, 28 35, 20 25 C 14 17, 24 10, 20 3" />
+        <path d="M20 55 C 27 46, 13 36, 20 26 C 25 18, 15 11, 20 4" />
+        <path d="M20 55 C 14 47, 26 38, 19 27 C 14 19, 25 12, 21 5" />
+      </svg>
+    </h1>
+    <p class="lede">A small cafe on Walcot Street. <strong>Flat whites, Bath buns, brunch until three</strong> — and if you're lucky, the table by the window.</p>
+  </div>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>
+        Cardamom buns on Saturdays <span class="dot">●</span>
+        Beans roasted in Somerset <span class="dot">●</span>
+        Dogs always welcome <span class="dot">●</span>
+        Sourdough from Landrace <span class="dot">●</span>
+        No laptops at the window table <span class="dot">●</span>
+      </span>
+      <span>
+        Cardamom buns on Saturdays <span class="dot">●</span>
+        Beans roasted in Somerset <span class="dot">●</span>
+        Dogs always welcome <span class="dot">●</span>
+        Sourdough from Landrace <span class="dot">●</span>
+        No laptops at the window table <span class="dot">●</span>
+      </span>
+    </div>
+  </div>
+
+  <section id="story" class="wrap" aria-labelledby="story-h">
+    <div class="section-head reveal">
+      <p class="eyebrow">The story</p>
+      <h2 id="story-h">A corner of Bath, kept warm</h2>
+    </div>
+    <div class="story-grid">
+      <div class="story-copy reveal">
+        <p>Matty opened the doors in 2016 with a two-group machine, his gran's bun recipe, and a room that used to be an ironmonger's. The counter is the same oak plank it was then — just more coffee rings.</p>
+        <p>The idea hasn't changed: do a short list of things properly. Espresso from a Somerset roaster we visit every month. Bath buns baked each morning the way this city has made them for three hundred years — candied peel, crushed sugar, no shortcuts. Brunch that arrives hot and doesn't try to be clever.</p>
+        <p>Mornings here are locals and crossword pages; afternoons are walkers down from the Royal Crescent thawing their hands on a mug. Come in either. Stay as long as you like.</p>
+      </div>
+      <dl class="story-facts reveal">
+        <div><dt>The room</dt><dd>EST. 1897, IRONMONGER'S</dd></div>
+        <div><dt>The machine</dt><dd>LA MARZOCCO LINEA</dd></div>
+        <div><dt>The roaster</dt><dd>ROUND HILL, SOMERSET</dd></div>
+        <div><dt>The bakery</dt><dd>OURS, 5AM DAILY</dd></div>
+        <div><dt>The dog policy</dt><dd>YES, OBVIOUSLY</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="menu" class="menu" aria-labelledby="menu-h">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The menu</p>
+        <h2 id="menu-h">Short list, done properly</h2>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card reveal">
+          <h3>Coffee <small>Round Hill roast</small></h3>
+          <ul>
+            <li><span class="item">Espresso</span><span class="leader"></span><span class="price">£2.60</span></li>
+            <li><span class="item">Flat white</span><span class="leader"></span><span class="price">£3.40</span></li>
+            <li><span class="item">Batch filter</span><span class="leader"></span><span class="price">£3.00</span></li>
+            <li><span class="item">Cortado</span><span class="leader"></span><span class="price">£3.20</span></li>
+            <li><span class="item">Hot chocolate</span><span class="leader"></span><span class="price">£3.60</span></li>
+            <li><span class="note">Oat, whole, or raw milk from Ivy House Farm.</span></li>
+          </ul>
+        </div>
+        <div class="menu-card reveal">
+          <h3>Brunch <small>until 3pm</small></h3>
+          <ul>
+            <li><span class="item">Eggs on Landrace toast</span><span class="leader"></span><span class="price">£8.50</span></li>
+            <li><span class="item">Mushrooms, thyme, ricotta</span><span class="leader"></span><span class="price">£10.00</span></li>
+            <li><span class="item">Full Matty's</span><span class="leader"></span><span class="price">£13.50</span></li>
+            <li><span class="item">Porridge, honey, plums</span><span class="leader"></span><span class="price">£7.00</span></li>
+            <li><span class="note">Everything cooked to order. Worth the wait.</span></li>
+          </ul>
+        </div>
+        <div class="menu-card reveal">
+          <h3>Bakes <small>from 5am, ours</small></h3>
+          <ul>
+            <li><span class="item">The Bath bun</span><span class="leader"></span><span class="price">£3.80</span></li>
+            <li><span class="item">Cardamom knot <span class="note">Saturdays</span></span><span class="leader"></span><span class="price">£4.20</span></li>
+            <li><span class="item">Marmalade toast</span><span class="leader"></span><span class="price">£4.50</span></li>
+            <li><span class="item">Seasonal galette</span><span class="leader"></span><span class="price">£4.80</span></li>
+            <li><span class="note">When the buns are gone, they're gone.</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="menu-foot reveal">Menus change with the seasons — <em>the Bath bun never does.</em></p>
+    </div>
+  </section>
+
+  <section id="room" class="wrap" aria-labelledby="room-h">
+    <div class="section-head reveal">
+      <p class="eyebrow">The room</p>
+      <h2 id="room-h">Come in, warm up</h2>
+    </div>
+    <div class="arches">
+      <figure class="arch-fig reveal">
+        <div class="frame"><img src="https://picsum.photos/seed/mattys-counter/720/960" alt="The oak counter and espresso machine at Matty's" loading="lazy" onerror="this.remove()" width="720" height="960"></div>
+        <figcaption>The counter</figcaption>
+      </figure>
+      <figure class="arch-fig reveal">
+        <div class="frame"><img src="https://picsum.photos/seed/mattys-window/720/1100" alt="The window table looking onto Walcot Street" loading="lazy" onerror="this.remove()" width="720" height="1100"></div>
+        <figcaption>The window table</figcaption>
+      </figure>
+      <figure class="arch-fig reveal">
+        <div class="frame"><img src="https://picsum.photos/seed/mattys-buns/720/960" alt="Fresh Bath buns cooling on the morning tray" loading="lazy" onerror="this.remove()" width="720" height="960"></div>
+        <figcaption>The 5am tray</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="find" class="find" aria-labelledby="find-h">
+    <div class="wrap find-grid">
+      <div class="reveal">
+        <p class="eyebrow">Find us</p>
+        <h2 id="find-h">On Walcot Street, under the copper lamp</h2>
+        <address class="address">
+          Matty's<br>
+          12 Walcot Street, Bath BA1 5BG<br>
+          <a href="tel:+441225000000">01225 000 000</a> · <a href="mailto:hello@mattysbath.co.uk">hello@mattysbath.co.uk</a>
+        </address>
+        <ul class="walks">
+          <li><span class="min">4 MIN</span> from Pulteney Bridge, along the river</li>
+          <li><span class="min">7 MIN</span> from Bath Abbey and the Roman Baths</li>
+          <li><span class="min">12 MIN</span> from the Royal Crescent, downhill all the way</li>
+        </ul>
+      </div>
+      <div class="hours reveal">
+        <h3>Hours</h3>
+        <table>
+          <tbody>
+            <tr data-day="1"><td>Monday — Friday</td><td>7.30 — 16.00</td></tr>
+            <tr data-day="6"><td>Saturday</td><td>8.00 — 17.00</td></tr>
+            <tr data-day="0"><td>Sunday</td><td>9.00 — 15.00</td></tr>
+          </tbody>
+        </table>
+        <p>Bank holidays: we're probably open. Ring the bell.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a class="wordmark" href="#top">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M15 95 V50 a35 35 0 0 1 70 0 V95 Z" fill="#C9973F"/></svg>
+      Matty's
+    </a>
+    <ul>
+      <li><a href="https://instagram.com" rel="noopener">Instagram</a></li>
+      <li><a href="mailto:hello@mattysbath.co.uk">Email</a></li>
+    </ul>
+    <p class="fine">© 2026 MATTY'S CAFE, BATH · MADE WITH BATH STONE AND STEAM</p>
+  </div>
+</footer>
+
+<script>
+  // Reveal sections as they enter the viewport; respect reduced motion.
+  const motionOK = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (motionOK && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }, { threshold: 0.15 });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+  } else {
+    document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+  }
+
+  // Today's hours in the header pill and the hours table.
+  const day = new Date().getDay();
+  const pill = document.getElementById("openPill");
+  const hours = { 0: "9.00–15.00", 6: "8.00–17.00" };
+  pill.textContent = "OPEN TODAY " + (hours[day] || "7.30–16.00");
+  const rowKey = day === 0 ? "0" : day === 6 ? "6" : "1";
+  document.querySelector(`.hours tr[data-day="${rowKey}"]`)?.classList.add("today");
+</script>
+
+</body>
+</html>
