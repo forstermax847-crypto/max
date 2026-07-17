@@ -271,6 +271,17 @@
     font-family: var(--receipt); font-size: 0.85rem; letter-spacing: 0.12em;
     text-transform: uppercase; margin-top: 1.4rem; opacity: 0.85;
   }
+  .platforms {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 0.6rem;
+    margin-top: 1.6rem; list-style: none;
+  }
+  .platforms li {
+    font-family: var(--receipt); font-size: 0.78rem; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid color-mix(in srgb, var(--milk) 45%, transparent);
+    border-radius: 999px; padding: 0.35em 1em;
+  }
+  .platforms .or { border: none; opacity: 0.8; padding-inline: 0.2em; }
 
   /* ---------- reviews ---------- */
   .reviews-grid {
@@ -579,9 +590,15 @@
     <div class="wrap">
       <p class="eyebrow reveal">Delivery</p>
       <h2 id="delivery-h" class="reveal">The full English, to your front door</h2>
-      <p class="pitch reveal">The only cafe in Bath that delivers cooked breakfasts. Hot, on time, and exactly how you ordered it — for the morning after, the office, or anyone who'd rather not get up.</p>
+      <p class="pitch reveal">The only cafe in Bath that delivers cooked breakfasts — hot, on time, and exactly how you ordered it. For the morning after, the office, or anyone who'd rather not get up. Ring your order through for delivery, or phone ahead and collect.</p>
       <a class="phone reveal" href="tel:+441225444986">01225 444986</a>
       <p class="times reveal">Delivering Mon–Sat 7.00–14.00 · Sun 8.00–13.00</p>
+      <ul class="platforms reveal">
+        <li class="or">Also on</li>
+        <li>Just Eat</li>
+        <li>Deliveroo</li>
+        <li>Uber Eats</li>
+      </ul>
     </div>
   </section>
 
@@ -640,7 +657,7 @@
           Matty's<br>
           15 St Peter's Terrace<br>
           Lower Bristol Road, Bath BA2 3BT<br>
-          <a href="tel:+441225444986">01225 444986</a> · <a href="mailto:hello@mattysbath.co.uk">hello@mattysbath.co.uk</a>
+          <a href="tel:+441225444986">01225 444986</a> · <a href="https://www.facebook.com/p/Mattys-100057261738007/" rel="noopener">Facebook</a>
         </address>
         <ul class="walks">
           <li><span class="min">2 MIN</span> from the riverside path along the Avon</li>
@@ -670,8 +687,8 @@
       Matty's
     </a>
     <ul>
-      <li><a href="https://instagram.com" rel="noopener">Instagram</a></li>
-      <li><a href="mailto:hello@mattysbath.co.uk">Email</a></li>
+      <li><a href="https://www.facebook.com/p/Mattys-100057261738007/" rel="noopener">Facebook</a></li>
+      <li><a href="tel:+441225444986">01225 444986</a></li>
     </ul>
     <p class="fine">© 2026 MATTY'S CAFE, BATH · OPEN 363 DAYS A YEAR · SOLE PROPRIETOR: MATT</p>
   </div>
