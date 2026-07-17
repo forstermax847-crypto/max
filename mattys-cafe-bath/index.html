@@ -347,6 +347,15 @@
   .find h2 { font-family: var(--display); font-weight: 400; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.1; margin-top: 0.5rem; }
   .address { font-style: normal; margin-top: 1.6rem; font-size: 1.15rem; line-height: 1.7; }
   .address a { color: var(--honey); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+  .find-photo {
+    border: 1.5px solid color-mix(in srgb, var(--milk) 35%, transparent);
+    border-radius: var(--arch);
+    overflow: hidden;
+    max-width: 19rem;
+    margin-top: 2.4rem;
+    aspect-ratio: 3 / 3.3;
+  }
+  .find-photo img { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.22) saturate(0.85) contrast(0.98); }
   .walks { margin-top: 2rem; list-style: none; font-size: 0.95rem; font-weight: 300; }
   .walks li { display: flex; gap: 0.7em; padding-block: 0.4rem; align-items: baseline; }
   .walks .min { font-family: var(--receipt); color: var(--honey); min-width: 4.4em; font-size: 0.85rem; }
@@ -634,16 +643,16 @@
     </div>
     <div class="arches">
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="https://picsum.photos/seed/mattys-room/720/960" alt="The main room at Matty's, tables set for breakfast" loading="lazy" onerror="this.remove()" width="720" height="960"></div>
+        <div class="frame"><img src="img/big-room.jpg" alt="The main room at Matty's, tables set and ready" loading="lazy" onerror="this.remove()" width="1200" height="1200"></div>
         <figcaption>The big room</figcaption>
       </figure>
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="https://picsum.photos/seed/mattys-garden/720/1100" alt="The garden at Matty's on a sunny morning" loading="lazy" onerror="this.remove()" width="720" height="1100"></div>
-        <figcaption>The garden</figcaption>
+        <div class="frame"><img src="img/garden-breakfast.jpg" alt="Two full English breakfasts on a table in the garden at Matty's" loading="lazy" onerror="this.remove()" width="484" height="634"></div>
+        <figcaption>Breakfast in the garden</figcaption>
       </figure>
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="https://picsum.photos/seed/mattys-fryup/720/960" alt="A full English breakfast, plated and ready to go out" loading="lazy" onerror="this.remove()" width="720" height="960"></div>
-        <figcaption>The full English</figcaption>
+        <div class="frame"><img src="img/big-boy.jpg" alt="The Big Boy Breakfast: sausages, bacon, eggs, black pudding, mushrooms, hash browns and beans" loading="lazy" onerror="this.remove()" width="296" height="356"></div>
+        <figcaption>The Big Boy, ready to go</figcaption>
       </figure>
     </div>
   </section>
@@ -664,6 +673,9 @@
           <li><span class="min">8 MIN</span> from Oldfield Park station</li>
           <li><span class="min">10 MIN</span> walk from the city centre — or we deliver</li>
         </ul>
+        <div class="find-photo reveal">
+          <img src="img/front.jpg" alt="Matty's storefront on Lower Bristol Road, with the branded delivery cars parked outside" loading="lazy" onerror="this.parentElement.remove()" width="296" height="357">
+        </div>
       </div>
       <div class="hours reveal">
         <h3>Hours</h3>
