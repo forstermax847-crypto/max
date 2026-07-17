@@ -275,13 +275,18 @@
     display: flex; justify-content: center; flex-wrap: wrap; gap: 0.6rem;
     margin-top: 1.6rem; list-style: none;
   }
-  .platforms li {
+  .platforms li { display: contents; }
+  .platforms a, .platforms .or {
     font-family: var(--receipt); font-size: 0.78rem; letter-spacing: 0.1em;
     text-transform: uppercase;
+  }
+  .platforms a {
+    display: inline-block; text-decoration: none;
     border: 1px solid color-mix(in srgb, var(--milk) 45%, transparent);
     border-radius: 999px; padding: 0.35em 1em;
   }
-  .platforms .or { border: none; opacity: 0.8; padding-inline: 0.2em; }
+  .platforms a:hover { border-color: var(--honey); color: var(--honey); }
+  .platforms .or { opacity: 0.8; padding: 0.35em 0.2em; align-self: center; }
 
   /* ---------- reviews ---------- */
   .reviews-grid {
@@ -603,10 +608,10 @@
       <a class="phone reveal" href="tel:+441225444986">01225 444986</a>
       <p class="times reveal">Delivering Mon–Sat 7.00–14.00 · Sun 8.00–13.00</p>
       <ul class="platforms reveal">
-        <li class="or">Also on</li>
-        <li>Just Eat</li>
-        <li>Deliveroo</li>
-        <li>Uber Eats</li>
+        <li><span class="or">Also on</span></li>
+        <li><a href="https://www.just-eat.co.uk/restaurants-mattys-bath/menu" rel="noopener">Just Eat</a></li>
+        <li><a href="https://deliveroo.co.uk/menu/bath/oldfield-park-north/mattys" rel="noopener">Deliveroo</a></li>
+        <li><a href="https://www.ubereats.com/gb/store/mattys-bath/rmVdmnzrUUyDnYwxHZ6m9Q" rel="noopener">Uber Eats</a></li>
       </ul>
     </div>
   </section>
