@@ -226,6 +226,14 @@
   .menu ul { list-style: none; }
   .menu li { display: flex; align-items: baseline; gap: 0.5em; padding-block: 0.3rem; }
   .menu .item { font-weight: 600; font-size: 0.95rem; }
+  .menu .thumb, .menu .thumb-gap { flex: none; width: 44px; height: 44px; }
+  .menu .thumb {
+    object-fit: cover; border-radius: 3px;
+    border: 1px solid color-mix(in srgb, var(--espresso) 25%, transparent);
+    filter: sepia(0.22) saturate(0.85) contrast(0.98);
+  }
+  .menu-card.has-photos li { padding-block: 0.38rem; align-items: center; }
+  .menu-card.has-photos .note-row { padding-left: calc(44px + 0.5em); }
   .menu .leader { flex: 1; border-bottom: 2px dotted color-mix(in srgb, var(--espresso) 40%, transparent); transform: translateY(-4px); }
   .menu .price { font-family: var(--receipt); font-size: 0.85rem; white-space: nowrap; font-variant-numeric: lining-nums tabular-nums; }
   .menu .note { font-size: 0.85rem; font-weight: 300; color: color-mix(in srgb, var(--espresso) 75%, var(--stone)); display: block; }
@@ -517,20 +525,20 @@
         <div class="menu-card reveal">
           <h3>Breakfasts</h3>
           <ul>
-            <li><span class="item">Full English</span><span class="leader"></span><span class="price">£9.50</span></li>
-            <li><span class="item">Big Boy Breakfast</span><span class="leader"></span><span class="price">£11.50</span></li>
-            <li><span class="item">Veggie Breakfast</span><span class="leader"></span><span class="price">£9.95</span></li>
+            <li><img class="thumb" src="img/food/full-english.jpg" alt="Full English breakfast" width="44" height="44"><span class="item">Full English</span><span class="leader"></span><span class="price">£9.50</span></li>
+            <li><img class="thumb" src="img/food/big-boy.jpg" alt="Big Boy Breakfast" width="44" height="44"><span class="item">Big Boy Breakfast</span><span class="leader"></span><span class="price">£11.50</span></li>
+            <li><img class="thumb" src="img/food/veggie-breakfast.jpg" alt="Veggie breakfast" width="44" height="44"><span class="item">Veggie Breakfast</span><span class="leader"></span><span class="price">£9.95</span></li>
             <li><span class="note">Choice of egg. Bacon fat removed on request.</span></li>
           </ul>
         </div>
         <div class="menu-card reveal">
           <h3>Hot Sandwiches</h3>
           <ul>
-            <li><span class="item">Bacon</span><span class="leader"></span><span class="price">£3.25</span></li>
-            <li><span class="item">Bacon &amp; Egg</span><span class="leader"></span><span class="price">£3.65</span></li>
-            <li><span class="item">Sausage</span><span class="leader"></span><span class="price">£3.25</span></li>
-            <li><span class="item">Sausage &amp; Egg</span><span class="leader"></span><span class="price">£3.65</span></li>
-            <li><span class="item">Sausage &amp; Bacon</span><span class="leader"></span><span class="price">£3.95</span></li>
+            <li><img class="thumb" src="img/food/bacon.jpg" alt="Bacon sandwich" width="44" height="44"><span class="item">Bacon</span><span class="leader"></span><span class="price">£3.25</span></li>
+            <li><img class="thumb" src="img/food/bacon-egg.jpg" alt="Bacon and egg sandwich" width="44" height="44"><span class="item">Bacon &amp; Egg</span><span class="leader"></span><span class="price">£3.65</span></li>
+            <li><img class="thumb" src="img/food/sausage.jpg" alt="Sausage sandwich" width="44" height="44"><span class="item">Sausage</span><span class="leader"></span><span class="price">£3.25</span></li>
+            <li><img class="thumb" src="img/food/sausage-egg.jpg" alt="Sausage and egg sandwich" width="44" height="44"><span class="item">Sausage &amp; Egg</span><span class="leader"></span><span class="price">£3.65</span></li>
+            <li><img class="thumb" src="img/food/sausage-bacon.jpg" alt="Sausage and bacon sandwich" width="44" height="44"><span class="item">Sausage &amp; Bacon</span><span class="leader"></span><span class="price">£3.95</span></li>
             <li><span class="item">Breakfast Bap</span><span class="leader"></span><span class="price">£4.50</span></li>
             <li><span class="note">Granary, brown or white. Butter removed on request.</span></li>
           </ul>
@@ -554,7 +562,7 @@
             <li><span class="item">¼ lb Cheese Burger</span><span class="leader"></span><span class="price">£8.95</span></li>
             <li><span class="item">½ lb Cheese Burger</span><span class="leader"></span><span class="price">£9.95</span></li>
             <li><span class="item">Bacon Cheese Burger</span><span class="leader"></span><span class="price">£9.50</span></li>
-            <li><span class="item">Chicken Burger</span><span class="leader"></span><span class="price">£8.95</span></li>
+            <li><img class="thumb" src="img/food/chicken-burger.jpg" alt="Chicken burger with chips" width="44" height="44"><span class="item">Chicken Burger</span><span class="leader"></span><span class="price">£8.95</span></li>
             <li><span class="note">Grated cheddar or a cheese slice. Salad on request.</span></li>
           </ul>
         </div>
@@ -578,8 +586,8 @@
           <h3>Other Meals</h3>
           <ul>
             <li><span class="item">Beans on Toast</span><span class="leader"></span><span class="price">£4.95</span></li>
-            <li><span class="item">Egg on Toast</span><span class="leader"></span><span class="price">£4.95</span></li>
-            <li><span class="item">Ham, Egg &amp; Chips</span><span class="leader"></span><span class="price">£9.50</span></li>
+            <li><img class="thumb" src="img/food/egg-on-toast.jpg" alt="Egg on toast" width="44" height="44"><span class="item">Egg on Toast</span><span class="leader"></span><span class="price">£4.95</span></li>
+            <li><img class="thumb" src="img/food/ham-egg-chips.jpg" alt="Ham, egg and chips" width="44" height="44"><span class="item">Ham, Egg &amp; Chips</span><span class="leader"></span><span class="price">£9.50</span></li>
             <li><span class="item">Sausage, Egg &amp; Chips</span><span class="leader"></span><span class="price">£9.50</span></li>
             <li><span class="item">Chicken Curry</span><span class="leader"></span><span class="price">£10.45</span></li>
             <li><span class="note">Eggs fried, poached or scrambled.</span></li>
@@ -588,9 +596,9 @@
         <div class="menu-card reveal">
           <h3>Kids Meals</h3>
           <ul>
-            <li><span class="item">Kids Chicken Nuggets</span><span class="leader"></span><span class="price">£6.95</span></li>
-            <li><span class="item">Kids Fish Fingers</span><span class="leader"></span><span class="price">£6.95</span></li>
-            <li><span class="item">Kids Sausage</span><span class="leader"></span><span class="price">£6.95</span></li>
+            <li><img class="thumb" src="img/food/kids-nuggets.jpg" alt="Kids chicken nuggets, chips and beans" width="44" height="44"><span class="item">Kids Chicken Nuggets</span><span class="leader"></span><span class="price">£6.95</span></li>
+            <li><img class="thumb" src="img/food/kids-fish-fingers.jpg" alt="Kids fish fingers, chips and beans" width="44" height="44"><span class="item">Kids Fish Fingers</span><span class="leader"></span><span class="price">£6.95</span></li>
+            <li><img class="thumb" src="img/food/kids-sausage.jpg" alt="Kids sausage, chips and beans" width="44" height="44"><span class="item">Kids Sausage</span><span class="leader"></span><span class="price">£6.95</span></li>
             <li><span class="item">Kids Breakfast</span><span class="leader"></span><span class="price">£6.95</span></li>
             <li><span class="note">Chips and beans with all but the breakfast.</span></li>
           </ul>
@@ -794,6 +802,33 @@
   } else {
     document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
   }
+
+  // Menu thumbnails: drop any that fail, then align rows only in cards that kept one.
+  (() => {
+    const thumbs = [...document.querySelectorAll(".menu .thumb")];
+    const settled = thumbs.map(t => new Promise(res => {
+      if (t.complete) return res(t.naturalWidth > 0);
+      t.addEventListener("load", () => res(true), { once: true });
+      t.addEventListener("error", () => res(false), { once: true });
+    }));
+    Promise.all(settled).then(ok => {
+      thumbs.forEach((t, i) => { if (!ok[i]) t.remove(); });
+      for (const card of document.querySelectorAll(".menu-card")) {
+        if (!card.querySelector(".thumb")) continue;
+        card.classList.add("has-photos");
+        for (const li of card.querySelectorAll("li")) {
+          if (li.querySelector(".thumb")) continue;
+          if (li.querySelector(".item")) {
+            const gap = document.createElement("span");
+            gap.className = "thumb-gap";
+            li.prepend(gap);
+          } else {
+            li.classList.add("note-row");
+          }
+        }
+      }
+    });
+  })();
 
   // Today's hours in the header pill and the hours table.
   const day = new Date().getDay();
