@@ -303,6 +303,15 @@
   .platforms a:hover { border-color: var(--honey); color: var(--honey); }
   .platforms .or { opacity: 0.8; padding: 0.35em 0.2em; align-self: center; }
 
+  .delivery-photo {
+    margin: clamp(1.8rem, 3.5vw, 2.6rem) auto 0;
+    max-width: 26rem;
+    border: 1.5px solid color-mix(in srgb, var(--milk) 45%, transparent);
+    border-radius: var(--box);
+    overflow: hidden;
+  }
+  .delivery-photo img { width: 100%; height: auto; display: block; }
+
   /* ---------- reviews ---------- */
   .reviews-grid {
     display: grid; grid-template-columns: 1fr 1fr;
@@ -693,6 +702,9 @@
         <li><a href="https://deliveroo.co.uk/menu/bath/oldfield-park-north/mattys" rel="noopener">Deliveroo</a></li>
         <li><a href="https://www.ubereats.com/gb/store/mattys-bath/rmVdmnzrUUyDnYwxHZ6m9Q" rel="noopener">Uber Eats</a></li>
       </ul>
+      <figure class="delivery-photo reveal">
+        <img src="img/delivery-car.jpg" alt="A Matty's delivery car parked outside the cafe on Lower Bristol Road" loading="lazy" onerror="this.parentElement.remove()" width="1200" height="800">
+      </figure>
     </div>
   </section>
 
@@ -728,28 +740,28 @@
     </div>
     <div class="arches">
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="img/big-room.jpg" alt="The main room at Matty's, tables set and ready" loading="lazy" onerror="this.remove()" width="1200" height="1200"></div>
-        <figcaption>The big room</figcaption>
+        <div class="frame"><img src="img/counter.jpg" alt="The counter and the handwritten specials boards at Matty's" loading="lazy" onerror="this.remove()" width="1000" height="667"></div>
+        <figcaption>The counter</figcaption>
       </figure>
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="img/garden-breakfast.jpg" alt="Two full English breakfasts on a table in the garden at Matty's" loading="lazy" onerror="this.remove()" width="484" height="634"></div>
-        <figcaption>Breakfast in the garden</figcaption>
+        <div class="frame"><img src="img/garden.jpg" alt="The covered garden at Matty's, picnic benches under a pergola" loading="lazy" onerror="this.remove()" width="1000" height="667"></div>
+        <figcaption>The garden out back</figcaption>
       </figure>
       <figure class="arch-fig reveal">
         <div class="frame"><img src="img/big-boy.jpg" alt="The Big Boy Breakfast: sausages, bacon, eggs, black pudding, mushrooms, hash browns and beans" loading="lazy" onerror="this.remove()" width="900" height="675"></div>
         <figcaption>The Big Boy, ready to go</figcaption>
       </figure>
       <figure class="arch-fig reveal">
+        <div class="frame"><img src="img/coffee.jpg" alt="A cappuccino with a Biscoff biscuit on a wooden table" loading="lazy" onerror="this.remove()" width="1000" height="667"></div>
+        <figcaption>Coffee and a Biscoff</figcaption>
+      </figure>
+      <figure class="arch-fig reveal">
+        <div class="frame"><img src="img/table.jpg" alt="A table at Matty's set with sauces, cutlery and a menu" loading="lazy" onerror="this.remove()" width="1000" height="667"></div>
+        <figcaption>Set and waiting</figcaption>
+      </figure>
+      <figure class="arch-fig reveal">
         <div class="frame"><img src="img/busy-room.jpg" alt="A busy morning at Matty's, every table taken" loading="lazy" onerror="this.remove()" width="296" height="357"></div>
         <figcaption>A Saturday morning</figcaption>
-      </figure>
-      <figure class="arch-fig reveal">
-        <div class="frame"><img src="img/counter.jpg" alt="The counter and handwritten chalkboard menus" loading="lazy" onerror="this.remove()" width="296" height="356"></div>
-        <figcaption>The specials boards</figcaption>
-      </figure>
-      <figure class="arch-fig reveal">
-        <div class="frame"><img src="img/espresso.jpg" alt="The espresso machine, cups stacked and ready" loading="lazy" onerror="this.remove()" width="296" height="357"></div>
-        <figcaption>The posh coffee corner</figcaption>
       </figure>
     </div>
   </section>
