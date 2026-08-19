@@ -340,20 +340,24 @@
 
   /* ---------- gallery ---------- */
   .arches {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: clamp(1.25rem, 3vw, 2rem); align-items: end;
+    columns: 3;
+    column-gap: clamp(1.25rem, 3vw, 2rem);
   }
-  @media (max-width: 56rem) { .arches { grid-template-columns: 1fr; max-width: 26rem; margin-inline: auto; } }
-  .arch-fig { margin: 0; }
+  @media (max-width: 56rem) { .arches { columns: 2; } }
+  @media (max-width: 34rem) { .arches { columns: 1; max-width: 26rem; margin-inline: auto; } }
+  .arch-fig {
+    margin: 0 0 clamp(1.25rem, 3vw, 2rem);
+    break-inside: avoid;
+  }
   .arch-fig .frame {
     border-radius: var(--box);
     overflow: hidden;
     border: 1.5px solid var(--espresso);
-    aspect-ratio: 4 / 3;
     position: relative;
+    line-height: 0;
     background: var(--stone-deep);
   }
-  .arch-fig img { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.22) saturate(0.85) contrast(0.98); }
+  .arch-fig img { width: 100%; height: auto; display: block; filter: sepia(0.22) saturate(0.85) contrast(0.98); }
   .arch-fig .frame::after {
     content: ""; position: absolute; inset: 0;
     background: color-mix(in srgb, var(--honey) 12%, transparent);
@@ -740,28 +744,40 @@
     </div>
     <div class="arches">
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="img/counter.jpg" alt="The counter and the handwritten specials boards at Matty's" loading="lazy" onerror="this.remove()" width="1000" height="667"></div>
+        <div class="frame"><img src="img/counter.jpg" alt="The counter and the handwritten specials boards at Matty's" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="1000" height="667"></div>
         <figcaption>The counter</figcaption>
       </figure>
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="img/garden.jpg" alt="The covered garden at Matty's, picnic benches under a pergola" loading="lazy" onerror="this.remove()" width="1000" height="667"></div>
-        <figcaption>The garden out back</figcaption>
+        <div class="frame"><img src="img/print-flipside.jpg" alt="A framed print on the wall reading 'Catch you on the flip side'" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="600" height="900"></div>
+        <figcaption>Catch you on the flip side</figcaption>
       </figure>
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="img/big-boy.jpg" alt="The Big Boy Breakfast: sausages, bacon, eggs, black pudding, mushrooms, hash browns and beans" loading="lazy" onerror="this.remove()" width="900" height="675"></div>
-        <figcaption>The Big Boy, ready to go</figcaption>
-      </figure>
-      <figure class="arch-fig reveal">
-        <div class="frame"><img src="img/coffee.jpg" alt="A cappuccino with a Biscoff biscuit on a wooden table" loading="lazy" onerror="this.remove()" width="1000" height="667"></div>
-        <figcaption>Coffee and a Biscoff</figcaption>
-      </figure>
-      <figure class="arch-fig reveal">
-        <div class="frame"><img src="img/table.jpg" alt="A table at Matty's set with sauces, cutlery and a menu" loading="lazy" onerror="this.remove()" width="1000" height="667"></div>
+        <div class="frame"><img src="img/table.jpg" alt="A table at Matty's set with sauces, cutlery and a menu" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="1000" height="667"></div>
         <figcaption>Set and waiting</figcaption>
       </figure>
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="img/busy-room.jpg" alt="A busy morning at Matty's, every table taken" loading="lazy" onerror="this.remove()" width="296" height="357"></div>
+        <div class="frame"><img src="img/coffee.jpg" alt="A cappuccino with a Biscoff biscuit on a wooden table" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="1000" height="667"></div>
+        <figcaption>Coffee and a Biscoff</figcaption>
+      </figure>
+      <figure class="arch-fig reveal">
+        <div class="frame"><img src="img/big-boy.jpg" alt="The Big Boy Breakfast: sausages, bacon, eggs, black pudding, mushrooms, hash browns and beans" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="900" height="675"></div>
+        <figcaption>The Big Boy, ready to go</figcaption>
+      </figure>
+      <figure class="arch-fig reveal">
+        <div class="frame"><img src="img/print-coffee.jpg" alt="A print on the wall reading 'A good morning starts with coffee'" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="600" height="900"></div>
+        <figcaption>A good morning starts with coffee</figcaption>
+      </figure>
+      <figure class="arch-fig reveal">
+        <div class="frame"><img src="img/garden.jpg" alt="The covered garden at Matty's, picnic benches under a pergola" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="1000" height="667"></div>
+        <figcaption>The garden out back</figcaption>
+      </figure>
+      <figure class="arch-fig reveal">
+        <div class="frame"><img src="img/busy-room.jpg" alt="A busy morning at Matty's, every table taken" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="296" height="357"></div>
         <figcaption>A Saturday morning</figcaption>
+      </figure>
+      <figure class="arch-fig reveal">
+        <div class="frame"><img src="img/canvas.jpg" alt="A canvas print on the cafe wall of a cartoon figure holding a Matty's menu" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="600" height="900"></div>
+        <figcaption>On the wall</figcaption>
       </figure>
     </div>
   </section>
