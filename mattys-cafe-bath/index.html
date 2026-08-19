@@ -200,13 +200,14 @@
   /* ---------- menu ---------- */
   .menu { background: var(--milk); border-block: 1px solid color-mix(in srgb, var(--espresso) 14%, transparent); }
   .menu-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: clamp(1rem, 2.2vw, 1.5rem);
-    align-items: start;
+    columns: 3;
+    column-gap: clamp(1rem, 2.2vw, 1.5rem);
   }
-  @media (max-width: 60rem) { .menu-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 40rem) { .menu-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 60rem) { .menu-grid { columns: 2; } }
+  @media (max-width: 40rem) { .menu-grid { columns: 1; } }
   .menu-card {
+    break-inside: avoid;
+    margin-bottom: clamp(1rem, 2.2vw, 1.5rem);
     background: var(--stone);
     border: 1.5px solid var(--espresso);
     border-radius: var(--box);
@@ -239,24 +240,29 @@
   .menu .note { font-size: 0.85rem; font-weight: 300; color: color-mix(in srgb, var(--espresso) 75%, var(--stone)); display: block; }
 
   .however {
-    margin-top: clamp(2rem, 4vw, 3rem);
-    border-top: 3px solid var(--espresso);
-    padding-top: 1.4rem;
+    margin-top: clamp(1.5rem, 3vw, 2.5rem);
+    border: 1.5px solid var(--espresso);
+    border-radius: var(--box);
+    background: var(--stone);
+    padding: clamp(1.5rem, 3vw, 2.2rem);
   }
   .however h4 {
-    font-family: var(--display); font-weight: 400; font-size: 1.2rem;
-    margin-bottom: 0.8rem;
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+    text-align: center; margin-bottom: 1.4rem;
   }
   .however ul {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-    gap: 0.4rem 2rem; list-style: none;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 1.4rem clamp(1.5rem, 3vw, 2.5rem);
+    list-style: none;
   }
-  .however li {
-    font-size: 0.9rem; font-weight: 300;
-    padding-block: 0.15rem;
+  .however li { display: flex; flex-direction: column; gap: 0.3rem; }
+  .however dfn {
+    font-family: var(--receipt); font-style: normal;
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--leaf);
   }
-  .menu-foot { text-align: center; margin-top: 2.2rem; font-size: 0.9rem; font-weight: 300; }
-  .menu-foot em { font-style: normal; font-weight: 700; color: var(--leaf); }
+  .however span { font-size: 0.92rem; font-weight: 300; line-height: 1.45; }
 
   /* ---------- delivery ---------- */
   .delivery { background: var(--leaf); color: var(--milk); text-align: center; }
@@ -524,8 +530,11 @@
           <h3>Breakfasts</h3>
           <ul>
             <li><img class="thumb" src="img/food/full-english.jpg" alt="Full English breakfast" width="44" height="44"><span class="item">Full English</span><span class="leader"></span><span class="price">£9.50</span></li>
+            <li><span class="note">Sausage, bacon, egg on toast, hash brown and beans.</span></li>
             <li><img class="thumb" src="img/food/big-boy.jpg" alt="Big Boy Breakfast" width="44" height="44"><span class="item">Big Boy Breakfast</span><span class="leader"></span><span class="price">£11.50</span></li>
+            <li><span class="note">Two sausages, bacon, two eggs, black pudding, mushrooms, hash brown, beans and toast.</span></li>
             <li><img class="thumb" src="img/food/veggie-breakfast.jpg" alt="Veggie breakfast" width="44" height="44"><span class="item">Veggie Breakfast</span><span class="leader"></span><span class="price">£9.95</span></li>
+            <li><span class="note">Two eggs, beans, tomatoes, mushrooms, hash browns and toast.</span></li>
             <li><span class="note">Choice of egg. Bacon fat removed on request.</span></li>
           </ul>
         </div>
@@ -533,9 +542,9 @@
           <h3>Hot Sandwiches</h3>
           <ul>
             <li><img class="thumb" src="img/food/bacon.jpg" alt="Bacon sandwich" width="44" height="44"><span class="item">Bacon</span><span class="leader"></span><span class="price">£3.25</span></li>
-            <li><img class="thumb" src="img/food/bacon-egg.jpg" alt="Bacon and egg sandwich" width="44" height="44"><span class="item">Bacon &amp; Egg</span><span class="leader"></span><span class="price">£3.65</span></li>
+            <li><img class="thumb" src="img/food/bacon-egg.jpg" alt="Bacon and egg sandwich" width="44" height="44"><span class="item">Bacon &amp; Egg</span><span class="leader"></span><span class="price">£3.95</span></li>
             <li><img class="thumb" src="img/food/sausage.jpg" alt="Sausage sandwich" width="44" height="44"><span class="item">Sausage</span><span class="leader"></span><span class="price">£3.25</span></li>
-            <li><img class="thumb" src="img/food/sausage-egg.jpg" alt="Sausage and egg sandwich" width="44" height="44"><span class="item">Sausage &amp; Egg</span><span class="leader"></span><span class="price">£3.65</span></li>
+            <li><img class="thumb" src="img/food/sausage-egg.jpg" alt="Sausage and egg sandwich" width="44" height="44"><span class="item">Sausage &amp; Egg</span><span class="leader"></span><span class="price">£3.95</span></li>
             <li><img class="thumb" src="img/food/sausage-bacon.jpg" alt="Sausage and bacon sandwich" width="44" height="44"><span class="item">Sausage &amp; Bacon</span><span class="leader"></span><span class="price">£3.95</span></li>
             <li><span class="item">Breakfast Bap</span><span class="leader"></span><span class="price">£4.50</span></li>
             <li><span class="note">Granary, brown or white. Butter removed on request.</span></li>
@@ -555,7 +564,7 @@
           </ul>
         </div>
         <div class="menu-card reveal">
-          <h3>Burgers</h3>
+          <h3>Burgers &amp; Chips</h3>
           <ul>
             <li><span class="item">¼ lb Cheese Burger</span><span class="leader"></span><span class="price">£8.95</span></li>
             <li><span class="item">½ lb Cheese Burger</span><span class="leader"></span><span class="price">£9.95</span></li>
@@ -592,12 +601,12 @@
           </ul>
         </div>
         <div class="menu-card reveal">
-          <h3>Kids Meals</h3>
+          <h3>Kids Meals <small>all £6.95</small></h3>
           <ul>
-            <li><img class="thumb" src="img/food/kids-nuggets.jpg" alt="Kids chicken nuggets, chips and beans" width="44" height="44"><span class="item">Kids Chicken Nuggets</span><span class="leader"></span><span class="price">£6.95</span></li>
-            <li><img class="thumb" src="img/food/kids-fish-fingers.jpg" alt="Kids fish fingers, chips and beans" width="44" height="44"><span class="item">Kids Fish Fingers</span><span class="leader"></span><span class="price">£6.95</span></li>
-            <li><img class="thumb" src="img/food/kids-sausage.jpg" alt="Kids sausage, chips and beans" width="44" height="44"><span class="item">Kids Sausage</span><span class="leader"></span><span class="price">£6.95</span></li>
-            <li><img class="thumb" src="img/food/kids-breakfast.jpg" alt="Kids breakfast: egg on toast, sausage, bacon and beans" width="44" height="44"><span class="item">Kids Breakfast</span><span class="leader"></span><span class="price">£6.95</span></li>
+            <li><img class="thumb" src="img/food/kids-nuggets.jpg" alt="Kids chicken nuggets, chips and beans" width="44" height="44"><span class="item">Chicken Nuggets</span></li>
+            <li><img class="thumb" src="img/food/kids-fish-fingers.jpg" alt="Kids fish fingers, chips and beans" width="44" height="44"><span class="item">Fish Fingers</span></li>
+            <li><img class="thumb" src="img/food/kids-sausage.jpg" alt="Kids sausage, chips and beans" width="44" height="44"><span class="item">Sausage</span></li>
+            <li><img class="thumb" src="img/food/kids-breakfast.jpg" alt="Kids breakfast: egg on toast, sausage, bacon and beans" width="44" height="44"><span class="item">Breakfast</span></li>
             <li><span class="note">Chips and beans with all but the breakfast.</span></li>
           </ul>
         </div>
@@ -607,6 +616,8 @@
             <li><span class="item">Chips</span><span class="leader"></span><span class="price">£3.75</span></li>
             <li><span class="item">Cheesy Chips</span><span class="leader"></span><span class="price">£4.25</span></li>
             <li><span class="item">Onion Rings</span><span class="leader"></span><span class="price">£3.75</span></li>
+            <li><span class="item">Garlic Bread</span><span class="leader"></span><span class="price">£3.75</span></li>
+            <li><span class="note"><strong>£1.50 each on any plate</strong><br>Bacon &middot; sausage &middot; fried egg &middot; hash brown &middot; mushrooms &middot; black pudding &middot; beans &middot; toast</span></li>
           </ul>
         </div>
         <div class="menu-card reveal">
@@ -631,10 +642,9 @@
             <li><span class="item">Orange Juice</span><span class="leader"></span><span class="price">£2.00</span></li>
             <li><span class="item">Cans</span><span class="leader"></span><span class="price">£1.60</span></li>
             <li><span class="item">Water 50cl</span><span class="leader"></span><span class="price">£1.60</span></li>
-            <li><span class="item">Milk</span><span class="leader"></span><span class="price">£1.90</span></li>
-            <li><span class="item">Monster, Relentless or Powerade</span><span class="leader"></span><span class="price">£1.90</span></li>
-            <li><span class="item">Bottles</span><span class="leader"></span><span class="price">£1.40</span></li>
-            <li><span class="note">Milkshakes in three flavours.</span></li>
+            <li><span class="item">Monster, Relentless or Powerade</span><span class="leader"></span><span class="price">£2.00</span></li>
+            <li><span class="item">&hellip; and more</span></li>
+            <li><span class="note">Milkshakes in three flavours. Ask for the full range.</span></li>
           </ul>
         </div>
         <div class="menu-card reveal">
@@ -649,11 +659,12 @@
       <div class="however reveal">
         <h4>However you like it</h4>
         <ul>
-          <li>Bacon — fat removed on request</li>
-          <li>Sandwiches — butter removed on request</li>
-          <li>Eggs — fried, poached or scrambled</li>
-          <li>Burgers — grated cheddar or a cheese slice, salad on request</li>
-          <li>Hot drinks — 30p extra on delivery and collection</li>
+          <li><dfn>Bread</dfn><span>Granary, brown or white</span></li>
+          <li><dfn>Bacon</dfn><span>Fat removed on request</span></li>
+          <li><dfn>Butter</dfn><span>Left off any sandwich, just ask</span></li>
+          <li><dfn>Eggs</dfn><span>Fried, poached or scrambled</span></li>
+          <li><dfn>Burgers</dfn><span>Grated cheddar or a cheese slice, salad on request</span></li>
+          <li><dfn>Hot drinks</dfn><span>30p extra on delivery and collection</span></li>
         </ul>
       </div>
     </div>
