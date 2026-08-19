@@ -136,6 +136,23 @@
   }
   .hero p.lede strong { font-weight: 700; }
 
+  /* full-bleed photographic band closing the hero */
+  .hero-band {
+    margin: 0;
+    border-block: 1.5px solid var(--espresso);
+    overflow: hidden;
+    line-height: 0;
+    max-height: 46vh;
+  }
+  .hero-band img {
+    width: 100%;
+    height: 100%;
+    max-height: 46vh;
+    object-fit: cover;
+    object-position: center 42%;
+    filter: sepia(0.18) saturate(0.9) contrast(0.98);
+  }
+
   /* ---------- ticker divider ---------- */
   .ticker {
     border-block: 1px solid color-mix(in srgb, var(--espresso) 18%, transparent);
@@ -182,7 +199,7 @@
     border: 1.5px solid var(--espresso);
     border-radius: var(--box);
     overflow: hidden;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 3;
   }
   .story-photo img { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.22) saturate(0.85) contrast(0.98); }
   .story-facts {
@@ -265,7 +282,17 @@
   .however span { font-size: 0.92rem; font-weight: 300; line-height: 1.45; }
 
   /* ---------- delivery ---------- */
-  .delivery { background: var(--leaf); color: var(--milk); text-align: center; }
+  .delivery {
+    background-color: var(--leaf);
+    background-image:
+      linear-gradient(rgba(74, 100, 41, 0.86), rgba(74, 100, 41, 0.86)),
+      url("img/delivery-car.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--milk);
+    text-align: center;
+  }
   .delivery .eyebrow { color: var(--stone); }
   .delivery h2 {
     font-family: var(--display); font-weight: 400;
@@ -303,14 +330,6 @@
   .platforms a:hover { border-color: var(--honey); color: var(--honey); }
   .platforms .or { opacity: 0.8; padding: 0.35em 0.2em; align-self: center; }
 
-  .delivery-photo {
-    margin: clamp(1.8rem, 3.5vw, 2.6rem) auto 0;
-    max-width: 26rem;
-    border: 1.5px solid color-mix(in srgb, var(--milk) 45%, transparent);
-    border-radius: var(--box);
-    overflow: hidden;
-  }
-  .delivery-photo img { width: 100%; height: auto; display: block; }
 
   /* ---------- reviews ---------- */
   .reviews-grid {
@@ -337,6 +356,23 @@
     font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--leaf);
   }
+
+  .review-photo {
+    margin: 0 0 clamp(2rem, 4vw, 3rem);
+    border: 1.5px solid color-mix(in srgb, var(--espresso) 30%, transparent);
+    border-radius: var(--box);
+    overflow: hidden;
+    line-height: 0;
+  }
+  .review-photo img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 5;
+    object-fit: cover;
+    object-position: center 62%;
+    filter: sepia(0.2) saturate(0.85) contrast(0.98);
+  }
+  @media (max-width: 40rem) { .review-photo img { aspect-ratio: 16 / 9; } }
 
   /* ---------- gallery ---------- */
   .arches {
@@ -491,6 +527,10 @@
     <p class="lede">Matt has been cooking Bath's breakfasts for twenty-four years. <strong>Fantastic portions, fair prices</strong> — and the only full English in the city delivered free to your door.</p>
   </div>
 
+  <div class="hero-band reveal">
+    <img src="img/counter.jpg" alt="The counter at Matty's, chalkboard menus above and the name painted on the front" width="1000" height="667" onerror="this.parentElement.remove()">
+  </div>
+
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
       <span>
@@ -523,7 +563,7 @@
       </div>
       <div class="story-side reveal">
       <div class="story-photo">
-        <img src="img/window-seats.jpg" alt="The bay window at Matty's with the painted logo, tables set below" loading="lazy" onerror="this.parentElement.remove()" width="1100" height="1100">
+        <img src="img/coffee.jpg" alt="A cappuccino with a Biscoff biscuit on a wooden table at Matty's" loading="lazy" onerror="this.parentElement.remove()" width="1000" height="667">
       </div>
       <dl class="story-facts">
         <div><dt>The owner</dt><dd>MATT, SINCE 2003</dd></div>
@@ -706,9 +746,6 @@
         <li><a href="https://deliveroo.co.uk/menu/bath/oldfield-park-north/mattys" rel="noopener">Deliveroo</a></li>
         <li><a href="https://www.ubereats.com/gb/store/mattys-bath/rmVdmnzrUUyDnYwxHZ6m9Q" rel="noopener">Uber Eats</a></li>
       </ul>
-      <figure class="delivery-photo reveal">
-        <img src="img/delivery-car.jpg" alt="A Matty's delivery car parked outside the cafe on Lower Bristol Road" loading="lazy" onerror="this.parentElement.remove()" width="1200" height="800">
-      </figure>
     </div>
   </section>
 
@@ -717,6 +754,9 @@
       <p class="eyebrow">Word of mouth</p>
       <h2 id="reviews-h">Don't take Matt's word for it</h2>
     </div>
+      <figure class="review-photo reveal">
+        <img src="img/garden.jpg" alt="The covered garden at Matty's, picnic benches under a pergola" loading="lazy" width="1000" height="667" onerror="this.parentElement.remove()">
+      </figure>
     <div class="reviews-grid">
       <blockquote class="reveal">
         <p>Amazing quality, and to my mind an excellent price. I only wish I had thought of you earlier. I will certainly use you again and pass on my thoughts to my friends.</p>
@@ -744,32 +784,24 @@
     </div>
     <div class="arches">
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="img/counter.jpg" alt="The counter and the handwritten specials boards at Matty's" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="1000" height="667"></div>
-        <figcaption>The counter</figcaption>
+        <div class="frame"><img src="img/window-seats.jpg" alt="The bay window at Matty's with the painted logo, tables set below" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="1100" height="1100"></div>
+        <figcaption>The bay window</figcaption>
       </figure>
       <figure class="arch-fig reveal">
         <div class="frame"><img src="img/print-flipside.jpg" alt="A framed print on the wall reading 'Catch you on the flip side'" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="600" height="900"></div>
         <figcaption>Catch you on the flip side</figcaption>
       </figure>
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="img/table.jpg" alt="A table at Matty's set with sauces, cutlery and a menu" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="1000" height="667"></div>
-        <figcaption>Set and waiting</figcaption>
-      </figure>
-      <figure class="arch-fig reveal">
-        <div class="frame"><img src="img/coffee.jpg" alt="A cappuccino with a Biscoff biscuit on a wooden table" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="1000" height="667"></div>
-        <figcaption>Coffee and a Biscoff</figcaption>
-      </figure>
-      <figure class="arch-fig reveal">
         <div class="frame"><img src="img/big-boy.jpg" alt="The Big Boy Breakfast: sausages, bacon, eggs, black pudding, mushrooms, hash browns and beans" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="900" height="675"></div>
         <figcaption>The Big Boy, ready to go</figcaption>
       </figure>
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="img/print-coffee.jpg" alt="A print on the wall reading 'A good morning starts with coffee'" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="600" height="900"></div>
-        <figcaption>A good morning starts with coffee</figcaption>
+        <div class="frame"><img src="img/table.jpg" alt="A table at Matty's set with sauces, cutlery and a menu" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="1000" height="667"></div>
+        <figcaption>Set and waiting</figcaption>
       </figure>
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="img/garden.jpg" alt="The covered garden at Matty's, picnic benches under a pergola" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="1000" height="667"></div>
-        <figcaption>The garden out back</figcaption>
+        <div class="frame"><img src="img/print-coffee.jpg" alt="A print on the wall reading 'A good morning starts with coffee'" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="600" height="900"></div>
+        <figcaption>A good morning starts with coffee</figcaption>
       </figure>
       <figure class="arch-fig reveal">
         <div class="frame"><img src="img/busy-room.jpg" alt="A busy morning at Matty's, every table taken" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="296" height="357"></div>
