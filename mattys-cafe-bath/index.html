@@ -268,6 +268,8 @@
   .menu ul { list-style: none; }
   .menu li { display: flex; align-items: baseline; gap: 0.5em; padding-block: 0.3rem; }
   .menu .item { font-weight: 600; font-size: 0.95rem; }
+  /* name, leader and price share one baseline; the photo centres against that block */
+  .menu .row-text { display: flex; align-items: baseline; gap: 0.5em; flex: 1; min-width: 0; }
   .menu .thumb, .menu .thumb-gap { flex: none; width: 44px; height: 44px; }
   .menu .thumb {
     object-fit: cover; border-radius: 3px;
@@ -580,11 +582,11 @@
         <div class="menu-card reveal">
           <h3>Breakfasts</h3>
           <ul>
-            <li><img class="thumb" src="img/food/full-english.jpg" alt="Full English breakfast" width="132" height="132"><span class="item">Full English</span><span class="leader"></span><span class="price">£9.50</span></li>
+            <li><img class="thumb" src="img/food/full-english.jpg" alt="Full English breakfast" width="132" height="132"><span class="row-text"><span class="item">Full English</span><span class="leader"></span><span class="price">£9.50</span></span></li>
             <li><span class="note">Sausage, bacon, egg on toast, hash brown and beans.</span></li>
-            <li><img class="thumb" src="img/food/big-boy.jpg" alt="Big Boy Breakfast" width="132" height="132"><span class="item">Big Boy Breakfast</span><span class="leader"></span><span class="price">£11.50</span></li>
+            <li><img class="thumb" src="img/food/big-boy.jpg" alt="Big Boy Breakfast" width="132" height="132"><span class="row-text"><span class="item">Big Boy Breakfast</span><span class="leader"></span><span class="price">£11.50</span></span></li>
             <li><span class="note">Two sausages, bacon, two eggs, black pudding, mushrooms, hash brown, beans and toast.</span></li>
-            <li><img class="thumb" src="img/food/veggie-breakfast.jpg" alt="Veggie breakfast" width="132" height="132"><span class="item">Veggie Breakfast</span><span class="leader"></span><span class="price">£9.95</span></li>
+            <li><img class="thumb" src="img/food/veggie-breakfast.jpg" alt="Veggie breakfast" width="132" height="132"><span class="row-text"><span class="item">Veggie Breakfast</span><span class="leader"></span><span class="price">£9.95</span></span></li>
             <li><span class="note">Two eggs, beans, tomatoes, mushrooms, hash browns and toast.</span></li>
             <li><span class="note">Choice of egg. Bacon fat removed on request.</span></li>
           </ul>
@@ -592,13 +594,13 @@
         <div class="menu-card reveal">
           <h3>Hot Sandwiches</h3>
           <ul>
-            <li><img class="thumb" src="img/food/bacon.jpg" alt="Bacon sandwich" width="132" height="132"><span class="item">Bacon</span><span class="leader"></span><span class="price">£3.25</span></li>
-            <li><img class="thumb" src="img/food/bacon-egg.jpg" alt="Bacon and egg sandwich" width="132" height="132"><span class="item">Bacon &amp; Egg</span><span class="leader"></span><span class="price">£3.95</span></li>
-            <li><img class="thumb" src="img/food/sausage.jpg" alt="Sausage sandwich" width="132" height="132"><span class="item">Sausage</span><span class="leader"></span><span class="price">£3.25</span></li>
-            <li><img class="thumb" src="img/food/sausage-egg.jpg" alt="Sausage and egg sandwich" width="132" height="132"><span class="item">Sausage &amp; Egg</span><span class="leader"></span><span class="price">£3.95</span></li>
-            <li><img class="thumb" src="img/food/sausage-bacon.jpg" alt="Sausage and bacon sandwich" width="132" height="132"><span class="item">Sausage &amp; Bacon</span><span class="leader"></span><span class="price">£3.95</span></li>
-            <li><span class="item">Breakfast Bap</span><span class="leader"></span><span class="price">£4.50</span></li>
-            <li><span class="item">Make Your Own</span></li>
+            <li><img class="thumb" src="img/food/bacon.jpg" alt="Bacon sandwich" width="132" height="132"><span class="row-text"><span class="item">Bacon</span><span class="leader"></span><span class="price">£3.25</span></span></li>
+            <li><img class="thumb" src="img/food/bacon-egg.jpg" alt="Bacon and egg sandwich" width="132" height="132"><span class="row-text"><span class="item">Bacon &amp; Egg</span><span class="leader"></span><span class="price">£3.95</span></span></li>
+            <li><img class="thumb" src="img/food/sausage.jpg" alt="Sausage sandwich" width="132" height="132"><span class="row-text"><span class="item">Sausage</span><span class="leader"></span><span class="price">£3.25</span></span></li>
+            <li><img class="thumb" src="img/food/sausage-egg.jpg" alt="Sausage and egg sandwich" width="132" height="132"><span class="row-text"><span class="item">Sausage &amp; Egg</span><span class="leader"></span><span class="price">£3.95</span></span></li>
+            <li><img class="thumb" src="img/food/sausage-bacon.jpg" alt="Sausage and bacon sandwich" width="132" height="132"><span class="row-text"><span class="item">Sausage &amp; Bacon</span><span class="leader"></span><span class="price">£3.95</span></span></li>
+            <li><span class="row-text"><span class="item">Breakfast Bap</span><span class="leader"></span><span class="price">£4.50</span></span></li>
+            <li><span class="row-text"><span class="item">Make Your Own</span></span></li>
             <li><span class="note"><strong>Anything you like in it</strong><br>Just ask when you order.</span></li>
             <li><span class="note">Granary, brown or white. Butter removed on request.</span></li>
           </ul>
@@ -606,111 +608,111 @@
         <div class="menu-card reveal">
           <h3>Cold Sandwiches</h3>
           <ul>
-            <li><span class="item">Ham</span><span class="leader"></span><span class="price">£3.25</span></li>
-            <li><span class="item">Cheese</span><span class="leader"></span><span class="price">£3.25</span></li>
-            <li><span class="item">Ham &amp; Cheese</span><span class="leader"></span><span class="price">£3.65</span></li>
-            <li><span class="item">Tuna Mayo</span><span class="leader"></span><span class="price">£3.25</span></li>
-            <li><span class="item">Tuna Mayo &amp; Sweetcorn</span><span class="leader"></span><span class="price">£3.65</span></li>
-            <li><span class="item">Chicken Mayo</span><span class="leader"></span><span class="price">£3.95</span></li>
-            <li><span class="item">Chicken Mayo &amp; Sweetcorn</span><span class="leader"></span><span class="price">£4.25</span></li>
+            <li><span class="row-text"><span class="item">Ham</span><span class="leader"></span><span class="price">£3.25</span></span></li>
+            <li><span class="row-text"><span class="item">Cheese</span><span class="leader"></span><span class="price">£3.25</span></span></li>
+            <li><span class="row-text"><span class="item">Ham &amp; Cheese</span><span class="leader"></span><span class="price">£3.65</span></span></li>
+            <li><span class="row-text"><span class="item">Tuna Mayo</span><span class="leader"></span><span class="price">£3.25</span></span></li>
+            <li><span class="row-text"><span class="item">Tuna Mayo &amp; Sweetcorn</span><span class="leader"></span><span class="price">£3.65</span></span></li>
+            <li><span class="row-text"><span class="item">Chicken Mayo</span><span class="leader"></span><span class="price">£3.95</span></span></li>
+            <li><span class="row-text"><span class="item">Chicken Mayo &amp; Sweetcorn</span><span class="leader"></span><span class="price">£4.25</span></span></li>
             <li><span class="note">Granary, brown or white. Butter removed on request.</span></li>
           </ul>
         </div>
         <div class="menu-card reveal">
           <h3>Burgers &amp; Chips</h3>
           <ul>
-            <li><span class="item">¼ lb Cheese Burger</span><span class="leader"></span><span class="price">£8.95</span></li>
-            <li><span class="item">½ lb Cheese Burger</span><span class="leader"></span><span class="price">£9.95</span></li>
-            <li><span class="item">Bacon Cheese Burger</span><span class="leader"></span><span class="price">£9.50</span></li>
-            <li><span class="item">Chicken Burger</span><span class="leader"></span><span class="price">£8.95</span></li>
+            <li><span class="row-text"><span class="item">¼ lb Cheese Burger</span><span class="leader"></span><span class="price">£8.95</span></span></li>
+            <li><span class="row-text"><span class="item">½ lb Cheese Burger</span><span class="leader"></span><span class="price">£9.95</span></span></li>
+            <li><span class="row-text"><span class="item">Bacon Cheese Burger</span><span class="leader"></span><span class="price">£9.50</span></span></li>
+            <li><span class="row-text"><span class="item">Chicken Burger</span><span class="leader"></span><span class="price">£8.95</span></span></li>
             <li><span class="note">Grated cheddar or a cheese slice. Salad on request.</span></li>
           </ul>
         </div>
         <div class="menu-card reveal">
           <h3>Omelette &amp; Chips <small>£8.95</small></h3>
           <ul>
-            <li><span class="item">Any filling you like</span></li>
+            <li><span class="row-text"><span class="item">Any filling you like</span></span></li>
             <li><span class="note">Cheese, ham, mushroom &mdash; or whatever takes your fancy. Just ask when you order.</span></li>
           </ul>
         </div>
         <div class="menu-card reveal">
           <h3>Jackets</h3>
           <ul>
-            <li><span class="item">1 Filling</span><span class="leader"></span><span class="price">£6.95</span></li>
-            <li><span class="item">2 Fillings</span><span class="leader"></span><span class="price">£7.50</span></li>
+            <li><span class="row-text"><span class="item">1 Filling</span><span class="leader"></span><span class="price">£6.95</span></span></li>
+            <li><span class="row-text"><span class="item">2 Fillings</span><span class="leader"></span><span class="price">£7.50</span></span></li>
             <li><span class="note">Cheese, beans or tuna.</span></li>
           </ul>
         </div>
         <div class="menu-card reveal">
           <h3>Homemade Specials</h3>
           <ul>
-            <li><span class="item">Lasagne</span><span class="leader"></span><span class="price">£10.45</span></li>
-            <li><span class="item">Cottage Pie</span><span class="leader"></span><span class="price">£10.45</span></li>
+            <li><span class="row-text"><span class="item">Lasagne</span><span class="leader"></span><span class="price">£10.45</span></span></li>
+            <li><span class="row-text"><span class="item">Cottage Pie</span><span class="leader"></span><span class="price">£10.45</span></span></li>
             <li><span class="note">Served with peas, rice, beans or chips.</span></li>
           </ul>
         </div>
         <div class="menu-card reveal">
           <h3>Other Meals</h3>
           <ul>
-            <li><span class="item">Beans on Toast</span><span class="leader"></span><span class="price">£4.95</span></li>
-            <li><span class="item">Egg on Toast</span><span class="leader"></span><span class="price">£4.95</span></li>
-            <li><span class="item">Ham, Egg &amp; Chips</span><span class="leader"></span><span class="price">£9.50</span></li>
-            <li><span class="item">Sausage, Egg &amp; Chips</span><span class="leader"></span><span class="price">£9.50</span></li>
-            <li><span class="item">Chicken Curry</span><span class="leader"></span><span class="price">£10.45</span></li>
+            <li><span class="row-text"><span class="item">Beans on Toast</span><span class="leader"></span><span class="price">£4.95</span></span></li>
+            <li><span class="row-text"><span class="item">Egg on Toast</span><span class="leader"></span><span class="price">£4.95</span></span></li>
+            <li><span class="row-text"><span class="item">Ham, Egg &amp; Chips</span><span class="leader"></span><span class="price">£9.50</span></span></li>
+            <li><span class="row-text"><span class="item">Sausage, Egg &amp; Chips</span><span class="leader"></span><span class="price">£9.50</span></span></li>
+            <li><span class="row-text"><span class="item">Chicken Curry</span><span class="leader"></span><span class="price">£10.45</span></span></li>
             <li><span class="note">Eggs fried, poached or scrambled.</span></li>
           </ul>
         </div>
         <div class="menu-card reveal">
           <h3>Kids Meals <small>all £6.95</small></h3>
           <ul>
-            <li><img class="thumb" src="img/food/kids-nuggets.jpg" alt="Kids chicken nuggets, chips and beans" width="132" height="132"><span class="item">Chicken Nuggets</span></li>
-            <li><img class="thumb" src="img/food/kids-fish-fingers.jpg" alt="Kids fish fingers, chips and beans" width="132" height="132"><span class="item">Fish Fingers</span></li>
-            <li><img class="thumb" src="img/food/kids-sausage.jpg" alt="Kids sausage, chips and beans" width="132" height="132"><span class="item">Sausage</span></li>
-            <li><img class="thumb" src="img/food/kids-breakfast.jpg" alt="Kids breakfast: egg on toast, sausage, bacon and beans" width="132" height="132"><span class="item">Breakfast</span></li>
+            <li><img class="thumb" src="img/food/kids-nuggets.jpg" alt="Kids chicken nuggets, chips and beans" width="132" height="132"><span class="row-text"><span class="item">Chicken Nuggets</span></span></li>
+            <li><img class="thumb" src="img/food/kids-fish-fingers.jpg" alt="Kids fish fingers, chips and beans" width="132" height="132"><span class="row-text"><span class="item">Fish Fingers</span></span></li>
+            <li><img class="thumb" src="img/food/kids-sausage.jpg" alt="Kids sausage, chips and beans" width="132" height="132"><span class="row-text"><span class="item">Sausage</span></span></li>
+            <li><img class="thumb" src="img/food/kids-breakfast.jpg" alt="Kids breakfast: egg on toast, sausage, bacon and beans" width="132" height="132"><span class="row-text"><span class="item">Breakfast</span></span></li>
             <li><span class="note">Chips and beans with all but the breakfast.</span></li>
           </ul>
         </div>
         <div class="menu-card reveal">
           <h3>Extras</h3>
           <ul>
-            <li><span class="item">Chips</span><span class="leader"></span><span class="price">£3.75</span></li>
-            <li><span class="item">Cheesy Chips</span><span class="leader"></span><span class="price">£4.25</span></li>
-            <li><span class="item">Onion Rings</span><span class="leader"></span><span class="price">£3.75</span></li>
-            <li><span class="item">Garlic Bread</span><span class="leader"></span><span class="price">£3.75</span></li>
+            <li><span class="row-text"><span class="item">Chips</span><span class="leader"></span><span class="price">£3.75</span></span></li>
+            <li><span class="row-text"><span class="item">Cheesy Chips</span><span class="leader"></span><span class="price">£4.25</span></span></li>
+            <li><span class="row-text"><span class="item">Onion Rings</span><span class="leader"></span><span class="price">£3.75</span></span></li>
+            <li><span class="row-text"><span class="item">Garlic Bread</span><span class="leader"></span><span class="price">£3.75</span></span></li>
             <li><span class="note"><strong>£1.50 each on any plate</strong><br>Bacon &middot; sausage &middot; fried egg &middot; hash brown &middot; mushrooms &middot; black pudding &middot; beans &middot; toast</span></li>
           </ul>
         </div>
         <div class="menu-card reveal">
           <h3>Hot Drinks</h3>
           <ul>
-            <li><span class="item">Tea</span><span class="leader"></span><span class="price">£1.60</span></li>
-            <li><span class="item">Coffee</span><span class="leader"></span><span class="price">£1.80</span></li>
-            <li><span class="item">Latte</span><span class="leader"></span><span class="price">£2.75</span></li>
-            <li><span class="item">Cappuccino</span><span class="leader"></span><span class="price">£2.95</span></li>
-            <li><span class="item">Americano</span><span class="leader"></span><span class="price">£2.50</span></li>
-            <li><span class="item">Espresso</span><span class="leader"></span><span class="price">£2.25</span></li>
-            <li><span class="item">Mocha</span><span class="leader"></span><span class="price">£2.95</span></li>
-            <li><span class="item">Hot Chocolate</span><span class="leader"></span><span class="price">£2.95</span></li>
+            <li><span class="row-text"><span class="item">Tea</span><span class="leader"></span><span class="price">£1.60</span></span></li>
+            <li><span class="row-text"><span class="item">Coffee</span><span class="leader"></span><span class="price">£1.80</span></span></li>
+            <li><span class="row-text"><span class="item">Latte</span><span class="leader"></span><span class="price">£2.75</span></span></li>
+            <li><span class="row-text"><span class="item">Cappuccino</span><span class="leader"></span><span class="price">£2.95</span></span></li>
+            <li><span class="row-text"><span class="item">Americano</span><span class="leader"></span><span class="price">£2.50</span></span></li>
+            <li><span class="row-text"><span class="item">Espresso</span><span class="leader"></span><span class="price">£2.25</span></span></li>
+            <li><span class="row-text"><span class="item">Mocha</span><span class="leader"></span><span class="price">£2.95</span></span></li>
+            <li><span class="row-text"><span class="item">Hot Chocolate</span><span class="leader"></span><span class="price">£2.95</span></span></li>
             <li><span class="note">Add 30p on delivery and collection.</span></li>
           </ul>
         </div>
         <div class="menu-card reveal">
           <h3>Cold Drinks</h3>
           <ul>
-            <li><span class="item">Red Bull</span><span class="leader"></span><span class="price">£2.00</span></li>
-            <li><span class="item">Milkshakes</span><span class="leader"></span><span class="price">£2.00</span></li>
-            <li><span class="item">Apple or Orange Juice</span><span class="leader"></span><span class="price">£2.00</span></li>
-            <li><span class="item">Cans</span><span class="leader"></span><span class="price">£1.60</span></li>
-            <li><span class="item">Water 50cl</span><span class="leader"></span><span class="price">£1.60</span></li>
-            <li><span class="item">Monster, Relentless or Powerade</span><span class="leader"></span><span class="price">£2.00</span></li>
-            <li><span class="item">&hellip; and more</span></li>
+            <li><span class="row-text"><span class="item">Red Bull</span><span class="leader"></span><span class="price">£2.00</span></span></li>
+            <li><span class="row-text"><span class="item">Milkshakes</span><span class="leader"></span><span class="price">£2.00</span></span></li>
+            <li><span class="row-text"><span class="item">Apple or Orange Juice</span><span class="leader"></span><span class="price">£2.00</span></span></li>
+            <li><span class="row-text"><span class="item">Cans</span><span class="leader"></span><span class="price">£1.60</span></span></li>
+            <li><span class="row-text"><span class="item">Water 50cl</span><span class="leader"></span><span class="price">£1.60</span></span></li>
+            <li><span class="row-text"><span class="item">Monster, Relentless or Powerade</span><span class="leader"></span><span class="price">£2.00</span></span></li>
+            <li><span class="row-text"><span class="item">&hellip; and more</span></span></li>
             <li><span class="note">Milkshakes in three flavours. Ask for the full range.</span></li>
           </ul>
         </div>
         <div class="menu-card reveal">
           <h3>Crisps, Chocolate &amp; Cakes</h3>
           <ul>
-            <li><span class="item">Ask when you order</span></li>
+            <li><span class="row-text"><span class="item">Ask when you order</span></span></li>
             <li><span class="note">Subject to availability — we always have something.</span></li>
           </ul>
         </div>
