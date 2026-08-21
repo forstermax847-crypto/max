@@ -270,6 +270,9 @@
   .menu .item { font-weight: 600; font-size: 0.95rem; }
   /* name, leader and price share one baseline; the photo centres against that block */
   .menu .row-text { display: flex; align-items: baseline; gap: 0.5em; flex: 1; min-width: 0; }
+  /* name + description travel together so the photo can centre on the whole item */
+  .menu .item-body { display: flex; flex-direction: column; gap: 0.15rem; flex: 1; min-width: 0; }
+  .menu .item-body .note { display: block; }
   .menu .thumb, .menu .thumb-gap { flex: none; width: 44px; height: 44px; }
   .menu .thumb {
     object-fit: cover; border-radius: 3px;
@@ -582,12 +585,9 @@
         <div class="menu-card reveal">
           <h3>Breakfasts</h3>
           <ul>
-            <li><img class="thumb" src="img/food/full-english.jpg" alt="Full English breakfast" width="132" height="132"><span class="row-text"><span class="item">Full English</span><span class="leader"></span><span class="price">£9.50</span></span></li>
-            <li><span class="note">Sausage, bacon, egg on toast, hash brown and beans.</span></li>
-            <li><img class="thumb" src="img/food/big-boy.jpg" alt="Big Boy Breakfast" width="132" height="132"><span class="row-text"><span class="item">Big Boy Breakfast</span><span class="leader"></span><span class="price">£11.50</span></span></li>
-            <li><span class="note">Two sausages, bacon, two eggs, black pudding, mushrooms, hash brown, beans and toast.</span></li>
-            <li><img class="thumb" src="img/food/veggie-breakfast.jpg" alt="Veggie breakfast" width="132" height="132"><span class="row-text"><span class="item">Veggie Breakfast</span><span class="leader"></span><span class="price">£9.95</span></span></li>
-            <li><span class="note">Two eggs, beans, tomatoes, mushrooms, hash browns and toast.</span></li>
+            <li><img class="thumb" src="img/food/full-english.jpg" alt="Full English breakfast" width="132" height="132"><span class="item-body"><span class="row-text"><span class="item">Full English</span><span class="leader"></span><span class="price">£9.50</span></span><span class="note">Sausage, bacon, egg on toast, hash brown and beans.</span></span></li>
+            <li><img class="thumb" src="img/food/big-boy.jpg" alt="Big Boy Breakfast" width="132" height="132"><span class="item-body"><span class="row-text"><span class="item">Big Boy Breakfast</span><span class="leader"></span><span class="price">£11.50</span></span><span class="note">Two sausages, bacon, two eggs, black pudding, mushrooms, hash brown, beans and toast.</span></span></li>
+            <li><img class="thumb" src="img/food/veggie-breakfast.jpg" alt="Veggie breakfast" width="132" height="132"><span class="item-body"><span class="row-text"><span class="item">Veggie Breakfast</span><span class="leader"></span><span class="price">£9.95</span></span><span class="note">Two eggs, beans, tomatoes, mushrooms, hash browns and toast.</span></span></li>
             <li><span class="note">Choice of egg. Bacon fat removed on request.</span></li>
           </ul>
         </div>
@@ -600,8 +600,7 @@
             <li><img class="thumb" src="img/food/sausage-egg.jpg" alt="Sausage and egg sandwich" width="132" height="132"><span class="row-text"><span class="item">Sausage &amp; Egg</span><span class="leader"></span><span class="price">£3.95</span></span></li>
             <li><img class="thumb" src="img/food/sausage-bacon.jpg" alt="Sausage and bacon sandwich" width="132" height="132"><span class="row-text"><span class="item">Sausage &amp; Bacon</span><span class="leader"></span><span class="price">£3.95</span></span></li>
             <li><span class="row-text"><span class="item">Breakfast Bap</span><span class="leader"></span><span class="price">£4.50</span></span></li>
-            <li><span class="row-text"><span class="item">Make Your Own</span></span></li>
-            <li><span class="note"><strong>Anything you like in it</strong><br>Just ask when you order.</span></li>
+            <li><span class="item-body"><span class="row-text"><span class="item">Make Your Own</span></span><span class="note"><strong>Anything you like in it</strong><br>Just ask when you order.</span></span></li>
             <li><span class="note">Granary, brown or white. Butter removed on request.</span></li>
           </ul>
         </div>
@@ -668,8 +667,7 @@
             <li><img class="thumb" src="img/food/kids-nuggets.jpg" alt="Kids chicken nuggets, chips and beans" width="132" height="132"><span class="row-text"><span class="item">Chicken Nuggets</span></span></li>
             <li><img class="thumb" src="img/food/kids-fish-fingers.jpg" alt="Kids fish fingers, chips and beans" width="132" height="132"><span class="row-text"><span class="item">Fish Fingers</span></span></li>
             <li><img class="thumb" src="img/food/kids-sausage.jpg" alt="Kids sausage, chips and beans" width="132" height="132"><span class="row-text"><span class="item">Sausage</span></span></li>
-            <li><img class="thumb" src="img/food/kids-breakfast.jpg" alt="Kids breakfast: egg on toast, sausage, bacon and beans" width="132" height="132"><span class="row-text"><span class="item">Breakfast</span></span></li>
-            <li><span class="note">Chips and beans with all but the breakfast.</span></li>
+            <li><img class="thumb" src="img/food/kids-breakfast.jpg" alt="Kids breakfast: egg on toast, sausage, bacon and beans" width="132" height="132"><span class="item-body"><span class="row-text"><span class="item">Breakfast</span></span><span class="note">Chips and beans with all but the breakfast.</span></span></li>
           </ul>
         </div>
         <div class="menu-card reveal">
