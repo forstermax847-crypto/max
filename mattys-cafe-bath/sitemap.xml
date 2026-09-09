@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://mattyscafe.com/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://mattyscafe.com/img/front.jpg</image:loc>
+      <image:title>Matty's Cafe, Lower Bristol Road, Bath</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://mattyscafe.com/img/counter.jpg</image:loc>
+      <image:title>The counter and chalkboard menus at Matty's Cafe</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://mattyscafe.com/img/big-boy.jpg</image:loc>
+      <image:title>The Big Boy Breakfast at Matty's Cafe</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://mattyscafe.com/img/garden.jpg</image:loc>
+      <image:title>The covered garden at Matty's Cafe</image:title>
+    </image:image>
+  </url>
+</urlset>

@@ -10,30 +10,802 @@
 <meta property="og:site_name" content="Matty's Cafe">
 <meta property="og:title" content="Matty's — big breakfasts in Bath, delivered">
 <meta property="og:description" content="Fantastic portions, fair prices. An award-winning independent cafe on Lower Bristol Road, Bath — and the only cafe in Bath delivering full English breakfasts, free on orders over £12.">
-<meta property="og:image" content="img/counter.jpg">
+<meta property="og:image" content="https://mattyscafe.com/img/counter.jpg">
+<meta property="og:image:alt" content="The counter at Matty's Cafe in Bath, chalkboard menus above">
+<meta property="og:url" content="https://mattyscafe.com/">
 <meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://mattyscafe.com/">
+<meta name="theme-color" content="#E8DCC0">
+<meta name="geo.region" content="GB-BAS">
+<meta name="geo.placename" content="Bath">
+<meta name="geo.position" content="51.375;-2.375">
+<meta name="ICBM" content="51.375, -2.375">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CafeOrCoffeeShop",
-  "name": "Matty's Cafe",
-  "description": "Independent cafe in Bath serving full English breakfasts, sandwiches and homemade specials, with free delivery on orders over £12.",
-  "telephone": "+441225444986",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "15 St Peter's Terrace, Lower Bristol Road",
-    "addressLocality": "Bath",
-    "postalCode": "BA2 3BT",
-    "addressCountry": "GB"
-  },
-  "servesCuisine": "British",
-  "priceRange": "\u00a3",
-  "openingHoursSpecification": [
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "07:00", "closes": "14:00" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "08:00", "closes": "13:00" }
-  ],
-  "sameAs": ["https://www.facebook.com/p/Mattys-100057261738007/"]
+  "@graph": [
+    {
+      "@type": "CafeOrCoffeeShop",
+      "@id": "https://mattyscafe.com/#cafe",
+      "name": "Matty's Cafe",
+      "alternateName": [
+        "Mattys Cafe",
+        "Matty's",
+        "Matty's Cafe Bath"
+      ],
+      "description": "Independent cafe in Bath serving full English breakfasts, sandwiches, burgers and homemade specials, with free delivery across Bath on orders over £12. Open 361 days a year.",
+      "url": "https://mattyscafe.com/",
+      "telephone": "+441225444986",
+      "email": "matt@mattyscafe.com",
+      "founder": {
+        "@type": "Person",
+        "name": "Matt"
+      },
+      "foundingDate": "2003",
+      "image": [
+        "https://mattyscafe.com/img/front.jpg",
+        "https://mattyscafe.com/img/counter.jpg",
+        "https://mattyscafe.com/img/big-boy.jpg"
+      ],
+      "logo": "https://mattyscafe.com/img/logo-horizontal.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "15 St Peter's Terrace, Lower Bristol Road",
+        "addressLocality": "Bath",
+        "addressRegion": "Somerset",
+        "postalCode": "BA2 3BT",
+        "addressCountry": "GB"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 51.375,
+        "longitude": -2.375
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Bath"
+      },
+      "servesCuisine": [
+        "British",
+        "Breakfast",
+        "Cafe"
+      ],
+      "priceRange": "££",
+      "currenciesAccepted": "GBP",
+      "paymentAccepted": "Cash, Credit Card, Debit Card",
+      "maximumAttendeeCapacity": 120,
+      "smokingAllowed": false,
+      "amenityFeature": [
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Free WiFi",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Outdoor seating",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Vegetarian options",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Family friendly",
+          "value": true
+        }
+      ],
+      "hasMenu": {
+        "@type": "Menu",
+        "name": "Matty's Cafe menu",
+        "hasMenuSection": [
+          {
+            "@type": "MenuSection",
+            "name": "Breakfasts",
+            "hasMenuItem": [
+              {
+                "@type": "MenuItem",
+                "name": "Full English",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "9.50",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Big Boy Breakfast",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "11.50",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Veggie Breakfast",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "9.95",
+                  "priceCurrency": "GBP"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Hot Sandwiches",
+            "hasMenuItem": [
+              {
+                "@type": "MenuItem",
+                "name": "Bacon",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "3.25",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Bacon & Egg",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "3.95",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Sausage",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "3.25",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Sausage & Egg",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "3.95",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Sausage & Bacon",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "3.95",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Breakfast Bap",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "4.50",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Make Your Own"
+              }
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Cold Sandwiches",
+            "hasMenuItem": [
+              {
+                "@type": "MenuItem",
+                "name": "Ham",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "3.25",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Cheese",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "3.25",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Ham & Cheese",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "3.65",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Tuna Mayo",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "3.25",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Tuna Mayo & Sweetcorn",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "3.65",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Chicken Mayo",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "3.95",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Chicken Mayo & Sweetcorn",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "4.25",
+                  "priceCurrency": "GBP"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Burgers & Chips",
+            "hasMenuItem": [
+              {
+                "@type": "MenuItem",
+                "name": "Quarter Pound Cheese Burger",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "8.95",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Half Pound Cheese Burger",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "9.95",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Bacon Cheese Burger",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "9.50",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Chicken Burger",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "8.95",
+                  "priceCurrency": "GBP"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Omelette & Chips",
+            "hasMenuItem": [
+              {
+                "@type": "MenuItem",
+                "name": "Omelette & Chips, any filling",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "8.95",
+                  "priceCurrency": "GBP"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Jackets",
+            "hasMenuItem": [
+              {
+                "@type": "MenuItem",
+                "name": "Jacket Potato, 1 Filling",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "6.95",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Jacket Potato, 2 Fillings",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "7.50",
+                  "priceCurrency": "GBP"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Homemade Specials",
+            "hasMenuItem": [
+              {
+                "@type": "MenuItem",
+                "name": "Lasagne",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "10.45",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Cottage Pie",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "10.45",
+                  "priceCurrency": "GBP"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Other Meals",
+            "hasMenuItem": [
+              {
+                "@type": "MenuItem",
+                "name": "Beans on Toast",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "4.95",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Egg on Toast",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "4.95",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Ham, Egg & Chips",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "9.50",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Sausage, Egg & Chips",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "9.50",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Chicken Curry",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "10.45",
+                  "priceCurrency": "GBP"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Kids Meals",
+            "hasMenuItem": [
+              {
+                "@type": "MenuItem",
+                "name": "Kids Chicken Nuggets",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "6.95",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Kids Fish Fingers",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "6.95",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Kids Sausage",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "6.95",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Kids Breakfast",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "6.95",
+                  "priceCurrency": "GBP"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Extras",
+            "hasMenuItem": [
+              {
+                "@type": "MenuItem",
+                "name": "Chips",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "3.75",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Cheesy Chips",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "4.25",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Onion Rings",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "3.75",
+                  "priceCurrency": "GBP"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Hot Drinks",
+            "hasMenuItem": [
+              {
+                "@type": "MenuItem",
+                "name": "Tea",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "1.60",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Coffee",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "1.80",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Latte",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "2.75",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Cappuccino",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "2.95",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Americano",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "2.50",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Espresso",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "2.25",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Mocha",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "2.95",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Hot Chocolate",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "2.95",
+                  "priceCurrency": "GBP"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Cold Drinks",
+            "hasMenuItem": [
+              {
+                "@type": "MenuItem",
+                "name": "Red Bull",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "2.00",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Milkshakes",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "2.00",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Apple or Orange Juice",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "2.00",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Cans",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "1.60",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Water 50cl",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "1.60",
+                  "priceCurrency": "GBP"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Monster, Relentless or Powerade",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "2.00",
+                  "priceCurrency": "GBP"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "07:00",
+          "closes": "14:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "08:00",
+          "closes": "13:00"
+        }
+      ],
+      "specialOpeningHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "name": "Christmas Day",
+          "opens": "00:00",
+          "closes": "00:00",
+          "validFrom": "2026-12-25",
+          "validThrough": "2026-12-25"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "name": "Boxing Day",
+          "opens": "00:00",
+          "closes": "00:00",
+          "validFrom": "2026-12-26",
+          "validThrough": "2026-12-26"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "name": "New Year's Day",
+          "opens": "00:00",
+          "closes": "00:00",
+          "validFrom": "2027-01-01",
+          "validThrough": "2027-01-01"
+        }
+      ],
+      "hasDeliveryMethod": {
+        "@type": "DeliveryMethod",
+        "name": "Own delivery"
+      },
+      "potentialAction": {
+        "@type": "OrderAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "tel:+441225444986",
+          "actionPlatform": [
+            "http://schema.org/DesktopWebPlatform",
+            "http://schema.org/MobileWebPlatform"
+          ]
+        },
+        "deliveryMethod": {
+          "@type": "DeliveryMethod",
+          "name": "Own delivery"
+        }
+      },
+      "sameAs": [
+        "https://www.facebook.com/p/Mattys-100057261738007/",
+        "https://www.just-eat.co.uk/restaurants-mattys-bath/menu",
+        "https://deliveroo.co.uk/menu/bath/oldfield-park-north/mattys",
+        "https://www.ubereats.com/gb/store/mattys-bath/rmVdmnzrUUyDnYwxHZ6m9Q"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://mattyscafe.com/#website",
+      "url": "https://mattyscafe.com/",
+      "name": "Matty's Cafe",
+      "publisher": {
+        "@id": "https://mattyscafe.com/#cafe"
+      },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://mattyscafe.com/#webpage",
+      "url": "https://mattyscafe.com/",
+      "name": "Matty's — big breakfasts in Bath, delivered",
+      "isPartOf": {
+        "@id": "https://mattyscafe.com/#website"
+      },
+      "about": {
+        "@id": "https://mattyscafe.com/#cafe"
+      },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://mattyscafe.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does Matty's deliver in Bath?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Matty's delivers cooked breakfasts and the rest of the menu across Bath. Delivery is free on orders over £12, food only. Ring 01225 444986, or order through Just Eat, Deliveroo or Uber Eats."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What time does Matty's open?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Monday to Saturday 7.00am–2.00pm, and Sunday 8.00am–1.00pm. Delivery runs Monday to Saturday 8.00am–1.15pm and Sunday 8.00am–12.15pm."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is Matty's Cafe?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "15 St Peter's Terrace, Lower Bristol Road, Bath BA2 3BT — two minutes from the riverside path along the Avon, eight minutes from Oldfield Park station and about ten minutes' walk from the city centre."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Matty's open on bank holidays?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Matty's opens 361 days a year. The only days it closes are Christmas Day, Boxing Day, New Year's Day and Easter Sunday."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much is a full English at Matty's?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Full English is £9.50, the Big Boy Breakfast £11.50 and the Veggie Breakfast £9.95. All come with a choice of egg, and bacon fat is removed on request."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you cater for vegetarians?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The Veggie Breakfast is £9.95 — two eggs, beans, tomatoes, mushrooms, hash browns and toast. Jacket potatoes, cheese sandwiches and omelettes are all vegetarian too."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you seat a large group?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Matty's seats 120 with a covered outdoor area for the summer, so groups are no trouble. Ring ahead on 01225 444986 for anything sizeable."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there parking or WiFi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "There is free WiFi throughout, and on-street parking on Lower Bristol Road and the surrounding terraces."
+          }
+        }
+      ]
+    }
+  ]
 }
 </script>
 <link rel="stylesheet" href="fonts.css">
@@ -44,7 +816,8 @@
     --stone-deep: #DCCBA4;   /* the same stone, in shadow */
     --milk: #F7F0DF;         /* steamed milk */
     --espresso: #2B1B10;     /* the bottom of the cup */
-    --honey: #C9973F;        /* Bath stone gold, concentrated */
+    --honey: #C9973F;        /* Bath stone gold - accents, and text on dark grounds */
+    --honey-deep: #7A5A1E;   /* the same gold, dark enough for text on stone */
     --leaf: #4A6329;     /* Matty's green, dark enough for small text on stone */
     --apple: #8FB25A;    /* the green from the original site */
     --display: "Young Serif", "Iowan Old Style", Georgia, serif;
@@ -210,13 +983,13 @@
     font-family: var(--display);
     font-size: 1.35rem;
     margin-top: 1.6rem;
-    color: var(--honey);
+    color: var(--honey-deep);
   }
   .story-copy > p:first-of-type::first-letter {
     font-family: var(--display);
     font-size: 3.4em; float: left;
     line-height: 0.8; padding-right: 0.12em; padding-top: 0.08em;
-    color: var(--honey);
+    color: var(--honey-deep);
   }
   .story-side { display: flex; flex-direction: column; gap: 1.8rem; }
   .story-photo {
@@ -478,6 +1251,85 @@
   .hours .today td { color: var(--honey); font-weight: 700; }
   .hours p { font-size: 0.8rem; text-align: center; margin-top: 1.3rem; opacity: 0.75; }
 
+
+  /* ---------- FAQ ---------- */
+  .faq-list {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+    gap: clamp(1.25rem, 3vw, 2rem);
+  }
+  .faq-list > div {
+    border-top: 2px solid var(--espresso);
+    padding-top: 1rem;
+  }
+  .faq-list dt {
+    font-family: var(--display); font-weight: 400;
+    font-size: 1.15rem; line-height: 1.25; margin-bottom: 0.5rem;
+  }
+  .faq-list dd { font-size: 0.95rem; font-weight: 300; line-height: 1.6; }
+  .faq-list dd a { text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+  /* ---------- contact ---------- */
+  .contact-grid {
+    display: grid; grid-template-columns: 1.35fr 0.65fr;
+    gap: clamp(2rem, 5vw, 4rem); align-items: start;
+  }
+  @media (max-width: 52rem) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-form .field { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.1rem; }
+  .contact-form label {
+    font-family: var(--receipt); font-size: 0.75rem;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--leaf);
+  }
+  .contact-form .req { color: var(--honey-deep); }
+  .contact-form .opt { text-transform: none; letter-spacing: 0.04em; }
+  .contact-form input, .contact-form textarea {
+    font: inherit; font-size: 1rem;
+    color: var(--espresso); background: var(--milk);
+    border: 1.5px solid color-mix(in srgb, var(--espresso) 45%, transparent);
+    border-radius: var(--box);
+    padding: 0.7em 0.8em; width: 100%;
+  }
+  .contact-form textarea { resize: vertical; min-height: 8rem; }
+  .contact-form input:focus-visible, .contact-form textarea:focus-visible { border-color: var(--leaf); }
+  .contact-form input[aria-invalid="true"], .contact-form textarea[aria-invalid="true"] {
+    border-color: #7A2E1E;
+  }
+  .contact-form .err {
+    font-size: 0.85rem; color: #7A2E1E; margin-top: -0.7rem; margin-bottom: 1.1rem;
+  }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .btn {
+    font-family: var(--receipt); font-size: 0.85rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    background: var(--espresso); color: var(--milk);
+    border: none; border-radius: 999px;
+    padding: 0.9em 2em; cursor: pointer;
+  }
+  .btn:hover { background: var(--leaf); }
+  .btn[disabled] { opacity: 0.55; cursor: progress; }
+  .form-status:not(:empty) {
+    margin-top: 1rem; padding: 0.8em 1em;
+    border-radius: var(--box); font-size: 0.95rem;
+    border: 1.5px solid var(--leaf); background: color-mix(in srgb, var(--leaf) 10%, transparent);
+  }
+  .form-status.bad { border-color: #7A2E1E; background: color-mix(in srgb, #7A2E1E 10%, transparent); }
+  .form-note { margin-top: 1rem; font-size: 0.85rem; font-weight: 300; opacity: 0.85; }
+  .contact-aside h3 {
+    font-family: var(--display); font-weight: 400; font-size: 1.3rem;
+    padding-bottom: 0.7rem; margin-bottom: 0.9rem;
+    border-bottom: 2px solid var(--espresso);
+  }
+  .contact-aside dl div {
+    display: flex; flex-direction: column; gap: 0.15rem;
+    padding-block: 0.6rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--espresso) 18%, transparent);
+  }
+  .contact-aside dt {
+    font-family: var(--receipt); font-size: 0.7rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--leaf);
+  }
+  .contact-aside dd { font-size: 0.95rem; }
+  .aside-note { margin-top: 1rem; font-size: 0.85rem; font-weight: 300; opacity: 0.85; }
+
   /* ---------- footer ---------- */
   footer { background: var(--espresso); color: var(--milk); border-top: 1px solid color-mix(in srgb, var(--milk) 18%, transparent); }
   .foot {
@@ -511,6 +1363,7 @@
         <li><a href="#menu">Menu</a></li>
         <li><a href="#delivery">Delivery</a></li>
         <li><a href="#find">Find us</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
     <span class="open-pill" id="openPill">MON&ndash;SAT 7.00&ndash;14.00 &middot; SUN 8.00&ndash;13.00</span>
@@ -566,7 +1419,7 @@
       </div>
       <div class="story-side reveal">
       <div class="story-photo">
-        <img src="img/coffee.jpg" alt="A cappuccino with a Biscoff biscuit on a wooden table at Matty's" loading="lazy" onerror="this.parentElement.remove()" width="1400" height="933">
+        <img src="img/coffee.jpg" alt="A cappuccino with a Biscoff biscuit on a wooden table at Matty's" loading="lazy" decoding="async" onerror="this.parentElement.remove()" width="1400" height="933">
       </div>
       <dl class="story-facts">
         <div><dt>The owner</dt><dd>MATT, SINCE 2003</dd></div>
@@ -752,7 +1605,7 @@
       <h2 id="reviews-h">Don't take Matt's word for it</h2>
     </div>
       <figure class="review-photo reveal">
-        <img src="img/garden.jpg" alt="The covered garden at Matty's, picnic benches under a pergola" loading="lazy" width="1800" height="1200" onerror="this.parentElement.remove()">
+        <img src="img/garden.jpg" alt="The covered garden at Matty's, picnic benches under a pergola" loading="lazy" decoding="async" width="1800" height="1200" onerror="this.parentElement.remove()">
       </figure>
     <div class="reviews-grid">
       <blockquote class="reveal">
@@ -781,30 +1634,71 @@
     </div>
     <div class="arches">
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="img/window-seats.jpg" alt="The bay window at Matty's with the painted logo, tables set below" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="1100" height="1100"></div>
+        <div class="frame"><img src="img/window-seats.jpg" alt="The bay window at Matty's with the painted logo, tables set below" loading="lazy" decoding="async" onerror="this.parentElement.parentElement.remove()" width="1100" height="1100"></div>
         <figcaption>The bay window</figcaption>
       </figure>
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="img/print-flipside.jpg" alt="A framed print on the wall reading 'Catch you on the flip side'" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="900" height="1350"></div>
+        <div class="frame"><img src="img/print-flipside.jpg" alt="A framed print on the wall reading 'Catch you on the flip side'" loading="lazy" decoding="async" onerror="this.parentElement.parentElement.remove()" width="900" height="1350"></div>
         <figcaption>Catch you on the flip side</figcaption>
       </figure>
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="img/big-boy.jpg" alt="The Big Boy Breakfast: sausages, bacon, eggs, black pudding, mushrooms, hash browns and beans" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="900" height="675"></div>
+        <div class="frame"><img src="img/big-boy.jpg" alt="The Big Boy Breakfast: sausages, bacon, eggs, black pudding, mushrooms, hash browns and beans" loading="lazy" decoding="async" onerror="this.parentElement.parentElement.remove()" width="900" height="675"></div>
         <figcaption>The Big Boy, ready to go</figcaption>
       </figure>
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="img/table.jpg" alt="A table at Matty's set with sauces, cutlery and a menu" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="1000" height="667"></div>
+        <div class="frame"><img src="img/table.jpg" alt="A table at Matty's set with sauces, cutlery and a menu" loading="lazy" decoding="async" onerror="this.parentElement.parentElement.remove()" width="1000" height="667"></div>
         <figcaption>Set and waiting</figcaption>
       </figure>
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="img/print-coffee.jpg" alt="A print on the wall reading 'A good morning starts with coffee'" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="900" height="1350"></div>
+        <div class="frame"><img src="img/print-coffee.jpg" alt="A print on the wall reading 'A good morning starts with coffee'" loading="lazy" decoding="async" onerror="this.parentElement.parentElement.remove()" width="900" height="1350"></div>
         <figcaption>A good morning starts with coffee</figcaption>
       </figure>
       <figure class="arch-fig reveal">
-        <div class="frame"><img src="img/canvas.jpg" alt="A canvas print on the cafe wall of a cartoon figure holding a Matty's menu" loading="lazy" onerror="this.parentElement.parentElement.remove()" width="900" height="1350"></div>
+        <div class="frame"><img src="img/canvas.jpg" alt="A canvas print on the cafe wall of a cartoon figure holding a Matty's menu" loading="lazy" decoding="async" onerror="this.parentElement.parentElement.remove()" width="900" height="1350"></div>
         <figcaption>On the wall</figcaption>
       </figure>
     </div>
+  </section>
+
+  <section id="faq" class="faq wrap" aria-labelledby="faq-h">
+    <div class="section-head reveal">
+      <p class="eyebrow">Good to know</p>
+      <h2 id="faq-h">Questions we get asked</h2>
+    </div>
+    <dl class="faq-list">
+      <div class="reveal">
+        <dt>Does Matty&rsquo;s deliver in Bath?</dt>
+        <dd>Yes. Matty&rsquo;s delivers cooked breakfasts and the rest of the menu across Bath. Delivery is free on orders over &pound;12, food only. Ring <a href="tel:+441225444986">01225 444986</a>, or order through Just Eat, Deliveroo or Uber Eats.</dd>
+      </div>
+      <div class="reveal">
+        <dt>What time does Matty&rsquo;s open?</dt>
+        <dd>Monday to Saturday 7.00am&ndash;2.00pm, and Sunday 8.00am&ndash;1.00pm. Delivery runs Monday to Saturday 8.00am&ndash;1.15pm and Sunday 8.00am&ndash;12.15pm.</dd>
+      </div>
+      <div class="reveal">
+        <dt>Where is Matty&rsquo;s Cafe?</dt>
+        <dd>15 St Peter&rsquo;s Terrace, Lower Bristol Road, Bath BA2 3BT &mdash; two minutes from the riverside path along the Avon, eight minutes from Oldfield Park station and about ten minutes&rsquo; walk from the city centre.</dd>
+      </div>
+      <div class="reveal">
+        <dt>Is Matty&rsquo;s open on bank holidays?</dt>
+        <dd>Matty&rsquo;s opens 361 days a year. The only days it closes are Christmas Day, Boxing Day, New Year&rsquo;s Day and Easter Sunday.</dd>
+      </div>
+      <div class="reveal">
+        <dt>How much is a full English at Matty&rsquo;s?</dt>
+        <dd>The Full English is &pound;9.50, the Big Boy Breakfast &pound;11.50 and the Veggie Breakfast &pound;9.95. All come with a choice of egg, and bacon fat is removed on request.</dd>
+      </div>
+      <div class="reveal">
+        <dt>Do you cater for vegetarians?</dt>
+        <dd>Yes. The Veggie Breakfast is &pound;9.95 &mdash; two eggs, beans, tomatoes, mushrooms, hash browns and toast. Jacket potatoes, cheese sandwiches and omelettes are all vegetarian too.</dd>
+      </div>
+      <div class="reveal">
+        <dt>Can you seat a large group?</dt>
+        <dd>Yes. Matty&rsquo;s seats 120 with a covered outdoor area for the summer, so groups are no trouble. Ring ahead on <a href="tel:+441225444986">01225 444986</a> for anything sizeable.</dd>
+      </div>
+      <div class="reveal">
+        <dt>Is there parking or WiFi?</dt>
+        <dd>There is free WiFi throughout, and on-street parking on Lower Bristol Road and the surrounding terraces.</dd>
+      </div>
+    </dl>
   </section>
 
   <section id="find" class="find" aria-labelledby="find-h">
@@ -824,7 +1718,7 @@
           <li><span class="min">10 MIN</span> walk from the city centre — or we deliver</li>
         </ul>
         <div class="find-photo reveal">
-          <img src="img/front.jpg" alt="Matty's storefront on Lower Bristol Road, with the branded delivery cars parked outside" loading="lazy" onerror="this.parentElement.remove()" width="1089" height="1100">
+          <img src="img/front.jpg" alt="Matty's storefront on Lower Bristol Road, with the branded delivery cars parked outside" loading="lazy" decoding="async" onerror="this.parentElement.remove()" width="1089" height="1100">
         </div>
       </div>
       <div class="hours reveal">
@@ -844,6 +1738,55 @@
         </table>
         <p>Open 361 days a year — closed Christmas Day,<br>Boxing Day, New Year's Day and Easter Sunday.</p>
       </div>
+    </div>
+  </section>
+
+
+  <section id="contact" class="contact wrap" aria-labelledby="contact-h">
+    <div class="section-head reveal">
+      <p class="eyebrow">Contact</p>
+      <h2 id="contact-h">Send Matt a message</h2>
+    </div>
+    <div class="contact-grid">
+      <form class="contact-form reveal" id="contactForm"
+            action="https://formsubmit.co/matt@mattyscafe.com" method="POST" novalidate>
+        <input type="hidden" name="_subject" value="New enquiry from mattyscafe.com">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://mattyscafe.com/">
+        <p class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></p>
+
+        <p class="field">
+          <label for="cf-name">Your name <span class="req" aria-hidden="true">*</span></label>
+          <input id="cf-name" name="name" type="text" required autocomplete="name" maxlength="80">
+        </p>
+        <p class="field">
+          <label for="cf-email">Email <span class="req" aria-hidden="true">*</span></label>
+          <input id="cf-email" name="email" type="email" required autocomplete="email" maxlength="120">
+        </p>
+        <p class="field">
+          <label for="cf-phone">Phone <span class="opt">optional</span></label>
+          <input id="cf-phone" name="phone" type="tel" autocomplete="tel" maxlength="30">
+        </p>
+        <p class="field">
+          <label for="cf-msg">Message <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="cf-msg" name="message" rows="5" required maxlength="2000"></textarea>
+        </p>
+        <button type="submit" class="btn">Send message</button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        <p class="form-note">Your details are only used to reply to you. For an order, ringing is quicker &mdash; <a href="tel:+441225444986">01225&nbsp;444986</a>.</p>
+      </form>
+
+      <aside class="contact-aside reveal">
+        <h3>Quicker ways to reach us</h3>
+        <dl>
+          <div><dt>Phone</dt><dd><a href="tel:+441225444986">01225 444986</a></dd></div>
+          <div><dt>Email</dt><dd><a href="mailto:matt@mattyscafe.com">matt@mattyscafe.com</a></dd></div>
+          <div><dt>Facebook</dt><dd><a href="https://www.facebook.com/p/Mattys-100057261738007/" rel="noopener">Matty&rsquo;s on Facebook</a></dd></div>
+          <div><dt>In person</dt><dd>15 St Peter&rsquo;s Terrace<br>Lower Bristol Road<br>Bath BA2 3BT</dd></div>
+        </dl>
+        <p class="aside-note">Orders are best placed by phone during opening hours &mdash; Mon&ndash;Sat 7.00&ndash;14.00, Sun 8.00&ndash;13.00.</p>
+      </aside>
     </div>
   </section>
 
@@ -897,6 +1840,67 @@
             li.classList.add("note-row");
           }
         }
+      }
+    });
+  })();
+
+
+  // Contact form: validate in place and submit without leaving the page.
+  // Without JS the form still posts straight to FormSubmit.
+  (() => {
+    const form = document.getElementById("contactForm");
+    if (!form) return;
+    const status = document.getElementById("formStatus");
+    const say = (msg, bad) => { status.textContent = msg; status.classList.toggle("bad", !!bad); };
+
+    const clearErrors = () => {
+      form.querySelectorAll(".err").forEach(e => e.remove());
+      form.querySelectorAll("[aria-invalid]").forEach(e => {
+        e.removeAttribute("aria-invalid"); e.removeAttribute("aria-describedby");
+      });
+    };
+    const fail = (el, msg) => {
+      el.setAttribute("aria-invalid", "true");
+      const id = el.id + "-err";
+      const p = document.createElement("p");
+      p.className = "err"; p.id = id; p.textContent = msg;
+      el.closest(".field").after(p);
+      el.setAttribute("aria-describedby", id);
+      return el;
+    };
+
+    const validate = () => {
+      clearErrors();
+      const name = form.elements.name, email = form.elements.email, msg = form.elements.message;
+      const bad = [];
+      if (!name.value.trim()) bad.push(fail(name, "Please tell us your name."));
+      if (!email.value.trim()) bad.push(fail(email, "We need an email address to reply to."));
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim()))
+        bad.push(fail(email, "That email address doesn't look right."));
+      if (!msg.value.trim()) bad.push(fail(msg, "Please write a message."));
+      return bad[0] || null;
+    };
+
+    form.addEventListener("submit", async (e) => {
+      const bad = validate();
+      if (bad) { e.preventDefault(); bad.focus(); say("Please check the highlighted fields.", true); return; }
+      if (!window.fetch) return;                       // let the plain POST happen
+      e.preventDefault();
+      const btn = form.querySelector("button[type=submit]");
+      btn.disabled = true; say("Sending\u2026");
+      try {
+        const res = await fetch("https://formsubmit.co/ajax/matt@mattyscafe.com", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify(Object.fromEntries(new FormData(form)))
+        });
+        if (!res.ok) throw new Error(res.status);
+        form.reset();
+        say("Thanks \u2014 your message is on its way. Matt will get back to you.");
+      } catch {
+        say("Sorry, that didn't send. Please ring 01225 444986 or email matt@mattyscafe.com.", true);
+      } finally {
+        btn.disabled = false;
       }
     });
   })();
