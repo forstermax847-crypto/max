@@ -53,9 +53,9 @@ exclude = ["kids", "childrens", "children's", "boys", "girls", "replica", "fake"
 #   min_price = skip anything cheaper (e.g. to drop accessories)
 #   exclude   = extra words for this search, added to the defaults above
 #
-# TODO (Max): set max_total for each search from your Vinted price check
-# (about 40-50% of the realistic Vinted selling price). Until then EVERY new
-# matching listing alerts, which will be a lot.
+# Limits come from Max's Vinted price check: the most to pay (including
+# postage) is about 40-50% of the realistic Vinted selling price.
+# TODO (Max): replace the TEMPORARY Barbour limit after checking Vinted.
 # ---------------------------------------------------------------------------
 
 [[search]]
@@ -63,20 +63,20 @@ name = "Barbour wax"
 query = "barbour wax jacket"
 # "style" drops "Barbour style" non-Barbours; "dressing" drops tins of wax.
 exclude = ["style", "dressing", "hood only"]
-# max_total = 0
+max_total = 30   # TEMPORARY until Max checks Vinted prices
 
 [[search]]
 name = "Patagonia fleece"
 query = "patagonia fleece"
-# max_total = 0
+# max_total = 0   # waiting for Max to confirm prices
 
 [[search]]
 name = "Vintage Nike"
 query = "vintage nike (sweatshirt,jacket,jumper)"
-# max_total = 0
+# max_total = 0   # waiting for Max to confirm prices
 
 [[search]]
 name = "Typo catcher"
 # Misspelled brand names: few people see these listings, so they're often cheap.
 query = "(barbor,babour,barbur,patagona,patogonia,patagoina)"
-# max_total = 0
+max_total = 30   # highest of the Barbour/Patagonia limits
