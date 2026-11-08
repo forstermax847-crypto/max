@@ -68,15 +68,15 @@ max_total = 30   # TEMPORARY until Max checks Vinted prices
 [[search]]
 name = "Patagonia fleece"
 query = "patagonia fleece"
-# max_total = 0   # waiting for Max to confirm prices
+max_total = 18   # sells for £30-60 on Vinted (Max, 2026-11-08); ~45% of ~£40
 
 [[search]]
 name = "Vintage Nike"
 query = "vintage nike (sweatshirt,jacket,jumper)"
-# max_total = 0   # waiting for Max to confirm prices
+max_total = 15   # sells for £20-80 on Vinted (Max, 2026-11-08); ~45% of ~£35
 
 [[search]]
 name = "Typo catcher"
 # Misspelled brand names: few people see these listings, so they're often cheap.
 query = "(barbor,babour,barbur,patagona,patogonia,patagoina)"
-max_total = 30   # highest of the Barbour/Patagonia limits
+max_total = 30   # covers Barbour (£30) and Patagonia (£18) typos: uses the higher

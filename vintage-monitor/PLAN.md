@@ -84,6 +84,20 @@ That makes the typo search (4 below) the most important one, not an extra.
 All four: Buy It Now, UK only, used, newly listed first. Four searches →
 each checked about every 77 seconds (§3 formula).
 
+**Price limits (set 2026-11-08; max total = most you pay incl. postage)**
+
+| Search | Vinted selling price (Max) | Max total |
+|---|---|---|
+| Barbour wax | not checked yet | **£30, temporary** |
+| Patagonia fleece | £30–60 | **£18** (~45% of ~£40) |
+| Vintage Nike | £20–80 | **£15** (~45% of ~£35) |
+| Typo catcher | covers Barbour + Patagonia | **£30** (the higher limit) |
+
+Lesson: Max's first message ("patagonia 30 max 60, nike 20 max 80") was
+first misread as "sells for £60, pay at most £30". Max caught it: the
+numbers were **selling price ranges**. Always confirm money figures in
+words before entering them.
+
 Excluded-word rules:
 - **Don't exclude `lining`/`liner`**: real listings say "tartan lining".
 - **Don't exclude `rewax`**: it would also hide "recently rewaxed". Skip
@@ -426,9 +440,12 @@ Still open:
 3. By "notifications as well as Discord", did you mean the Discord app's own
    phone push notifications (already the plan), or a second, separate alert
    method on top of Discord?
-4. Maximum prices for the 4 starter searches in §3 (Vinted price check),
-   and whether the eBay app accepted the brackets and minus signs.
-5. Later, before sales add up: tax. Regular buying-to-resell for profit is
+4. ~~Price limits~~ set (§3 table) ✔, except the **Barbour** Vinted check,
+   still to do (temporary £30 until then). ~~eBay app syntax~~ works ✔.
+5. Typo catcher uses one £30 limit for both brands, so a misspelled
+   Patagonia between £18 and £30 still alerts. Fine as is, or split into two
+   searches (each search then checked every ~96 s instead of ~77 s)?
+6. Later, before sales add up: tax. Regular buying-to-resell for profit is
    trading. HMRC has a £1,000/year tax-free trading allowance, and Vinted
    and eBay report sellers to HMRC above set thresholds. Check the current
    rules on gov.uk before you pass a few hundred pounds of sales.
@@ -462,3 +479,5 @@ Still open:
 - 2026-11-08 — **Phase 1 built and pushed**: monitor code, 4 starter
   searches in `config.toml` (no prices yet), server scripts, README setup
   guide, 80 tests. See Phase 1 results above.
+- 2026-11-08 — Price limits set: Patagonia £18, Nike £15, Barbour £30
+  (temporary), typo catcher £30. Corrected after a misread of Max's numbers.
