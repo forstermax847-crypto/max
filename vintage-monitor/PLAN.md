@@ -25,8 +25,10 @@ build accounts, payments or a website for it.
 |---|---|---|
 | Marketplace | **eBay UK first** | Official API: legal, stable, unlikely to break or get you banned. |
 | Depop | **Deferred to Phase 5** | Depop has no public API and its terms forbid scraping. A Depop monitor is fragile and could get your account banned. We'll add it only once eBay is making money, and only if you accept that risk. |
-| Alerts | Discord, Telegram or phone push (ntfy) | All three get built; you set up whichever you want. **My recommendation: Discord** (see §6). |
-| Hosting | A cheap server, about £5/month | It has to run 24/7, and a Claude cloud session shuts down when idle. |
+| Alerts | **Discord only** (decided 2026-11-08) | Push notifications come from the Discord app on your phone/iPad. Telegram and ntfy are dropped from v1: fewer moving parts, fewer things to break. |
+| Listing format | **Buy It Now only** (decided 2026-11-08) | A newly listed auction says nothing about its final price. Fixed in code, not a setting. |
+| Alert hours | **24/7** (decided 2026-11-08) | No quiet hours built in. If you ever want silence at night, use the phone's Focus / Do Not Disturb, which needs no code. |
+| Hosting | A cheap server, about £5/month (or an old **laptop/desktop** if you have one) | It has to run 24/7, and a Claude cloud session shuts down when idle. **The iPad can't be the server** (see §4); it can receive the alerts. |
 | Users | Just you | Keeps it simple: no logins, no dashboard. |
 
 ## 3. Where I disagree with you
@@ -77,18 +79,30 @@ I can't create accounts, accept terms, or enter payment details. You need:
      so the exemption applies.
    - Account approval can take anywhere from minutes to a day or so. **Do this
      first.**
-2. **The alert channel you chose:**
-   - Discord: make a private server → channel settings → Integrations →
-     Webhooks → New Webhook → copy the URL. Install the Discord app on your
-     phone and turn notifications on for that channel.
-   - Telegram: message @BotFather to create a bot and get a token, then get
-     your chat ID (I'll walk you through it).
-   - ntfy: install the ntfy app and subscribe to a long random topic name.
-     Anyone who guesses the name can read your alerts, so make it unguessable.
-3. **A server.** A small Linux machine (Ubuntu 24.04) from a provider such as
-   Hetzner or DigitalOcean. The smallest plan is plenty. Check the current
-   price; it should be around £4–5 a month. An old laptop or a Raspberry Pi at
-   home also works and costs nothing per month.
+2. **Discord:**
+   - Create a free private Discord server just for you, with a channel such
+     as `#deals`.
+   - Channel settings → Integrations → Webhooks → New Webhook → copy the URL.
+     Treat this URL like a password: anyone who has it can post in your
+     channel.
+   - Install the Discord app on your phone (and iPad if you like). Set that
+     channel's notifications to **All Messages**. By default Discord only
+     notifies on @mentions in servers, and with that default **you would
+     get no alerts**.
+3. **Somewhere for it to run 24/7.** Pick one:
+   - **Rented server:** a small Linux machine (Ubuntu 24.04) from a provider
+     such as Hetzner or DigitalOcean. The smallest plan is plenty. Check the
+     current price; it should be around £4–5 a month.
+   - **Old laptop or desktop at home** (Windows, Mac or Linux) that can stay
+     plugged in and switched on, with sleep disabled. Free, but it stops when
+     your Wi-Fi or power drops, or when Windows restarts itself for updates.
+   - **Not the iPad.** iOS pauses or kills apps running in the background,
+     usually within minutes of switching away or locking the screen, and
+     there's no way to run a script as a permanent background service. It
+     would appear to work and then go silent, which is the worst kind of
+     failure here. The iPad is fine for *receiving* alerts, if it can still
+     run the current Discord app (very old iPads stuck on old iOS versions
+     sometimes can't; check the App Store on it).
 
 **Never paste keys or passwords into chat.** They go into a `.env` file on the
 server only, and that file is never committed to GitHub.
@@ -121,7 +135,7 @@ server only, and that file is never committed to GitHub.
 - maximum total including postage (checked by the monitor, since eBay can't
   filter on it)
 - condition: used / new / any
-- format: Buy It Now / auction / both
+- (format is always Buy It Now; not a setting)
 - excluded words (e.g. `kids`, `replica`, `damaged`)
 - item location (default: UK only, so postage stays cheap and fast)
 
@@ -152,13 +166,18 @@ tap-to-open link.
   eBay keys and searches work before going live
 - `test-alert` — sends one test alert to confirm your phone gets it
 
-## 6. Alert channel: my recommendation
+## 6. Alert channel: Discord (decided)
 
-**Discord.** It's the easiest to set up (one URL, no bot), shows the photo
-nicely, sends push notifications through the phone app, and keeps a scrollable
-history of every alert. Telegram is just as good if you already use it. ntfy
-is the simplest pure push notification but looks the plainest. All three will
-be supported, so switching later is a one-line change.
+One webhook URL, no bot to run. It shows the photo nicely, sends real push
+notifications through the phone app, and keeps a scrollable history of every
+alert, which is useful for the Phase 4 review. The alert code stays in its own
+small module, so adding Telegram or another channel later is a contained
+change.
+
+Limit: Discord slows down a webhook that posts more than a few messages a
+second. The monitor will space out messages and obey Discord's "wait" replies,
+so a burst of 30 new items arrives over a few seconds rather than being lost.
+If you regularly get bursts that big, your searches are too broad (§3).
 
 ## 7. Phases
 
@@ -166,24 +185,29 @@ Each phase has a check that must pass before the next starts.
 
 ### Phase 0 — Accounts (you; can start now)
 - [ ] eBay developer account + Production keys + deletion-notification exemption
-- [ ] Alert channel set up and receiving notifications on your phone
-- [ ] (Can wait until Phase 3) Server bought
-- **Done when:** you have the eBay App ID and Cert ID saved somewhere safe,
-  and the Discord/Telegram/ntfy app is on your phone.
+- [ ] Discord server + `#deals` channel + webhook URL, with the channel's
+      notifications set to All Messages
+- [ ] (Can wait until Phase 3) Server bought, or a home laptop/desktop chosen
+- **Done when:** you have the eBay App ID, Cert ID and Discord webhook URL
+  saved somewhere safe (a password manager or your phone's notes, **not**
+  chat), and a message posted in `#deals` from another device makes your
+  phone buzz.
 
 ### Phase 1 — Build (me; one session)
 - [ ] Project structure, config loading with strict validation
 - [ ] eBay client: login token (auto-renewed every 2 hours), search, rate budget
 - [ ] Seen-items database, silent first run, de-duplication, stale filter
 - [ ] Filters: excluded words, max total including postage
-- [ ] Alerts: Discord, Telegram, ntfy, plus problem alerts and startup message
+- [ ] Discord alerts (with rate-limit handling), plus problem alerts and
+      startup message
+- [ ] Buy It Now only, enforced in the eBay search itself
 - [ ] `run`, `check`, `test-alert` commands
 - [ ] Automated tests using fake eBay/Discord responses, covering each rule in §5
 - [ ] Setup guide (README) written for a non-programmer
 - [ ] Committed and pushed to branch `claude/zealous-mccarthy-surmas`
 - **Done when:** all tests pass and I've run the full monitor locally against
   a fake eBay server, showing alerts firing correctly.
-- **Honest limit:** this cloud session can't reach eBay, Discord or Telegram
+- **Honest limit:** this cloud session can't reach eBay or Discord
   (verified 2026-11-08: blocked). Phase 1 proves the logic is right, **not**
   that it works against the real eBay. Phase 2 proves that.
 
@@ -218,15 +242,14 @@ Each phase has a check that must pass before the next starts.
   the ban risk accepted in writing
 - Profit estimate in each alert, based on your own sold-price notes
 - A "deal score" to rank alerts by how underpriced they look
-- Quiet hours (no alerts while you sleep, or only very good deals)
 
 ## 8. Costs
 
 | Item | Cost |
 |---|---|
 | eBay developer account | Free |
-| Discord / Telegram / ntfy | Free |
-| Server | ~£4–5/month (or £0 on hardware you own) |
+| Discord | Free |
+| Server | ~£4–5/month (or £0 on a laptop/desktop you own; not the iPad) |
 | **Total** | **~£5/month** |
 
 ## 9. Risks
@@ -243,17 +266,23 @@ Each phase has a check that must pass before the next starts.
 
 ## 10. Open questions for Max
 
-1. Which alert channel: Discord (recommended), Telegram or ntfy?
-2. Server at home (old laptop or Pi) or rented (~£5/month)? If rented, do you
-   have a provider in mind?
+Answered 2026-11-08: Discord ✔ · Buy It Now only ✔ · 24/7 alerts ✔ ·
+iPad as server ✘ (§4).
+
+Still open:
+1. Do you have an old **laptop or desktop** that could stay on, or do we rent
+   a server (~£5/month)?
+2. By "notifications as well as Discord", did you mean the Discord app's own
+   phone push notifications (already the plan), or a second, separate alert
+   method on top of Discord?
 3. Your 3 starter searches with price limits (§3 homework). I'll ship
    placeholder examples until then.
-4. Should auctions alert at all? Auctions rarely end cheap at the moment
-   they're listed, so I'd default to **Buy It Now only**.
-5. Do you want quiet hours from day one, or alerts 24/7?
 
 ---
 
 ## Change log
 - 2026-11-08 — Plan written. eBay first, Depop deferred, ~£5/month server,
   single user. Build not started.
+- 2026-11-08 — Decided: Discord only (Telegram/ntfy dropped from v1), Buy It
+  Now only, alerts 24/7 (quiet hours removed from Phase 5). Ruled out the
+  iPad as the server. Build still not started.
