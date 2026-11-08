@@ -28,7 +28,7 @@ build accounts, payments or a website for it.
 | Alerts | **Discord only** (decided 2026-11-08) | Push notifications come from the Discord app on your phone/iPad. Telegram and ntfy are dropped from v1: fewer moving parts, fewer things to break. |
 | Listing format | **Buy It Now only** (decided 2026-11-08) | A newly listed auction says nothing about its final price. Fixed in code, not a setting. |
 | Alert hours | **24/7** (decided 2026-11-08) | No quiet hours built in. If you ever want silence at night, use the phone's Focus / Do Not Disturb, which needs no code. |
-| Hosting | **Rented Linux server, ~£5/month** (decided 2026-11-08, replacing the MacBook idea) | It has to run 24/7, and a Claude cloud session shuts down when idle. A server avoids everything that could stop a home machine: sleep, lid, battery, Wi-Fi, power cuts, password screens after restarts. It costs about £40/year more than the MacBook would have. The old MacBook is still useful as the computer you **connect to** the server from. **The iPad can't be the server**; it can receive the alerts. |
+| Hosting | **Rented Linux server from Hetzner, ~£5/month** (decided 2026-11-08, replacing the MacBook idea) | It has to run 24/7, and a Claude cloud session shuts down when idle. A server avoids everything that could stop a home machine: sleep, lid, battery, Wi-Fi, power cuts, password screens after restarts. It costs about £40/year more than the MacBook would have. The old MacBook is still useful as the computer you **connect to** the server from. **The iPad can't be the server**; it can receive the alerts. |
 | Users | Just you | Keeps it simple: no logins, no dashboard. |
 
 ## 3. Where I disagree with you
@@ -70,9 +70,15 @@ this; it's free and takes about 20 minutes.
 
 I can't create accounts, accept terms, or enter payment details. You need:
 
-1. **eBay developer account.** Sign up at developer.ebay.com with your normal
-   eBay login, then create a **Production** keyset. You'll get an **App ID
-   (Client ID)** and a **Cert ID (Client Secret)**.
+1. **eBay developer account** (free). A normal eBay account alone can't do
+   this: the monitor uses eBay's official API, which needs keys, and only
+   the developer program issues them. Register at developer.ebay.com. The
+   developer program has historically used its **own separate sign-up**
+   (its own username/password), not your normal eBay login; if it offers to
+   use your eBay login, that's fine too. The monitor never needs the two
+   linked. Keep your normal eBay account for actually buying. Then create a
+   **Production** keyset. You'll get an **App ID (Client ID)** and a
+   **Cert ID (Client Secret)**.
    - Gotcha: eBay won't turn on production keys until you deal with
      "Marketplace Account Deletion notifications". Choose the **exemption**.
      The monitor only stores listing ID numbers, never sellers' personal data,
@@ -221,7 +227,9 @@ Each phase has a check that must pass before the next starts.
 - [ ] eBay developer account + Production keys + deletion-notification exemption
 - [ ] Discord server + `#deals` channel + webhook URL, with the channel's
       notifications set to All Messages
-- [ ] Server provider account opened (and ID-verified, if asked). **Don't
+- [ ] In the normal eBay app: 1–2 **saved searches with notifications on**,
+      as a free baseline to race the bot against in Phase 4
+- [ ] Hetzner account opened (and ID-verified, if asked). **Don't
       create the server itself yet**: we do that together in Phase 2 so the
       SSH key is set up correctly from the start.
 - **Done when:** you have the eBay App ID, Cert ID and Discord webhook URL
@@ -283,6 +291,12 @@ Each phase has a check that must pass before the next starts.
 
 ### Phase 4 — Tune for a week (you, with me)
 - [ ] Replace the example searches with your homework from §3
+- [ ] **Race against eBay's own alerts.** Set up the same search as an eBay
+      app "saved search" with notifications (free, set up in Phase 0) and
+      note which alert arrives first, and by how long. If eBay's own alerts
+      are about as fast, the bot's value is its filters (max total incl.
+      postage, excluded words) and the still-alive check, not speed, and we
+      decide whether that's worth ~£5/month.
 - [ ] Keep a simple log of each alert: bought? price? sold for? profit?
 - [ ] After 7 days: which searches made money, which were noise, which were
       too slow
@@ -326,8 +340,8 @@ iPad as server ✘ · rented server ✔ (MacBook dropped as host; used to
 connect to the server instead).
 
 Still open:
-1. Hetzner or DigitalOcean? (Default: Hetzner, cheaper. DigitalOcean if
-   Hetzner's ID check is a hassle.)
+1. ~~Hetzner or DigitalOcean?~~ Hetzner ✔ (DigitalOcean if Hetzner's ID
+   check is a hassle).
 2. Does the old MacBook still turn on and open the Terminal app? It's the
    simplest way to set up and reach the server. If not, the provider's
    browser console works.
@@ -355,3 +369,7 @@ Still open:
   Ubuntu 24.04 + systemd; MacBook steps removed; added read-only deploy
   key, update script that refuses a broken config, server hardening, and
   "delete the server if you stop". Build still not started.
+- 2026-11-08 — Hetzner chosen. Corrected §4: the eBay developer account is
+  (historically) a separate free sign-up, not the normal eBay login.
+  Added eBay's own saved-search alerts as a free baseline to race the bot
+  against in Phase 4. Build still not started.
