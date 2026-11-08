@@ -1,6 +1,7 @@
 # Vintage Monitor — Build Plan
 
-Status: **planned, not started.** Nothing gets built until Max says go.
+Status: **Phase 1 (build) done 2026-11-08.** Waiting on Phase 0 (eBay approval, Hetzner
+account, prices) before Phase 2. Setup steps: [README.md](README.md).
 Last updated: 2026-11-08
 
 This file is the single source of truth for the project. A new Claude session
@@ -283,19 +284,47 @@ Each phase has a check that must pass before the next starts.
   you about your own messages.
 
 ### Phase 1 — Build (me; one session)
-- [ ] Project structure, config loading with strict validation
-- [ ] eBay client: login token (auto-renewed every 2 hours), search, rate budget
-- [ ] Seen-items database, silent first run, de-duplication, stale filter
-- [ ] Filters: excluded words, max total including postage
-- [ ] Discord alerts (with rate-limit handling), plus problem alerts and
+- [x] Project structure, config loading with strict validation
+- [x] eBay client: login token (auto-renewed every 2 hours), search, rate budget
+- [x] Seen-items database, silent first run, de-duplication, stale filter
+- [x] Filters: excluded words, max total including postage
+- [x] Discord alerts (with rate-limit handling), plus problem alerts and
       startup message
-- [ ] Buy It Now only, enforced in the eBay search itself
-- [ ] `run`, `check`, `test-alert`, `status` commands, plus the daily
-      still-alive message
-- [ ] Server install / update / uninstall scripts and the systemd service file
-- [ ] Automated tests using fake eBay/Discord responses, covering each rule in §5
-- [ ] Setup guide (README) written for a non-programmer
-- [ ] Committed and pushed to branch `claude/zealous-mccarthy-surmas`
+- [x] Buy It Now only, enforced in the eBay search **and** re-checked by the
+      monitor (auctions with a Buy It Now option are skipped too)
+- [x] `run`, `check`, `test-alert`, `status`, `validate` commands, plus the
+      daily still-alive message
+- [x] Server install / update / uninstall scripts, the systemd service file,
+      and a `vmonitor` helper command
+- [x] Automated tests using fake eBay/Discord responses, covering each rule in §5
+- [x] Setup guide (README) written for a non-programmer
+- [x] Committed and pushed to branch `claude/zealous-mccarthy-surmas`
+
+**Phase 1 results (2026-11-08)**
+- 80 automated tests pass on Python 3.11, 3.12 (the server's version) and 3.13,
+  including an end-to-end run of the real commands over real HTTP against local
+  fake eBay and Discord servers.
+- Deliberately broke the code in 10 important places (no silent first run,
+  duplicate alerts, auctions allowed, postage ignored, pings allowed, Discord
+  retry storm, typos ignored, default user agent, no re-login, no rate-limit
+  pause). The tests caught all 10; one gap was found this way and a test added.
+- Trial-ran install, uninstall and update scripts in a scratch copy: user,
+  permissions (monitor can't change its own code; secrets unreadable by other
+  users), and update's rollback on a broken config all worked.
+- Bugs found and fixed while testing: a test that pinned the exact searches
+  (would have made `update.sh` refuse every search change); SSH hardening file
+  named so a later Ubuntu file could have overridden it (renamed `00-`).
+- Decisions made while building:
+  - Seller usernames are never stored or sent to Discord, only feedback
+    figures. Keeps the eBay data-deletion exemption clean.
+  - `min_price` on its own is checked by the monitor, not sent to eBay, to
+    avoid relying on an unverified eBay syntax detail.
+  - If Discord is down, the monitor stops after the first failed alert and
+    retries next check (each failed attempt can take 20 s to time out).
+  - On eBay rate-limit errors it pauses 15 minutes.
+  - `update.sh` also runs the tests and rolls back if they fail.
+- **Not yet tested** (impossible from here): the real eBay API, real Discord,
+  and real systemd. Those are Phases 2 and 3.
 - **Done when:** all tests pass and I've run the full monitor locally against
   a fake eBay server, showing alerts firing correctly.
 - **Honest limit:** this cloud session can't reach eBay or Discord
@@ -407,7 +436,7 @@ Still open:
   single user. Build not started.
 - 2026-11-08 — Decided: Discord only (Telegram/ntfy dropped from v1), Buy It
   Now only, alerts 24/7 (quiet hours removed from Phase 5). Ruled out the
-  iPad as the server. Build still not started.
+  iPad as the server. Build not started at that point.
 - 2026-11-08 — Host: Max's old, unused MacBook, staying on macOS (installing
   Linux on a Mac is often painful, especially Wi-Fi drivers, and not worth
   it). systemd swapped for launchd + caffeinate; added install/uninstall
@@ -425,5 +454,7 @@ Still open:
 - 2026-11-08 — Questionnaire: niche = outdoor jackets + sportswear (no
   football shirts), resell on Vinted, light cleaning only, budget over £300
   (start with ~£100). Drafted 4 starter searches incl. a typo catcher;
-  switched price research from eBay sold prices to Vinted. Build still not
-  started.
+  switched price research from eBay sold prices to Vinted.
+- 2026-11-08 — **Phase 1 built and pushed**: monitor code, 4 starter
+  searches in `config.toml` (no prices yet), server scripts, README setup
+  guide, 80 tests. See Phase 1 results above.

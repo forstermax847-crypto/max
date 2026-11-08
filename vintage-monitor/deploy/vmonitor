@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# vmonitor: run Vintage Monitor commands on the server with the right settings.
+#
+#   vmonitor status       is it working?
+#   vmonitor check        run each search once and print what eBay returns
+#   vmonitor test-alert   send a test alert to Discord
+#   vmonitor validate     check config.toml for mistakes
+#   vmonitor logs [N]     show the last N log lines (default 100)
+set -euo pipefail
+
+APP_DIR=/opt/vintage-monitor/vintage-monitor
+ENV_FILE=/etc/vintage-monitor/.env
+DB_FILE=/var/lib/vintage-monitor/monitor.db
+SERVICE_USER=vmonitor
+
+cmd="${1:-status}"
+if [ $# -gt 0 ]; then shift; fi
+
+case "$cmd" in
+  status|check|test-alert|validate) ;;
+  logs)
+    exec journalctl -u vintage-monitor -n "${1:-100}" --no-pager
+    ;;
+  run)
+    echo "The background service runs the monitor. To restart it: sudo systemctl restart vintage-monitor" >&2
+    exit 2
+    ;;
+  *)
+    echo "usage: vmonitor status|check|test-alert|validate|logs [N]" >&2
+    exit 2
+    ;;
+esac
+
+cd "$APP_DIR"
+args=(-m vintage_monitor "$cmd" --config "$APP_DIR/config.toml" --env "$ENV_FILE" --db "$DB_FILE" "$@")
+if [ "$(id -un)" = "$SERVICE_USER" ]; then
+  exec env PYTHONDONTWRITEBYTECODE=1 python3 "${args[@]}"
+else
+  exec sudo -u "$SERVICE_USER" env PYTHONDONTWRITEBYTECODE=1 python3 "${args[@]}"
+fi

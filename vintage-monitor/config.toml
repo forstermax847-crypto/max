@@ -1,0 +1,82 @@
+# Vintage Monitor: what to hunt for.
+#
+# No secrets in this file. Keys and the Discord link go in the .env file on
+# the server, never here (this file is stored on GitHub).
+#
+# After changing anything, check it with:   vmonitor validate
+# then apply it with:                        sudo /opt/vintage-monitor/vintage-monitor/deploy/update.sh
+#
+# Changing a search's query, condition, location or prices makes the monitor
+# treat it as a NEW search: it records current listings silently first, so
+# you won't get a flood of old listings.
+
+[settings]
+# eBay UK. Leave as is.
+marketplace = "EBAY_GB"
+currency = "GBP"
+
+# eBay allows about 5,000 searches a day by default. 4,500 leaves a margin.
+# The monitor spaces its checks out automatically to stay under this.
+daily_call_budget = 4500
+
+# Never check the same search more often than this, even with few searches.
+min_interval_seconds = 60
+
+# Ignore listings older than this (eBay sometimes re-shows edited old ones).
+max_listing_age_minutes = 120
+
+# Send a "problem" alert if a search keeps failing for this long,
+# and repeat it at most this often while the problem lasts.
+problem_alert_after_minutes = 15
+problem_alert_repeat_minutes = 60
+
+# Daily "still running" message. If it hasn't arrived by 15 minutes after
+# this time, something is wrong.
+daily_summary_time = "09:00"
+timezone = "Europe/London"
+
+[defaults]
+# Applies to every search unless the search says otherwise.
+condition = "used"   # used | new | any
+location = "GB"      # only items located in the UK ("" = anywhere)
+
+# Listings whose TITLE contains any of these whole words/phrases are skipped.
+# Keep this short: every word risks hiding a good deal. Don't add "lining"
+# or "rewax" (see PLAN.md).
+exclude = ["kids", "childrens", "children's", "boys", "girls", "replica", "fake", "damaged", "spares"]
+
+# ---------------------------------------------------------------------------
+# Searches. Buy It Now only (built in). Prices are in pounds.
+#
+#   max_total = most you'll pay INCLUDING postage (the important one)
+#   max_price = most for the item price alone (eBay filters on this)
+#   min_price = skip anything cheaper (e.g. to drop accessories)
+#   exclude   = extra words for this search, added to the defaults above
+#
+# TODO (Max): set max_total for each search from your Vinted price check
+# (about 40-50% of the realistic Vinted selling price). Until then EVERY new
+# matching listing alerts, which will be a lot.
+# ---------------------------------------------------------------------------
+
+[[search]]
+name = "Barbour wax"
+query = "barbour wax jacket"
+# "style" drops "Barbour style" non-Barbours; "dressing" drops tins of wax.
+exclude = ["style", "dressing", "hood only"]
+# max_total = 0
+
+[[search]]
+name = "Patagonia fleece"
+query = "patagonia fleece"
+# max_total = 0
+
+[[search]]
+name = "Vintage Nike"
+query = "vintage nike (sweatshirt,jacket,jumper)"
+# max_total = 0
+
+[[search]]
+name = "Typo catcher"
+# Misspelled brand names: few people see these listings, so they're often cheap.
+query = "(barbor,babour,barbur,patagona,patogonia,patagoina)"
+# max_total = 0

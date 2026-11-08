@@ -1,0 +1,6 @@
+# Secrets: never commit
+.env
+# Local database
+data/
+__pycache__/
+*.pyc
