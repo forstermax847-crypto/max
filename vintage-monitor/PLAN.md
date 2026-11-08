@@ -11,7 +11,7 @@ reading this file, and update it whenever a decision changes.
 
 ## 1. What we are building
 
-A bot that runs 24/7 on a small server, watches **eBay UK** for new listings
+A bot that runs 24/7 on your **old MacBook**, watches **eBay UK** for new listings
 matching saved searches, and sends an alert to your phone within about a minute
 of a matching item being listed, so you can buy underpriced vintage items
 before other people do and resell them.
@@ -28,7 +28,7 @@ build accounts, payments or a website for it.
 | Alerts | **Discord only** (decided 2026-11-08) | Push notifications come from the Discord app on your phone/iPad. Telegram and ntfy are dropped from v1: fewer moving parts, fewer things to break. |
 | Listing format | **Buy It Now only** (decided 2026-11-08) | A newly listed auction says nothing about its final price. Fixed in code, not a setting. |
 | Alert hours | **24/7** (decided 2026-11-08) | No quiet hours built in. If you ever want silence at night, use the phone's Focus / Do Not Disturb, which needs no code. |
-| Hosting | A cheap server, about £5/month (or an old **laptop/desktop** if you have one) | It has to run 24/7, and a Claude cloud session shuts down when idle. **The iPad can't be the server** (see §4); it can receive the alerts. |
+| Hosting | **Max's old, unused MacBook** (decided 2026-11-08), staying on macOS | It has to run 24/7, and a Claude cloud session shuts down when idle. A MacBook costs about £1–1.50/month in electricity, and its battery carries it through short power cuts. Fallback if it turns out unsuitable (§4): a rented server, about £5/month. **The iPad can't be the server**; it can receive the alerts. |
 | Users | Just you | Keeps it simple: no logins, no dashboard. |
 
 ## 3. Where I disagree with you
@@ -89,13 +89,31 @@ I can't create accounts, accept terms, or enter payment details. You need:
      channel's notifications to **All Messages**. By default Discord only
      notifies on @mentions in servers, and with that default **you would
      get no alerts**.
-3. **Somewhere for it to run 24/7.** Pick one:
-   - **Rented server:** a small Linux machine (Ubuntu 24.04) from a provider
-     such as Hetzner or DigitalOcean. The smallest plan is plenty. Check the
-     current price; it should be around £4–5 a month.
-   - **Old laptop or desktop at home** (Windows, Mac or Linux) that can stay
-     plugged in and switched on, with sleep disabled. Free, but it stops when
-     your Wi-Fi or power drops, or when Windows restarts itself for updates.
+3. **The MacBook.** It runs the monitor 24/7. Checks before we rely on it:
+   - **Which model and macOS version?** Apple menu → About This Mac. Note the
+     year, the chip (Intel or Apple M1/M2/…) and the macOS version. The
+     monitor needs Python 3.11 or newer from python.org, whose installers
+     support macOS back to about 10.13 High Sierra (2017). If the Mac is
+     older than that, we need a different approach or the rented server.
+   - **Battery safety.** Old MacBook batteries left on charge for months can
+     swell, and a swollen battery is a fire risk. Warning signs: the case
+     bulging, the trackpad hard to click or raised, the lid not closing flat,
+     or the Mac rocking on a table. Also check System Information → Power →
+     Battery Information → Condition. Anything other than "Normal" means:
+     tell me before going further. Keep it on a hard surface with space
+     around it, not a bed or sofa.
+   - **The lid must stay open.** A MacBook sleeps when the lid is closed
+     (unless a monitor, keyboard and mouse are plugged in), and asleep it
+     checks nothing. The screen can turn itself off; only the lid has to
+     stay up.
+   - **Does it still hold personal stuff** (photos, saved passwords, old
+     accounts)? This decides the FileVault question in Phase 3.
+   - **Working charger**, and a spot with a decent Wi-Fi signal (or a
+     network cable, if the Mac has a port or adapter).
+   - **Fallback:** if any check fails, rent a small Linux server (Ubuntu
+     24.04, around £4–5/month from a provider such as Hetzner or
+     DigitalOcean). The monitor code is the same either way; only the
+     auto-start setup differs.
    - **Not the iPad.** iOS pauses or kills apps running in the background,
      usually within minutes of switching away or locking the screen, and
      there's no way to run a script as a permanent background service. It
@@ -105,7 +123,7 @@ I can't create accounts, accept terms, or enter payment details. You need:
      sometimes can't; check the App Store on it).
 
 **Never paste keys or passwords into chat.** They go into a `.env` file on the
-server only, and that file is never committed to GitHub.
+MacBook only, readable only by its owner, and never committed to GitHub.
 
 ## 5. How it will work
 
@@ -113,7 +131,7 @@ server only, and that file is never committed to GitHub.
  every ~1–2 min                          new matching item?
 ┌───────────┐   search    ┌──────────┐   ┌────────────┐   alert   ┌───────┐
 │  monitor  │ ──────────▶ │ eBay API │   │ filter +   │ ────────▶ │ phone │
-│ (server)  │ ◀────────── │ (UK)     │──▶│ "seen yet?"│           └───────┘
+│ (MacBook) │ ◀────────── │ (UK)     │──▶│ "seen yet?"│           └───────┘
 └───────────┘  newest 50  └──────────┘   └────────────┘
                                               │
                                         small database
@@ -121,13 +139,28 @@ server only, and that file is never committed to GitHub.
 ```
 
 **Technical choices**
-- Python 3, **standard library only**. Nothing to install, so nothing to break
-  when a package updates.
+- Python **3.11 or newer**, **standard library only**. No extra packages, so
+  nothing breaks when a package updates.
+  - Why 3.11: it's the first version that can read `config.toml` without an
+    add-on. The Python Apple bundles with its developer tools is 3.9, which
+    is too old, so we install the official one from python.org.
+  - Gotcha: python.org's Mac Python doesn't use the Mac's own security
+    certificates. Until you run the **"Install Certificates.command"** it
+    ships with (one double-click, in Applications → Python 3.x), every
+    connection to eBay and Discord fails with `CERTIFICATE_VERIFY_FAILED`.
+    The setup script will check for this and say so plainly.
 - Searches live in a readable `config.toml` file. Changing what you hunt means
   editing a few lines, with no code changes.
-- Secrets (eBay keys, Discord URL) live in `.env` on the server only.
-- Runs as a `systemd` service, so it starts when the server boots and restarts
-  itself if it crashes.
+- Secrets (eBay keys, Discord URL) live in `.env` on the MacBook only.
+- Auto-start uses **launchd**, the Mac's built-in service manager: it starts
+  at boot (no login needed) and restarts the monitor within seconds if it
+  crashes.
+- It runs under `caffeinate`, the Mac's built-in "don't sleep" command, as a
+  second guard on top of the sleep settings.
+- An **install script** does the Mac setup (checks Python and certificates,
+  installs the launchd service, sets permissions) so you run one command
+  instead of following 20 steps by hand, plus an **uninstall script** that
+  reverses it.
 
 **Each search can set**
 - keywords (e.g. `vintage carhartt jacket`)
@@ -155,6 +188,12 @@ server only, and that file is never committed to GitHub.
 6. **Startup message**, so you know it's alive after a reboot.
 7. **Config is checked strictly.** A typo like `max_prise` stops it with a
    clear error instead of being silently ignored.
+8. **Daily "still alive" message** (e.g. 9am): checks made, alerts sent,
+   errors in the last 24 hours. This covers the one failure point 5 can't:
+   if the MacBook itself is off, asleep or offline, the monitor can't send
+   anything, including a problem alert. Silence from the bot could mean "no
+   deals" or "dead". With a daily message, **no message by 9:15 means
+   something is wrong**: go and look at the Mac.
 
 **What an alert shows:** photo, title, price, postage, total, condition,
 seller feedback, how long ago it was listed, which search it matched, and a
@@ -165,6 +204,8 @@ tap-to-open link.
 - `check` — runs each search once and prints the results, to confirm your
   eBay keys and searches work before going live
 - `test-alert` — sends one test alert to confirm your phone gets it
+- `status` — says whether the background service is running, when it last
+  checked eBay, and the last error, if any
 
 ## 6. Alert channel: Discord (decided)
 
@@ -187,7 +228,8 @@ Each phase has a check that must pass before the next starts.
 - [ ] eBay developer account + Production keys + deletion-notification exemption
 - [ ] Discord server + `#deals` channel + webhook URL, with the channel's
       notifications set to All Messages
-- [ ] (Can wait until Phase 3) Server bought, or a home laptop/desktop chosen
+- [ ] MacBook checks from §4 item 3: model, macOS version, battery
+      condition, personal data or not. Send me the answers (no passwords).
 - **Done when:** you have the eBay App ID, Cert ID and Discord webhook URL
   saved somewhere safe (a password manager or your phone's notes, **not**
   chat), and a message posted in `#deals` from another device makes your
@@ -201,18 +243,24 @@ Each phase has a check that must pass before the next starts.
 - [ ] Discord alerts (with rate-limit handling), plus problem alerts and
       startup message
 - [ ] Buy It Now only, enforced in the eBay search itself
-- [ ] `run`, `check`, `test-alert` commands
+- [ ] `run`, `check`, `test-alert`, `status` commands, plus the daily
+      still-alive message
+- [ ] Mac install/uninstall scripts (Python version check, certificate
+      check, launchd service, `caffeinate`, file permissions)
 - [ ] Automated tests using fake eBay/Discord responses, covering each rule in §5
 - [ ] Setup guide (README) written for a non-programmer
 - [ ] Committed and pushed to branch `claude/zealous-mccarthy-surmas`
 - **Done when:** all tests pass and I've run the full monitor locally against
   a fake eBay server, showing alerts firing correctly.
 - **Honest limit:** this cloud session can't reach eBay or Discord
-  (verified 2026-11-08: blocked). Phase 1 proves the logic is right, **not**
-  that it works against the real eBay. Phase 2 proves that.
+  (verified 2026-11-08: blocked), and it runs Linux, not macOS. Phase 1
+  proves the logic is right, **not** that it works against the real eBay or
+  that the Mac scripts work on your Mac. Phases 2 and 3 prove those.
 
-### Phase 2 — First live test (you + me; ~30 min)
-- [ ] Put your keys in `.env` on the server or your own computer
+### Phase 2 — First live test on the MacBook (you + me; ~45 min)
+- [ ] Install Python 3.11+ from python.org and run "Install Certificates.command"
+- [ ] Download the project onto the Mac (I'll give exact steps)
+- [ ] Put your keys in `.env` on the Mac
 - [ ] Run `test-alert` → the alert arrives on your phone
 - [ ] Run `check` → real eBay listings print with correct prices and links
 - [ ] Confirm the real daily call limit in the eBay developer dashboard
@@ -220,14 +268,40 @@ Each phase has a check that must pass before the next starts.
 - **Done when:** real listings come back and a test alert reaches your phone.
   Anything that differs from my assumptions gets fixed here.
 
-### Phase 3 — Go live on the server (you + me; ~45 min)
-- [ ] Basic server security: SSH key login, automatic security updates, firewall
-- [ ] Copy the project over, add `.env`, install the systemd service
-- [ ] Reboot the server and confirm the startup alert arrives
+### Phase 3 — Go live on the MacBook (you + me; ~45 min)
+- [ ] **FileVault decision** (System Settings → Privacy & Security →
+      FileVault). With FileVault on, after any restart (power cut, update)
+      the Mac waits at a password screen and **the monitor doesn't run until
+      someone types the password**.
+      - If the Mac holds no personal data: **turn FileVault off.** The only
+        secrets on it are the eBay keys (which can only read public
+        listings) and the Discord webhook, and both can be cancelled and
+        replaced in minutes if the Mac is stolen.
+      - If it does hold personal data: either back it up and erase the Mac,
+        or keep FileVault on and accept typing the password after restarts.
+- [ ] Sleep settings: never sleep on the charger, screen off after a few
+      minutes. Lid stays open.
+- [ ] Software updates: keep security updates on, but turn off automatic
+      macOS **upgrades**, which restart the Mac at random times and can
+      change things.
+- [ ] Run the install script → launchd service installed
+- [ ] Restart the Mac and confirm the startup alert arrives **without
+      logging in**
+- [ ] Unplug the charger for 10 minutes and confirm it keeps working on
+      battery, then plug back in
 - [ ] Deliberately break the eBay key and confirm the problem alert arrives,
       then fix the key
-- **Done when:** it survives a reboot and you've seen both the startup alert
-  and the problem alert.
+- [ ] Confirm the daily still-alive message arrives the next morning
+- [ ] (Optional, free) An outside "dead man's switch" such as
+      healthchecks.io: the monitor checks in every few minutes, and if the
+      check-ins stop, that service messages your Discord. Faster warning
+      than waiting for the daily message.
+- **Done when:** it survives a restart with nobody logging in, survives
+  10 minutes on battery, and you've seen the startup, problem and daily
+  messages.
+- **Known gap:** after a long power cut that drains the battery completely,
+  the Mac may not switch itself back on when power returns; it might need
+  the power button pressing. The missing daily message is how you'd find out.
 
 ### Phase 4 — Tune for a week (you, with me)
 - [ ] Replace the example searches with your homework from §3
@@ -249,8 +323,9 @@ Each phase has a check that must pass before the next starts.
 |---|---|
 | eBay developer account | Free |
 | Discord | Free |
-| Server | ~£4–5/month (or £0 on a laptop/desktop you own; not the iPad) |
-| **Total** | **~£5/month** |
+| Python | Free |
+| Electricity for the MacBook | ~£1–1.50/month (estimate: ~5–8 W, screen off, at ~25p per unit) |
+| **Total** | **~£1–1.50/month** (fallback server instead: ~£5/month) |
 
 ## 9. Risks
 
@@ -261,21 +336,25 @@ Each phase has a check that must pass before the next starts.
 | Other resellers' bots are faster | Medium | A niche you know well beats raw speed. |
 | Buying items that don't resell (dead stock) | Real | Only search for things you've price-checked. |
 | eBay changes its rules or limits | Low | Official API; change log in the developer portal. |
-| Server goes down silently | Low | Problem alerts plus a startup alert. |
-| Keys leak | Low | Keys only in `.env` on the server, never in git or chat. |
+| MacBook goes to sleep, gets switched off, or loses Wi-Fi | Medium | Sleep settings + `caffeinate` + lid open; the daily still-alive message reveals it; optional dead man's switch. |
+| MacBook battery swells | Low–medium on an old Mac | Battery check before starting (§4); hard surface; stop using it if signs appear. |
+| Mac too old for current Python | Unknown until you check | Version check in Phase 0; rented server as fallback. |
+| macOS update restarts or changes things | Low | Automatic upgrades off; service starts at boot without login. |
+| Keys leak | Low | Keys only in `.env` on the Mac, owner-readable only, never in git or chat; both can be cancelled and replaced. |
 
 ## 10. Open questions for Max
 
 Answered 2026-11-08: Discord ✔ · Buy It Now only ✔ · 24/7 alerts ✔ ·
-iPad as server ✘ (§4).
+iPad as server ✘ · old unused MacBook as the host ✔.
 
 Still open:
-1. Do you have an old **laptop or desktop** that could stay on, or do we rent
-   a server (~£5/month)?
-2. By "notifications as well as Discord", did you mean the Discord app's own
+1. MacBook details: year/model, Intel or Apple chip, macOS version, battery
+   condition, any swelling signs (§4 item 3).
+2. Is there still personal data on the MacBook? (Decides FileVault, Phase 3.)
+3. By "notifications as well as Discord", did you mean the Discord app's own
    phone push notifications (already the plan), or a second, separate alert
    method on top of Discord?
-3. Your 3 starter searches with price limits (§3 homework). I'll ship
+4. Your 3 starter searches with price limits (§3 homework). I'll ship
    placeholder examples until then.
 
 ---
@@ -286,3 +365,8 @@ Still open:
 - 2026-11-08 — Decided: Discord only (Telegram/ntfy dropped from v1), Buy It
   Now only, alerts 24/7 (quiet hours removed from Phase 5). Ruled out the
   iPad as the server. Build still not started.
+- 2026-11-08 — Host: Max's old, unused MacBook, staying on macOS (installing
+  Linux on a Mac is often painful, especially Wi-Fi drivers, and not worth
+  it). systemd swapped for launchd + caffeinate; added install/uninstall
+  scripts, `status` command, daily still-alive message, FileVault and
+  battery checks. Rented server kept as the fallback. Build still not started.
