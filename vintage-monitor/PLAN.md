@@ -235,8 +235,10 @@ Each phase has a check that must pass before the next starts.
       SSH key is set up correctly from the start.
 - **Done when:** you have the eBay App ID, Cert ID and Discord webhook URL
   saved somewhere safe (a password manager or your phone's notes, **not**
-  chat), and a message posted in `#deals` from another device makes your
-  phone buzz.
+  chat), and a test message sent **through the webhook** (one `curl`
+  command from the MacBook's Terminal) makes your phone buzz. A message you
+  type into `#deals` yourself is not a valid test: Discord never notifies
+  you about your own messages.
 
 ### Phase 1 — Build (me; one session)
 - [ ] Project structure, config loading with strict validation
