@@ -1,7 +1,6 @@
 # Vintage Monitor — Build Plan
 
-Status: **Phase 1 (build) done 2026-11-08.** Waiting on Phase 0 (eBay approval, Barbour
-price check) before Phase 2. Setup steps: [README.md](README.md).
+Status: **Phase 1 (build) done 2026-11-08.** Waiting on Phase 0 (eBay approval) before Phase 2. Setup steps: [README.md](README.md).
 Last updated: 2026-11-08
 
 This file is the single source of truth for the project. A new Claude session
@@ -88,10 +87,10 @@ each checked about every 77 seconds (§3 formula).
 
 | Search | Vinted selling price (Max) | Max total |
 |---|---|---|
-| Barbour wax | not checked yet | **£30, temporary** |
+| Barbour wax | £25–85 | **£20** (~45% of ~£45) |
 | Patagonia fleece | £30–60 | **£18** (~45% of ~£40) |
 | Vintage Nike | £20–80 | **£15** (~45% of ~£35) |
-| Typo catcher | covers Barbour + Patagonia | **£30** (the higher limit) |
+| Typo catcher | covers Barbour + Patagonia | **£20** (the higher limit) |
 
 Lesson: Max's first message ("patagonia 30 max 60, nike 20 max 80") was
 first misread as "sells for £60, pay at most £30". Max caught it: the
@@ -438,10 +437,9 @@ Still open:
 3. By "notifications as well as Discord", did you mean the Discord app's own
    phone push notifications (already the plan), or a second, separate alert
    method on top of Discord?
-4. ~~Price limits~~ set (§3 table) ✔, except the **Barbour** Vinted check,
-   still to do (temporary £30 until then). ~~eBay app syntax~~ works ✔.
-5. Typo catcher uses one £30 limit for both brands, so a misspelled
-   Patagonia between £18 and £30 still alerts. Fine as is, or split into two
+4. ~~Price limits~~ all set (§3 table) ✔. ~~eBay app syntax~~ works ✔.
+5. Typo catcher uses one £20 limit for both brands, so a misspelled
+   Patagonia between £18 and £20 still alerts (now a tiny gap). Fine as is, or split into two
    searches (each search then checked every ~96 s instead of ~77 s)?
 6. Later, before sales add up: tax. Regular buying-to-resell for profit is
    trading. HMRC has a £1,000/year tax-free trading allowance, and Vinted
@@ -482,3 +480,5 @@ Still open:
 - 2026-11-08 — Hosting provider switched from Hetzner to DigitalOcean (account
   opened). README setup steps updated for Droplets. Account holders must be
   18+ under every provider's terms.
+- 2026-11-08 — Barbour Vinted check done (sells for £25–85): limit £20,
+  replacing the temporary £30. Typo catcher £20 to match.

@@ -55,7 +55,6 @@ exclude = ["kids", "childrens", "children's", "boys", "girls", "replica", "fake"
 #
 # Limits come from Max's Vinted price check: the most to pay (including
 # postage) is about 40-50% of the realistic Vinted selling price.
-# TODO (Max): replace the TEMPORARY Barbour limit after checking Vinted.
 # ---------------------------------------------------------------------------
 
 [[search]]
@@ -63,7 +62,7 @@ name = "Barbour wax"
 query = "barbour wax jacket"
 # "style" drops "Barbour style" non-Barbours; "dressing" drops tins of wax.
 exclude = ["style", "dressing", "hood only"]
-max_total = 30   # TEMPORARY until Max checks Vinted prices
+max_total = 20   # sells for £25-85 on Vinted (Max, 2026-11-08); ~45% of ~£45
 
 [[search]]
 name = "Patagonia fleece"
@@ -79,4 +78,4 @@ max_total = 15   # sells for £20-80 on Vinted (Max, 2026-11-08); ~45% of ~£35
 name = "Typo catcher"
 # Misspelled brand names: few people see these listings, so they're often cheap.
 query = "(barbor,babour,barbur,patagona,patogonia,patagoina)"
-max_total = 30   # covers Barbour (£30) and Patagonia (£18) typos: uses the higher
+max_total = 20   # covers Barbour (£20) and Patagonia (£18) typos: uses the higher
