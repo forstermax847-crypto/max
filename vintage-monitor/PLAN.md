@@ -1,7 +1,7 @@
 # Vintage Monitor — Build Plan
 
-Status: **Phase 1 (build) done 2026-11-08.** Waiting on Phase 0 (eBay approval, Hetzner
-account, prices) before Phase 2. Setup steps: [README.md](README.md).
+Status: **Phase 1 (build) done 2026-11-08.** Waiting on Phase 0 (eBay approval, Barbour
+price check) before Phase 2. Setup steps: [README.md](README.md).
 Last updated: 2026-11-08
 
 This file is the single source of truth for the project. A new Claude session
@@ -29,7 +29,7 @@ build accounts, payments or a website for it.
 | Alerts | **Discord only** (decided 2026-11-08) | Push notifications come from the Discord app on your phone/iPad. Telegram and ntfy are dropped from v1: fewer moving parts, fewer things to break. |
 | Listing format | **Buy It Now only** (decided 2026-11-08) | A newly listed auction says nothing about its final price. Fixed in code, not a setting. |
 | Alert hours | **24/7** (decided 2026-11-08) | No quiet hours built in. If you ever want silence at night, use the phone's Focus / Do Not Disturb, which needs no code. |
-| Hosting | **Rented Linux server from Hetzner, ~£5/month** (decided 2026-11-08, replacing the MacBook idea) | It has to run 24/7, and a Claude cloud session shuts down when idle. A server avoids everything that could stop a home machine: sleep, lid, battery, Wi-Fi, power cuts, password screens after restarts. It costs about £40/year more than the MacBook would have. The old MacBook is still useful as the computer you **connect to** the server from. **The iPad can't be the server**; it can receive the alerts. |
+| Hosting | **Rented Linux server from DigitalOcean, ~£5/month** (decided 2026-11-08, replacing the MacBook idea; DigitalOcean instead of Hetzner, whose ID check was a problem) | It has to run 24/7, and a Claude cloud session shuts down when idle. A server avoids everything that could stop a home machine: sleep, lid, battery, Wi-Fi, power cuts, password screens after restarts. It costs about £40/year more than the MacBook would have. The old MacBook is still useful as the computer you **connect to** the server from. **The iPad can't be the server**; it can receive the alerts. |
 | Users | Just you | Keeps it simple: no logins, no dashboard. |
 | Niche | **Outdoor jackets + sportswear** (decided 2026-11-08) | What Max already knows. Football shirts deliberately excluded: too many fakes. |
 | Resell on | **Vinted** (decided 2026-11-08) | Changes the maths: prices must be checked against **Vinted**, not eBay sold prices (see starter searches below). |
@@ -151,19 +151,18 @@ I can't create accounts, accept terms, or enter payment details. You need:
      notifies on @mentions in servers, and with that default **you would
      get no alerts**.
 3. **A rented server.**
-   - **Provider:** Hetzner (cheapest; data centres in Germany/Finland, which
-     doesn't matter for this) or DigitalOcean (slightly dearer, very
-     beginner-friendly). Pick the **smallest, cheapest shared plan**; even
-     1–2 GB of memory is far more than the monitor needs. Check the current
-     price before buying; it should be around £4–5 a month including VAT.
+   - **Provider: DigitalOcean** (account opened 2026-11-08). A server there
+     is called a "Droplet". Pick **Basic → Regular → 1 GB memory**, about
+     $6 a month (check the price shown). The 512 MB plan is cheaper but can
+     run out of memory during system updates. Region: London.
    - **Operating system:** choose **Ubuntu 24.04 LTS**. It comes with
      Python 3.12, so there's nothing to install for the monitor itself.
    - **Don't** add paid extras (backups, volumes, load balancers, extra IPs).
      Nothing on the server is irreplaceable: the code and searches live in
      GitHub, and the only data is the list of listing IDs already seen.
    - **Sign-up:** you need a payment card, and providers require account
-     holders to be 18 or over. Hetzner sometimes asks new customers for ID
-     verification, which can take a day, so sign up early.
+     holders to be 18 or over. (Every provider requires this in its terms,
+     whether or not it checks ID.)
    - **Login key:** when the provider asks for an "SSH key", don't choose
      a password. I'll walk you through making a key on the MacBook (one
      command in the Terminal app) and pasting in its **public** half. The
@@ -291,8 +290,8 @@ Each phase has a check that must pass before the next starts.
       listed, no price limit yet). Max reports the results look right, i.e.
       the app accepted the `-word` and `(a,b)` syntax. The API still needs
       checking in Phase 2.*
-- [ ] Hetzner account opened (and ID-verified, if asked). **Don't
-      create the server itself yet**: we do that together in Phase 2 so the
+- [x] Server provider account opened: **DigitalOcean** (2026-11-08).
+      **Don't create the Droplet itself yet**: we do that together in Phase 2 so the
       SSH key is set up correctly from the start.
 - **Done when:** you have the eBay App ID, Cert ID and Discord webhook URL
   saved somewhere safe (a password manager or your phone's notes, **not**
@@ -432,8 +431,7 @@ iPad as server ✘ · rented server ✔ (MacBook dropped as host; used to
 connect to the server instead).
 
 Still open:
-1. ~~Hetzner or DigitalOcean?~~ Hetzner ✔ (DigitalOcean if Hetzner's ID
-   check is a hassle).
+1. ~~Hetzner or DigitalOcean?~~ DigitalOcean ✔ (switched from Hetzner).
 2. Does the old MacBook still turn on and open the Terminal app? It's the
    simplest way to set up and reach the server. If not, the provider's
    browser console works.
@@ -481,3 +479,6 @@ Still open:
   guide, 80 tests. See Phase 1 results above.
 - 2026-11-08 — Price limits set: Patagonia £18, Nike £15, Barbour £30
   (temporary), typo catcher £30. Corrected after a misread of Max's numbers.
+- 2026-11-08 — Hosting provider switched from Hetzner to DigitalOcean (account
+  opened). README setup steps updated for Droplets. Account holders must be
+  18+ under every provider's terms.

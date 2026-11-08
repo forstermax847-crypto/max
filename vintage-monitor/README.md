@@ -75,7 +75,7 @@ Do this with Claude. It takes about an hour. You'll type commands into the
 MacBook's **Terminal** app. In the steps below, copy each grey box exactly.
 
 You need: your eBay **Production** App ID and Cert ID, your Discord webhook
-URL, and a Hetzner account. **Never paste keys into a chat.**
+URL, and a DigitalOcean account. **Never paste keys into a chat.**
 
 ### 1. Make a login key on the MacBook
 
@@ -93,15 +93,23 @@ cat ~/.ssh/id_ed25519.pub
 Copy the whole line starting `ssh-ed25519`. This half is safe to share. The
 other file, `id_ed25519` without `.pub`, is private and never leaves the Mac.
 
-### 2. Create the server on Hetzner
+### 2. Create the server on DigitalOcean
 
-In the Hetzner Cloud console, create a server:
-- **Image:** Ubuntu 24.04
-- **Type:** the smallest, cheapest shared plan
-- **SSH key:** paste the line from step 1
-- **No** backups, volumes or other extras
+DigitalOcean calls a server a **Droplet**. Click **Create → Droplets**:
+- **Region:** London
+- **Image:** Ubuntu **24.04 (LTS)** x64
+- **Size:** Basic → Regular → the **1 GB memory** plan. Check the price
+  shown; it should be about $6 a month. The cheaper 512 MB plan can run out
+  of memory during system updates, so I'd avoid it.
+- **Authentication:** **SSH Key** → **New SSH Key** → paste the line from
+  step 1, and name it `macbook`. Don't choose Password.
+- **Hostname:** `vintage-monitor`
+- Leave **backups off** and skip other paid extras.
+- Click **Create Droplet**.
 
-Note the server's **IP address** (four numbers like `203.0.113.10`).
+Note the Droplet's **ipv4 address** (four numbers like `203.0.113.10`). If
+you ever get locked out, the Droplet's page has a **Console** button that
+opens a terminal in your browser.
 
 ### 3. Log in and lock it down
 
@@ -154,7 +162,7 @@ cat /root/.ssh/github_deploy.pub
 ```
 
 On GitHub: this repo → **Settings** → **Deploy keys** → **Add deploy key**.
-Title it `Hetzner server`, paste the line, and **leave "Allow write access"
+Title it `Monitor server`, paste the line, and **leave "Allow write access"
 unticked**. Then, back on the server:
 
 ```bash
@@ -267,5 +275,5 @@ On the server: code in `/opt/vintage-monitor`, secrets in
 ## Stopping for good
 
 Run `/opt/vintage-monitor/vintage-monitor/deploy/uninstall.sh --purge`, then
-**delete the server in the Hetzner console**. A server that's only switched
+**destroy the Droplet in the DigitalOcean dashboard**. A server that's only switched
 off still costs money. Also remove the deploy key on GitHub.
