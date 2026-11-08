@@ -30,6 +30,10 @@ build accounts, payments or a website for it.
 | Alert hours | **24/7** (decided 2026-11-08) | No quiet hours built in. If you ever want silence at night, use the phone's Focus / Do Not Disturb, which needs no code. |
 | Hosting | **Rented Linux server from Hetzner, ~£5/month** (decided 2026-11-08, replacing the MacBook idea) | It has to run 24/7, and a Claude cloud session shuts down when idle. A server avoids everything that could stop a home machine: sleep, lid, battery, Wi-Fi, power cuts, password screens after restarts. It costs about £40/year more than the MacBook would have. The old MacBook is still useful as the computer you **connect to** the server from. **The iPad can't be the server**; it can receive the alerts. |
 | Users | Just you | Keeps it simple: no logins, no dashboard. |
+| Niche | **Outdoor jackets + sportswear** (decided 2026-11-08) | What Max already knows. Football shirts deliberately excluded: too many fakes. |
+| Resell on | **Vinted** (decided 2026-11-08) | Changes the maths: prices must be checked against **Vinted**, not eBay sold prices (see starter searches below). |
+| Item prep | **Light cleaning only** (decided 2026-11-08) | Skip anything needing repair or re-waxing. |
+| Stock budget | **Over £300 available; start with ~£100** | Test the eBay→Vinted maths on 3–5 flips before committing more. |
 
 ## 3. Where I disagree with you
 
@@ -61,10 +65,46 @@ standard eBay API doesn't give sold prices (that's a restricted API most
 developers can't get). Your profit comes from knowing that a £12 jacket sells
 for £45. That knowledge has to come from you, at least at first.
 
-**So your homework before Phase 4:** pick 3 things you could price accurately
-yourself. For each, write down the brand or item, the most you'd pay, and what
-it typically sells for. Use eBay's "Sold items" filter in the app to research
-this; it's free and takes about 20 minutes.
+**Buying on eBay to sell on Vinted.** Second-hand clothes are often
+*cheaper* on Vinted than on eBay, so a normally priced eBay listing can be a
+loss once resold on Vinted. The profit is mainly in **badly listed** eBay
+items: misspelled brands and vague titles that few buyers' searches find.
+That makes the typo search (4 below) the most important one, not an extra.
+
+### Starter searches (drafted 2026-11-08; prices still to check)
+
+| # | Name | eBay search words | Why |
+|---|---|---|---|
+| 1 | Barbour wax | `barbour wax jacket -kids -childrens -boys -girls -replica -fake -style -damaged -spares` | Classic UK vintage item, mostly second-hand. `-style` removes "Barbour style" non-Barbours. |
+| 2 | Patagonia fleece | `patagonia fleece -kids -childrens -boys -girls -replica -fake -damaged` | Popular on Vinted, light to post, fewer fakes than The North Face. |
+| 3 | Vintage Nike | `vintage nike (sweatshirt,jacket,jumper) -kids -childrens -boys -girls -replica -fake -damaged` | Sportswear without the football-shirt fake problem. |
+| 4 | Typo catcher | `(barbor,babour,barbur,patagona,patogonia,patagoina)` | Misspelled listings get few views and are often underpriced. One search covers all the typos, saving eBay calls. |
+
+All four: Buy It Now, UK only, used, newly listed first. Four searches →
+each checked about every 77 seconds (§3 formula).
+
+Excluded-word rules:
+- **Don't exclude `lining`/`liner`**: real listings say "tartan lining".
+- **Don't exclude `rewax`**: it would also hide "recently rewaxed". Skip
+  "needs rewaxing" listings by eye instead, since you're only doing light
+  cleaning.
+- Keep the list short. Every excluded word risks silently hiding a good deal.
+
+Not yet verified (Phase 2): that eBay accepts the `(a,b)` OR syntax and
+`-word` exclusions, both in the app and through the API.
+
+**Homework: set each search's maximum price from Vinted.**
+1. Search the same item on Vinted, in similar condition.
+2. Vinted shows *asking* prices, and buyers often offer less. Take the
+   **lower-middle** of comparable listings as the realistic selling price,
+   and look for items marked "Sold" in sellers' wardrobes as a check.
+3. Starting rule: **the most you pay including eBay postage ≈ 40–50% of
+   that realistic Vinted price.** That's looser than the "one third" rule
+   for eBay-to-eBay, because (as far as we know; confirm on Vinted's site)
+   Vinted UK charges sellers no fees and the buyer pays postage. Being
+   stricter is safer while you learn.
+4. The bot will filter on that **total including postage**, which eBay's
+   own saved searches can't do.
 
 ## 4. What only you can do (accounts and keys)
 
@@ -353,8 +393,12 @@ Still open:
 3. By "notifications as well as Discord", did you mean the Discord app's own
    phone push notifications (already the plan), or a second, separate alert
    method on top of Discord?
-4. Your 3 starter searches with price limits (§3 homework). I'll ship
-   placeholder examples until then.
+4. Maximum prices for the 4 starter searches in §3 (Vinted price check),
+   and whether the eBay app accepted the brackets and minus signs.
+5. Later, before sales add up: tax. Regular buying-to-resell for profit is
+   trading. HMRC has a £1,000/year tax-free trading allowance, and Vinted
+   and eBay report sellers to HMRC above set thresholds. Check the current
+   rules on gov.uk before you pass a few hundred pounds of sales.
 
 ---
 
@@ -378,3 +422,8 @@ Still open:
   (historically) a separate free sign-up, not the normal eBay login.
   Added eBay's own saved-search alerts as a free baseline to race the bot
   against in Phase 4. Build still not started.
+- 2026-11-08 — Questionnaire: niche = outdoor jackets + sportswear (no
+  football shirts), resell on Vinted, light cleaning only, budget over £300
+  (start with ~£100). Drafted 4 starter searches incl. a typo catcher;
+  switched price research from eBay sold prices to Vinted. Build still not
+  started.
