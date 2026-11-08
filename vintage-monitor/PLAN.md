@@ -225,6 +225,7 @@ Each phase has a check that must pass before the next starts.
 
 ### Phase 0 — Accounts (you; can start now)
 - [ ] eBay developer account + Production keys + deletion-notification exemption
+      — *2026-11-08: account submitted, awaiting eBay approval*
 - [ ] Discord server + `#deals` channel + webhook URL, with the channel's
       notifications set to All Messages
 - [ ] In the normal eBay app: 1–2 **saved searches with notifications on**,
