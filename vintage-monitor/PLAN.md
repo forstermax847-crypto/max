@@ -271,8 +271,12 @@ Each phase has a check that must pass before the next starts.
       notifications set to All Messages — *done 2026-11-08: webhook test
       message arrived and the phone notified. (First webhook was exposed in
       chat, then deleted and replaced; the current one has never been shared.)*
-- [ ] In the normal eBay app: 1–2 **saved searches with notifications on**,
-      as a free baseline to race the bot against in Phase 4
+- [x] In the normal eBay app: 1–2 **saved searches with notifications on**,
+      as a free baseline to race the bot against in Phase 4 — *done
+      2026-11-08: all 4 starter searches saved (Buy It Now, UK, used, newly
+      listed, no price limit yet). Max reports the results look right, i.e.
+      the app accepted the `-word` and `(a,b)` syntax. The API still needs
+      checking in Phase 2.*
 - [ ] Hetzner account opened (and ID-verified, if asked). **Don't
       create the server itself yet**: we do that together in Phase 2 so the
       SSH key is set up correctly from the start.
