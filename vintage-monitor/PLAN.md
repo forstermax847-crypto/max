@@ -226,8 +226,10 @@ Each phase has a check that must pass before the next starts.
 ### Phase 0 — Accounts (you; can start now)
 - [ ] eBay developer account + Production keys + deletion-notification exemption
       — *2026-11-08: account submitted, awaiting eBay approval*
-- [ ] Discord server + `#deals` channel + webhook URL, with the channel's
-      notifications set to All Messages
+- [x] Discord server + `#deals` channel + webhook URL, with the channel's
+      notifications set to All Messages — *done 2026-11-08: webhook test
+      message arrived and the phone notified. (First webhook was exposed in
+      chat, then deleted and replaced; the current one has never been shared.)*
 - [ ] In the normal eBay app: 1–2 **saved searches with notifications on**,
       as a free baseline to race the bot against in Phase 4
 - [ ] Hetzner account opened (and ID-verified, if asked). **Don't
