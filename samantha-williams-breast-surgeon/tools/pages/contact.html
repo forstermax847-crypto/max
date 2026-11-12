@@ -1,0 +1,138 @@
+---
+path: contact.html
+type: contact
+nav: contact
+title: Contact & Book a Consultation | Samantha Williams Breast Surgeon
+description: Book a private consultation with Miss Samantha Williams, Consultant Breast Surgeon, at BMI The Ridgeway Hospital, Swindon. Call, WhatsApp or send an enquiry to her medical secretary, Tracy Greenside.
+h1: Contact and book a consultation
+crumb: Contact
+---
+  <section class="page-hero">
+    <div class="wrap">
+      {{breadcrumb}}
+      <p class="eyebrow">Begin With a Conversation</p>
+      <h1 class="page-hero__title">Request a private consultation</h1>
+      <p class="lede">Consultations are private, unhurried and free of obligation. Call or message {{secretary}}, Miss Williams's medical secretary, or send an enquiry below and she will call you back. Fast-track appointments with same-day imaging can be arranged for anyone worried about a new symptom.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap contact-grid">
+      <div id="enquiry">
+        <h2 class="headline" style="font-size: 1.9rem">Send an enquiry</h2>
+        <p class="lede" style="margin-bottom: var(--space-4)">Tell us a little about what you'd like to discuss and the best way to reach you. Please don't include detailed medical information here — Miss Williams will go through everything with you at your consultation.</p>
+        <form class="form" id="enquiryForm" method="POST" action="#" novalidate>
+          <div class="form__row">
+            <div class="form__field">
+              <label class="form__label" for="f-name">Your name</label>
+              <input class="form__input" id="f-name" name="name" type="text" autocomplete="name" required />
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="f-phone">Phone number</label>
+              <input class="form__input" id="f-phone" name="phone" type="tel" autocomplete="tel" required />
+            </div>
+          </div>
+          <div class="form__row">
+            <div class="form__field">
+              <label class="form__label" for="f-email">Email address</label>
+              <input class="form__input" id="f-email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="f-reason">What would you like to discuss?</label>
+              <select class="form__select" id="f-reason" name="reason" required>
+                <option value="">Please choose…</option>
+                <option>Cosmetic breast surgery consultation</option>
+                <option>A breast lump or change (fast-track)</option>
+                <option>Breast cancer surgery or reconstruction</option>
+                <option>A second opinion</option>
+                <option>Something else</option>
+              </select>
+            </div>
+          </div>
+          <div class="form__row">
+            <div class="form__field">
+              <label class="form__label" for="f-funding">How will the consultation be funded?</label>
+              <select class="form__select" id="f-funding" name="funding">
+                <option value="">Not sure yet</option>
+                <option>Self-paying</option>
+                <option>Private medical insurance</option>
+              </select>
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="f-contact">Preferred way to be contacted</label>
+              <select class="form__select" id="f-contact" name="preferred_contact">
+                <option>Phone call</option>
+                <option>WhatsApp</option>
+                <option>Email</option>
+              </select>
+            </div>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="f-message">Your message (optional)</label>
+            <textarea class="form__textarea" id="f-message" name="message" placeholder="For example: preferred days and times, or any questions you'd like answered before booking."></textarea>
+          </div>
+          <div class="form__honeypot" aria-hidden="true"><label>Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label></div>
+          <input type="hidden" name="_subject" value="New website enquiry — Samantha Williams Breast Surgeon" />
+          <label class="form__check">
+            <input type="checkbox" name="consent" required />
+            <span>I understand that the details I provide will be used only to respond to my enquiry, as described in the <a href="{{root}}privacy-policy.html">privacy policy</a>.</span>
+          </label>
+          <button type="submit" class="btn btn--block">Send Enquiry</button>
+          <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-card__item">
+          <p class="contact-card__label">Medical secretary</p>
+          <p class="contact-card__value">{{secretary}}</p>
+          <p class="contact-card__hint">{{secretary}} handles all appointments, insurer authorisations and questions about fees.</p>
+        </div>
+        <div class="contact-card__item">
+          <p class="contact-card__label">Phone</p>
+          <p class="contact-card__value"><span class="contact-row"><a href="tel:{{phone_e164}}">{{phone_display}}</a> <button type="button" class="copy-btn" data-copy="{{phone_display}}" aria-label="Copy phone number">Copy</button></span></p>
+          <p class="contact-card__hint">If the line is busy, leave a message and {{secretary}} will call you back.</p>
+        </div>
+        <div class="contact-card__item">
+          <p class="contact-card__label">WhatsApp</p>
+          <div class="contact-actions">
+            <a class="btn btn--ghost" href="https://wa.me/{{whatsapp}}?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20a%20consultation%20with%20Miss%20Williams." rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.3-.4.8-1.4.1-.2 0-.4 0-.5l-.9-2.1c-.2-.6-.5-.5-.7-.5z"/></svg>Message on WhatsApp</a>
+          </div>
+          <p class="contact-card__hint">Opens a chat with {{secretary}} on {{phone_display}}.</p>
+        </div>
+        <div class="contact-card__item">
+          <p class="contact-card__label">Email</p>
+          <p class="contact-card__value"><span class="contact-row"><a href="mailto:{{email}}">{{email}}</a> <button type="button" class="copy-btn" data-copy="{{email}}" aria-label="Copy email address">Copy</button></span></p>
+        </div>
+        <div class="contact-card__item">
+          <p class="contact-card__label">Insurance</p>
+          <p class="contact-card__hint">Recognised by Bupa, AXA Health, Vitality, Aviva, WPA and Simplyhealth. Insured patients usually need a GP referral and a pre-authorisation number before the first appointment.</p>
+        </div>
+        <div class="contact-card__item">
+          <p class="contact-card__label">What to bring</p>
+          <p class="contact-card__hint">Any previous imaging or letters, a list of medications, your insurer's authorisation if applicable, and your questions. You are welcome to bring someone with you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="location" class="section--raised" aria-labelledby="location-head">
+    <div class="wrap location reveal">
+      <div>
+        <p class="eyebrow">Where to Find Us</p>
+        <h2 class="headline" id="location-head">BMI The Ridgeway Hospital</h2>
+        <p class="lede">Miss Williams sees private patients at BMI The Ridgeway Hospital in Wroughton, a short distance from the heart of Swindon and within easy reach of Marlborough, Cirencester, Chippenham and the M4 — with free on-site parking.</p>
+        <dl class="location__address">
+          <dt>Address</dt>
+          <dd>BMI The Ridgeway Hospital, Moormead Road, Wroughton, Swindon SN4 9DD</dd>
+        </dl>
+        <a class="procedure-row__link" href="https://maps.app.goo.gl/ZNPr3hB6dtSi3fmZA" target="_blank" rel="noopener">View on Google Maps →</a>
+      </div>
+      <div class="location__map" aria-hidden="true">
+        <svg class="location__pin" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 20 12 20s12-11 12-20c0-6.6-5.4-12-12-12z" fill="currentColor"/>
+          <circle cx="12" cy="12" r="4.5" fill="var(--canvas-raised)"/>
+        </svg>
+      </div>
+    </div>
+  </section>
