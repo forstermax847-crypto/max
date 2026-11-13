@@ -129,13 +129,13 @@ def logo_inline(root):
 
 NAV_ITEMS = [
     ("procedures", "Procedures", "procedures/index.html"),
-    ("about", "The Surgeon", "about.html"),
+    ("about", "About", "about.html"),
     ("articles", "Articles", "articles/index.html"),
     ("contact", "Contact", "contact.html"),
 ]
 
 MOBILE_ITEMS = NAV_ITEMS + [
-    ("faq", "Questions", "index.html#faq"),
+    ("faq", "Common questions", "index.html#faq"),
     ("location", "Location", "contact.html#location"),
 ]
 
@@ -164,8 +164,8 @@ def render_nav(page, root):
   <div class="nav__links">
     {links}
     <a class="btn" href="{root}contact.html">
-      <span class="btn-full">Request a Consultation</span>
-      <span class="btn-short">Consult</span>
+      <span class="btn-full">Book a consultation</span>
+      <span class="btn-short">Book</span>
     </a>
     <button type="button" class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -217,25 +217,25 @@ def render_footer(root):
       <div>
         <p class="footer__heading">Practice</p>
         <ul class="footer__links">
-          <li><a href="{root}about.html">The surgeon</a></li>
+          <li><a href="{root}about.html">About Miss Williams</a></li>
           <li><a href="{root}articles/index.html">Patient articles</a></li>
           <li><a href="{root}index.html#faq">Common questions</a></li>
-          <li><a href="{root}index.html#insurers">Fees &amp; insurance</a></li>
-          <li><a href="{root}contact.html">Contact &amp; location</a></li>
+          <li><a href="{root}index.html#insurers">Fees and insurance</a></li>
+          <li><a href="{root}contact.html">Contact and location</a></li>
           {profiles}
         </ul>
       </div>
       <div>
-        <p class="footer__heading">Get in touch</p>
+        <p class="footer__heading">Appointments</p>
         <ul class="footer__links">
           <li><a href="tel:{SITE['phone_e164']}">{SITE['phone_display']}</a></li>
           <li><a href="mailto:{SITE['email']}">{SITE['email']}</a></li>
-          <li><a href="https://wa.me/{SITE['whatsapp']}" rel="noopener" target="_blank">WhatsApp {SITE['secretary']}</a></li>
+          <li><a href="https://wa.me/{SITE['whatsapp']}" rel="noopener" target="_blank">WhatsApp</a></li>
           <li><a href="{root}contact.html#enquiry">Send an enquiry</a></li>
         </ul>
       </div>
     </div>
-    <p class="footer__disclaimer">The information on this website is provided for general guidance and does not replace a consultation with a qualified clinician. Every patient is different; suitability, risks and expected outcomes of any procedure can only be assessed in person. If you have a new or worsening breast symptom, please arrange an assessment rather than relying on online information.</p>
+    <p class="footer__disclaimer">Information on this site is general guidance and is not a substitute for a consultation. Suitability, risks and likely outcomes of any procedure can only be assessed in person. If you have a new breast symptom, please arrange an assessment.</p>
     <div class="footer__legal">
       <span>&copy; {year} {SITE['surgeon']}. All rights reserved.</span>
       <span><a href="{root}privacy-policy.html">Privacy &amp; cookies</a> &middot; <a href="{root}complaints.html">Complaints procedure</a></span>
@@ -409,15 +409,15 @@ def render_aside(page, root):
             if label and href:
                 items.append(f'<li><a href="{root}{href.strip()}">{label.strip()}</a></li>')
         if items:
-            related = ('<p class="footer__heading" style="margin-top:0.5rem">Related</p>'
+            related = ('<p class="aside-card__heading">Related pages</p>'
                        f'<ul class="aside-card__links">{"".join(items)}</ul>')
-    return f"""<aside class="aside-card" aria-label="Contact and related pages">
-  <p class="aside-card__title">Talk it through</p>
-  <p>Consultations are unhurried and free of obligation. {SITE['secretary']}, Miss Williams's medical secretary, will arrange a time that suits you.</p>
-  <a class="btn" href="{root}contact.html#enquiry">Request a Consultation</a>
+    return f"""<aside class="aside-card" aria-label="Book a consultation">
+  <p class="aside-card__title">Book a consultation</p>
+  <p>Appointments are arranged by {SITE['secretary']}, Miss Williams's medical secretary. Insured and self-paying patients are both welcome.</p>
+  <a class="btn" href="{root}contact.html#enquiry">Send an enquiry</a>
   <div class="aside-card__contact">
     <a href="tel:{SITE['phone_e164']}">{SITE['phone_display']}</a>
-    <a href="https://wa.me/{SITE['whatsapp']}" rel="noopener" target="_blank">WhatsApp {SITE['secretary']}</a>
+    <a href="https://wa.me/{SITE['whatsapp']}" rel="noopener" target="_blank">WhatsApp</a>
     <a href="mailto:{SITE['email']}">{SITE['email']}</a>
   </div>
   {related}
